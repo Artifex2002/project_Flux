@@ -1,0 +1,36 @@
+{
+  "generated_at_utc": "2026-04-10T17:56:56.299967+00:00",
+  "model_id": "HuggingFaceVLA/smolvla_libero",
+  "output_jsonl": "/Users/ashutoshpanda/Documents/Research/project_Flux/project_Flux/smolvla_mechinterp_repro/results/value_vector_catalog_smoketest.jsonl",
+  "device": "cpu",
+  "compute_dtype": "torch.float32",
+  "lm_head_dtype_original": "torch.bfloat16",
+  "local_files_only": true,
+  "python_version": "3.10.19 (main, Oct 21 2025, 16:37:10) [Clang 20.1.8 ]",
+  "platform": "macOS-15.2-arm64-arm-64bit",
+  "torch_version": "2.7.1",
+  "top_k": 10,
+  "include_probs": true,
+  "vector_batch_size": 4,
+  "layer_start": 0,
+  "layer_stop": 1,
+  "max_vectors_per_layer": 8,
+  "num_text_layers_total": 32,
+  "hidden_size": 960,
+  "vocab_size": 49280,
+  "layers_processed": [
+    {
+      "layer_idx": 0,
+      "layer_path": "model.vlm_with_expert.vlm.model.text_model.layers.0.mlp.down_proj",
+      "vectors_written": 8,
+      "down_proj_weight_shape": [
+        960,
+        2560
+      ],
+      "elapsed_seconds": 0.032
+    }
+  ],
+  "records_written": 8,
+  "token_cache_size": 75,
+  "elapsed_seconds": 6.794
+}

@@ -1,0 +1,2423 @@
+{
+  "generated_at_utc": "2026-04-10T17:43:54.202923+00:00",
+  "model_id": "HuggingFaceVLA/smolvla_libero",
+  "local_files_only": true,
+  "python_version": "3.10.19 (main, Oct 21 2025, 16:37:10) [Clang 20.1.8 ]",
+  "platform": "macOS-15.2-arm64-arm-64bit",
+  "torch_version": "2.7.1",
+  "source_files": {
+    "smolvla_policy": "/opt/anaconda3/envs/project_Lumina/lib/python3.10/site-packages/lerobot/policies/smolvla/modeling_smolvla.py",
+    "policy_instance_model": "/opt/anaconda3/envs/project_Lumina/lib/python3.10/site-packages/lerobot/policies/smolvla/modeling_smolvla.py",
+    "vlm_with_expert_model": "/opt/anaconda3/envs/project_Lumina/lib/python3.10/site-packages/lerobot/policies/smolvla/smolvlm_with_expert.py",
+    "vlm_model_class": "/opt/anaconda3/envs/project_Lumina/lib/python3.10/site-packages/transformers/models/smolvlm/modeling_smolvlm.py"
+  },
+  "inspect_device": "cpu",
+  "policy_class": "SmolVLAPolicy",
+  "policy_config_class": "SmolVLAConfig",
+  "policy_input_features": {
+    "observation.images.image": {
+      "type": "VISUAL",
+      "shape": [
+        3,
+        256,
+        256
+      ]
+    },
+    "observation.images.image2": {
+      "type": "VISUAL",
+      "shape": [
+        3,
+        256,
+        256
+      ]
+    },
+    "observation.state": {
+      "type": "STATE",
+      "shape": [
+        8
+      ]
+    }
+  },
+  "policy_output_features": {
+    "action": {
+      "type": "ACTION",
+      "shape": [
+        7
+      ]
+    }
+  },
+  "vlm_backbone": {
+    "base_model_id": "HuggingFaceTB/SmolVLM2-500M-Instruct",
+    "num_text_layers": 32,
+    "hidden_size": 960,
+    "vocab_size": 49280,
+    "lm_head_weight_shape": [
+      49280,
+      960
+    ],
+    "tokenizer_vocab_size": 49280,
+    "total_value_vectors": 81920
+  },
+  "action_expert": {
+    "attention_mode": "cross_attn",
+    "num_vlm_layers_config": 0,
+    "num_expert_layers_config": -1,
+    "num_vlm_layers_runtime": 32,
+    "num_expert_layers_runtime": 32,
+    "expert_hidden_size": 480,
+    "self_attn_every_n_layers": 2,
+    "handoff_modules": {
+      "state_proj": {
+        "path": "model.state_proj",
+        "weight_shape": [
+          960,
+          32
+        ]
+      },
+      "action_in_proj": {
+        "path": "model.action_in_proj",
+        "weight_shape": [
+          480,
+          32
+        ]
+      },
+      "action_out_proj": {
+        "path": "model.action_out_proj",
+        "weight_shape": [
+          32,
+          480
+        ]
+      }
+    }
+  },
+  "text_layers": [
+    {
+      "layer_idx": 0,
+      "layer_path": "model.vlm_with_expert.vlm.model.text_model.layers.0",
+      "mlp_type": "LlamaMLP",
+      "act_fn": "SiLUActivation",
+      "gate_proj": {
+        "path": "model.vlm_with_expert.vlm.model.text_model.layers.0.mlp.gate_proj",
+        "weight_shape": [
+          2560,
+          960
+        ],
+        "in_features": 960,
+        "out_features": 2560
+      },
+      "up_proj": {
+        "path": "model.vlm_with_expert.vlm.model.text_model.layers.0.mlp.up_proj",
+        "weight_shape": [
+          2560,
+          960
+        ],
+        "in_features": 960,
+        "out_features": 2560
+      },
+      "down_proj": {
+        "path": "model.vlm_with_expert.vlm.model.text_model.layers.0.mlp.down_proj",
+        "weight_shape": [
+          960,
+          2560
+        ],
+        "in_features": 2560,
+        "out_features": 960,
+        "value_vector_source": {
+          "matrix": "down_proj.weight",
+          "matrix_shape": [
+            960,
+            2560
+          ],
+          "value_vector_axis": "columns",
+          "num_value_vectors": 2560,
+          "value_vector_dim": 960,
+          "reason": "PyTorch Linear stores weights as [out_features, in_features]. Each FFN value vector is therefore a column of down_proj.weight."
+        }
+      },
+      "recommended_hook": {
+        "module_path": "model.vlm_with_expert.vlm.model.text_model.layers.0.mlp.down_proj",
+        "hook_type": "forward_pre_hook",
+        "target_tensor": "down_proj input",
+        "target_last_dim": 2560,
+        "paper_alignment": "Matches the FFN activation f_theta(x) in the paper."
+      },
+      "alternative_hook": {
+        "module_path": "model.vlm_with_expert.vlm.model.text_model.layers.0.mlp.gate_proj",
+        "hook_type": "forward_hook",
+        "target_tensor": "gate_proj output",
+        "target_last_dim": 2560,
+        "paper_alignment": "Closest to the appendix gate-proj variant, not Equation (5) exactly."
+      },
+      "not_recommended_hook": {
+        "module_path": "model.vlm_with_expert.vlm.model.text_model.layers.0.mlp.down_proj",
+        "hook_type": "forward_hook",
+        "target_tensor": "down_proj output",
+        "target_last_dim": 960,
+        "reason": "This operates after the value vectors have already been combined and projected back to residual space, so it does not overwrite individual FFN activations."
+      }
+    },
+    {
+      "layer_idx": 1,
+      "layer_path": "model.vlm_with_expert.vlm.model.text_model.layers.1",
+      "mlp_type": "LlamaMLP",
+      "act_fn": "SiLUActivation",
+      "gate_proj": {
+        "path": "model.vlm_with_expert.vlm.model.text_model.layers.1.mlp.gate_proj",
+        "weight_shape": [
+          2560,
+          960
+        ],
+        "in_features": 960,
+        "out_features": 2560
+      },
+      "up_proj": {
+        "path": "model.vlm_with_expert.vlm.model.text_model.layers.1.mlp.up_proj",
+        "weight_shape": [
+          2560,
+          960
+        ],
+        "in_features": 960,
+        "out_features": 2560
+      },
+      "down_proj": {
+        "path": "model.vlm_with_expert.vlm.model.text_model.layers.1.mlp.down_proj",
+        "weight_shape": [
+          960,
+          2560
+        ],
+        "in_features": 2560,
+        "out_features": 960,
+        "value_vector_source": {
+          "matrix": "down_proj.weight",
+          "matrix_shape": [
+            960,
+            2560
+          ],
+          "value_vector_axis": "columns",
+          "num_value_vectors": 2560,
+          "value_vector_dim": 960,
+          "reason": "PyTorch Linear stores weights as [out_features, in_features]. Each FFN value vector is therefore a column of down_proj.weight."
+        }
+      },
+      "recommended_hook": {
+        "module_path": "model.vlm_with_expert.vlm.model.text_model.layers.1.mlp.down_proj",
+        "hook_type": "forward_pre_hook",
+        "target_tensor": "down_proj input",
+        "target_last_dim": 2560,
+        "paper_alignment": "Matches the FFN activation f_theta(x) in the paper."
+      },
+      "alternative_hook": {
+        "module_path": "model.vlm_with_expert.vlm.model.text_model.layers.1.mlp.gate_proj",
+        "hook_type": "forward_hook",
+        "target_tensor": "gate_proj output",
+        "target_last_dim": 2560,
+        "paper_alignment": "Closest to the appendix gate-proj variant, not Equation (5) exactly."
+      },
+      "not_recommended_hook": {
+        "module_path": "model.vlm_with_expert.vlm.model.text_model.layers.1.mlp.down_proj",
+        "hook_type": "forward_hook",
+        "target_tensor": "down_proj output",
+        "target_last_dim": 960,
+        "reason": "This operates after the value vectors have already been combined and projected back to residual space, so it does not overwrite individual FFN activations."
+      }
+    },
+    {
+      "layer_idx": 2,
+      "layer_path": "model.vlm_with_expert.vlm.model.text_model.layers.2",
+      "mlp_type": "LlamaMLP",
+      "act_fn": "SiLUActivation",
+      "gate_proj": {
+        "path": "model.vlm_with_expert.vlm.model.text_model.layers.2.mlp.gate_proj",
+        "weight_shape": [
+          2560,
+          960
+        ],
+        "in_features": 960,
+        "out_features": 2560
+      },
+      "up_proj": {
+        "path": "model.vlm_with_expert.vlm.model.text_model.layers.2.mlp.up_proj",
+        "weight_shape": [
+          2560,
+          960
+        ],
+        "in_features": 960,
+        "out_features": 2560
+      },
+      "down_proj": {
+        "path": "model.vlm_with_expert.vlm.model.text_model.layers.2.mlp.down_proj",
+        "weight_shape": [
+          960,
+          2560
+        ],
+        "in_features": 2560,
+        "out_features": 960,
+        "value_vector_source": {
+          "matrix": "down_proj.weight",
+          "matrix_shape": [
+            960,
+            2560
+          ],
+          "value_vector_axis": "columns",
+          "num_value_vectors": 2560,
+          "value_vector_dim": 960,
+          "reason": "PyTorch Linear stores weights as [out_features, in_features]. Each FFN value vector is therefore a column of down_proj.weight."
+        }
+      },
+      "recommended_hook": {
+        "module_path": "model.vlm_with_expert.vlm.model.text_model.layers.2.mlp.down_proj",
+        "hook_type": "forward_pre_hook",
+        "target_tensor": "down_proj input",
+        "target_last_dim": 2560,
+        "paper_alignment": "Matches the FFN activation f_theta(x) in the paper."
+      },
+      "alternative_hook": {
+        "module_path": "model.vlm_with_expert.vlm.model.text_model.layers.2.mlp.gate_proj",
+        "hook_type": "forward_hook",
+        "target_tensor": "gate_proj output",
+        "target_last_dim": 2560,
+        "paper_alignment": "Closest to the appendix gate-proj variant, not Equation (5) exactly."
+      },
+      "not_recommended_hook": {
+        "module_path": "model.vlm_with_expert.vlm.model.text_model.layers.2.mlp.down_proj",
+        "hook_type": "forward_hook",
+        "target_tensor": "down_proj output",
+        "target_last_dim": 960,
+        "reason": "This operates after the value vectors have already been combined and projected back to residual space, so it does not overwrite individual FFN activations."
+      }
+    },
+    {
+      "layer_idx": 3,
+      "layer_path": "model.vlm_with_expert.vlm.model.text_model.layers.3",
+      "mlp_type": "LlamaMLP",
+      "act_fn": "SiLUActivation",
+      "gate_proj": {
+        "path": "model.vlm_with_expert.vlm.model.text_model.layers.3.mlp.gate_proj",
+        "weight_shape": [
+          2560,
+          960
+        ],
+        "in_features": 960,
+        "out_features": 2560
+      },
+      "up_proj": {
+        "path": "model.vlm_with_expert.vlm.model.text_model.layers.3.mlp.up_proj",
+        "weight_shape": [
+          2560,
+          960
+        ],
+        "in_features": 960,
+        "out_features": 2560
+      },
+      "down_proj": {
+        "path": "model.vlm_with_expert.vlm.model.text_model.layers.3.mlp.down_proj",
+        "weight_shape": [
+          960,
+          2560
+        ],
+        "in_features": 2560,
+        "out_features": 960,
+        "value_vector_source": {
+          "matrix": "down_proj.weight",
+          "matrix_shape": [
+            960,
+            2560
+          ],
+          "value_vector_axis": "columns",
+          "num_value_vectors": 2560,
+          "value_vector_dim": 960,
+          "reason": "PyTorch Linear stores weights as [out_features, in_features]. Each FFN value vector is therefore a column of down_proj.weight."
+        }
+      },
+      "recommended_hook": {
+        "module_path": "model.vlm_with_expert.vlm.model.text_model.layers.3.mlp.down_proj",
+        "hook_type": "forward_pre_hook",
+        "target_tensor": "down_proj input",
+        "target_last_dim": 2560,
+        "paper_alignment": "Matches the FFN activation f_theta(x) in the paper."
+      },
+      "alternative_hook": {
+        "module_path": "model.vlm_with_expert.vlm.model.text_model.layers.3.mlp.gate_proj",
+        "hook_type": "forward_hook",
+        "target_tensor": "gate_proj output",
+        "target_last_dim": 2560,
+        "paper_alignment": "Closest to the appendix gate-proj variant, not Equation (5) exactly."
+      },
+      "not_recommended_hook": {
+        "module_path": "model.vlm_with_expert.vlm.model.text_model.layers.3.mlp.down_proj",
+        "hook_type": "forward_hook",
+        "target_tensor": "down_proj output",
+        "target_last_dim": 960,
+        "reason": "This operates after the value vectors have already been combined and projected back to residual space, so it does not overwrite individual FFN activations."
+      }
+    },
+    {
+      "layer_idx": 4,
+      "layer_path": "model.vlm_with_expert.vlm.model.text_model.layers.4",
+      "mlp_type": "LlamaMLP",
+      "act_fn": "SiLUActivation",
+      "gate_proj": {
+        "path": "model.vlm_with_expert.vlm.model.text_model.layers.4.mlp.gate_proj",
+        "weight_shape": [
+          2560,
+          960
+        ],
+        "in_features": 960,
+        "out_features": 2560
+      },
+      "up_proj": {
+        "path": "model.vlm_with_expert.vlm.model.text_model.layers.4.mlp.up_proj",
+        "weight_shape": [
+          2560,
+          960
+        ],
+        "in_features": 960,
+        "out_features": 2560
+      },
+      "down_proj": {
+        "path": "model.vlm_with_expert.vlm.model.text_model.layers.4.mlp.down_proj",
+        "weight_shape": [
+          960,
+          2560
+        ],
+        "in_features": 2560,
+        "out_features": 960,
+        "value_vector_source": {
+          "matrix": "down_proj.weight",
+          "matrix_shape": [
+            960,
+            2560
+          ],
+          "value_vector_axis": "columns",
+          "num_value_vectors": 2560,
+          "value_vector_dim": 960,
+          "reason": "PyTorch Linear stores weights as [out_features, in_features]. Each FFN value vector is therefore a column of down_proj.weight."
+        }
+      },
+      "recommended_hook": {
+        "module_path": "model.vlm_with_expert.vlm.model.text_model.layers.4.mlp.down_proj",
+        "hook_type": "forward_pre_hook",
+        "target_tensor": "down_proj input",
+        "target_last_dim": 2560,
+        "paper_alignment": "Matches the FFN activation f_theta(x) in the paper."
+      },
+      "alternative_hook": {
+        "module_path": "model.vlm_with_expert.vlm.model.text_model.layers.4.mlp.gate_proj",
+        "hook_type": "forward_hook",
+        "target_tensor": "gate_proj output",
+        "target_last_dim": 2560,
+        "paper_alignment": "Closest to the appendix gate-proj variant, not Equation (5) exactly."
+      },
+      "not_recommended_hook": {
+        "module_path": "model.vlm_with_expert.vlm.model.text_model.layers.4.mlp.down_proj",
+        "hook_type": "forward_hook",
+        "target_tensor": "down_proj output",
+        "target_last_dim": 960,
+        "reason": "This operates after the value vectors have already been combined and projected back to residual space, so it does not overwrite individual FFN activations."
+      }
+    },
+    {
+      "layer_idx": 5,
+      "layer_path": "model.vlm_with_expert.vlm.model.text_model.layers.5",
+      "mlp_type": "LlamaMLP",
+      "act_fn": "SiLUActivation",
+      "gate_proj": {
+        "path": "model.vlm_with_expert.vlm.model.text_model.layers.5.mlp.gate_proj",
+        "weight_shape": [
+          2560,
+          960
+        ],
+        "in_features": 960,
+        "out_features": 2560
+      },
+      "up_proj": {
+        "path": "model.vlm_with_expert.vlm.model.text_model.layers.5.mlp.up_proj",
+        "weight_shape": [
+          2560,
+          960
+        ],
+        "in_features": 960,
+        "out_features": 2560
+      },
+      "down_proj": {
+        "path": "model.vlm_with_expert.vlm.model.text_model.layers.5.mlp.down_proj",
+        "weight_shape": [
+          960,
+          2560
+        ],
+        "in_features": 2560,
+        "out_features": 960,
+        "value_vector_source": {
+          "matrix": "down_proj.weight",
+          "matrix_shape": [
+            960,
+            2560
+          ],
+          "value_vector_axis": "columns",
+          "num_value_vectors": 2560,
+          "value_vector_dim": 960,
+          "reason": "PyTorch Linear stores weights as [out_features, in_features]. Each FFN value vector is therefore a column of down_proj.weight."
+        }
+      },
+      "recommended_hook": {
+        "module_path": "model.vlm_with_expert.vlm.model.text_model.layers.5.mlp.down_proj",
+        "hook_type": "forward_pre_hook",
+        "target_tensor": "down_proj input",
+        "target_last_dim": 2560,
+        "paper_alignment": "Matches the FFN activation f_theta(x) in the paper."
+      },
+      "alternative_hook": {
+        "module_path": "model.vlm_with_expert.vlm.model.text_model.layers.5.mlp.gate_proj",
+        "hook_type": "forward_hook",
+        "target_tensor": "gate_proj output",
+        "target_last_dim": 2560,
+        "paper_alignment": "Closest to the appendix gate-proj variant, not Equation (5) exactly."
+      },
+      "not_recommended_hook": {
+        "module_path": "model.vlm_with_expert.vlm.model.text_model.layers.5.mlp.down_proj",
+        "hook_type": "forward_hook",
+        "target_tensor": "down_proj output",
+        "target_last_dim": 960,
+        "reason": "This operates after the value vectors have already been combined and projected back to residual space, so it does not overwrite individual FFN activations."
+      }
+    },
+    {
+      "layer_idx": 6,
+      "layer_path": "model.vlm_with_expert.vlm.model.text_model.layers.6",
+      "mlp_type": "LlamaMLP",
+      "act_fn": "SiLUActivation",
+      "gate_proj": {
+        "path": "model.vlm_with_expert.vlm.model.text_model.layers.6.mlp.gate_proj",
+        "weight_shape": [
+          2560,
+          960
+        ],
+        "in_features": 960,
+        "out_features": 2560
+      },
+      "up_proj": {
+        "path": "model.vlm_with_expert.vlm.model.text_model.layers.6.mlp.up_proj",
+        "weight_shape": [
+          2560,
+          960
+        ],
+        "in_features": 960,
+        "out_features": 2560
+      },
+      "down_proj": {
+        "path": "model.vlm_with_expert.vlm.model.text_model.layers.6.mlp.down_proj",
+        "weight_shape": [
+          960,
+          2560
+        ],
+        "in_features": 2560,
+        "out_features": 960,
+        "value_vector_source": {
+          "matrix": "down_proj.weight",
+          "matrix_shape": [
+            960,
+            2560
+          ],
+          "value_vector_axis": "columns",
+          "num_value_vectors": 2560,
+          "value_vector_dim": 960,
+          "reason": "PyTorch Linear stores weights as [out_features, in_features]. Each FFN value vector is therefore a column of down_proj.weight."
+        }
+      },
+      "recommended_hook": {
+        "module_path": "model.vlm_with_expert.vlm.model.text_model.layers.6.mlp.down_proj",
+        "hook_type": "forward_pre_hook",
+        "target_tensor": "down_proj input",
+        "target_last_dim": 2560,
+        "paper_alignment": "Matches the FFN activation f_theta(x) in the paper."
+      },
+      "alternative_hook": {
+        "module_path": "model.vlm_with_expert.vlm.model.text_model.layers.6.mlp.gate_proj",
+        "hook_type": "forward_hook",
+        "target_tensor": "gate_proj output",
+        "target_last_dim": 2560,
+        "paper_alignment": "Closest to the appendix gate-proj variant, not Equation (5) exactly."
+      },
+      "not_recommended_hook": {
+        "module_path": "model.vlm_with_expert.vlm.model.text_model.layers.6.mlp.down_proj",
+        "hook_type": "forward_hook",
+        "target_tensor": "down_proj output",
+        "target_last_dim": 960,
+        "reason": "This operates after the value vectors have already been combined and projected back to residual space, so it does not overwrite individual FFN activations."
+      }
+    },
+    {
+      "layer_idx": 7,
+      "layer_path": "model.vlm_with_expert.vlm.model.text_model.layers.7",
+      "mlp_type": "LlamaMLP",
+      "act_fn": "SiLUActivation",
+      "gate_proj": {
+        "path": "model.vlm_with_expert.vlm.model.text_model.layers.7.mlp.gate_proj",
+        "weight_shape": [
+          2560,
+          960
+        ],
+        "in_features": 960,
+        "out_features": 2560
+      },
+      "up_proj": {
+        "path": "model.vlm_with_expert.vlm.model.text_model.layers.7.mlp.up_proj",
+        "weight_shape": [
+          2560,
+          960
+        ],
+        "in_features": 960,
+        "out_features": 2560
+      },
+      "down_proj": {
+        "path": "model.vlm_with_expert.vlm.model.text_model.layers.7.mlp.down_proj",
+        "weight_shape": [
+          960,
+          2560
+        ],
+        "in_features": 2560,
+        "out_features": 960,
+        "value_vector_source": {
+          "matrix": "down_proj.weight",
+          "matrix_shape": [
+            960,
+            2560
+          ],
+          "value_vector_axis": "columns",
+          "num_value_vectors": 2560,
+          "value_vector_dim": 960,
+          "reason": "PyTorch Linear stores weights as [out_features, in_features]. Each FFN value vector is therefore a column of down_proj.weight."
+        }
+      },
+      "recommended_hook": {
+        "module_path": "model.vlm_with_expert.vlm.model.text_model.layers.7.mlp.down_proj",
+        "hook_type": "forward_pre_hook",
+        "target_tensor": "down_proj input",
+        "target_last_dim": 2560,
+        "paper_alignment": "Matches the FFN activation f_theta(x) in the paper."
+      },
+      "alternative_hook": {
+        "module_path": "model.vlm_with_expert.vlm.model.text_model.layers.7.mlp.gate_proj",
+        "hook_type": "forward_hook",
+        "target_tensor": "gate_proj output",
+        "target_last_dim": 2560,
+        "paper_alignment": "Closest to the appendix gate-proj variant, not Equation (5) exactly."
+      },
+      "not_recommended_hook": {
+        "module_path": "model.vlm_with_expert.vlm.model.text_model.layers.7.mlp.down_proj",
+        "hook_type": "forward_hook",
+        "target_tensor": "down_proj output",
+        "target_last_dim": 960,
+        "reason": "This operates after the value vectors have already been combined and projected back to residual space, so it does not overwrite individual FFN activations."
+      }
+    },
+    {
+      "layer_idx": 8,
+      "layer_path": "model.vlm_with_expert.vlm.model.text_model.layers.8",
+      "mlp_type": "LlamaMLP",
+      "act_fn": "SiLUActivation",
+      "gate_proj": {
+        "path": "model.vlm_with_expert.vlm.model.text_model.layers.8.mlp.gate_proj",
+        "weight_shape": [
+          2560,
+          960
+        ],
+        "in_features": 960,
+        "out_features": 2560
+      },
+      "up_proj": {
+        "path": "model.vlm_with_expert.vlm.model.text_model.layers.8.mlp.up_proj",
+        "weight_shape": [
+          2560,
+          960
+        ],
+        "in_features": 960,
+        "out_features": 2560
+      },
+      "down_proj": {
+        "path": "model.vlm_with_expert.vlm.model.text_model.layers.8.mlp.down_proj",
+        "weight_shape": [
+          960,
+          2560
+        ],
+        "in_features": 2560,
+        "out_features": 960,
+        "value_vector_source": {
+          "matrix": "down_proj.weight",
+          "matrix_shape": [
+            960,
+            2560
+          ],
+          "value_vector_axis": "columns",
+          "num_value_vectors": 2560,
+          "value_vector_dim": 960,
+          "reason": "PyTorch Linear stores weights as [out_features, in_features]. Each FFN value vector is therefore a column of down_proj.weight."
+        }
+      },
+      "recommended_hook": {
+        "module_path": "model.vlm_with_expert.vlm.model.text_model.layers.8.mlp.down_proj",
+        "hook_type": "forward_pre_hook",
+        "target_tensor": "down_proj input",
+        "target_last_dim": 2560,
+        "paper_alignment": "Matches the FFN activation f_theta(x) in the paper."
+      },
+      "alternative_hook": {
+        "module_path": "model.vlm_with_expert.vlm.model.text_model.layers.8.mlp.gate_proj",
+        "hook_type": "forward_hook",
+        "target_tensor": "gate_proj output",
+        "target_last_dim": 2560,
+        "paper_alignment": "Closest to the appendix gate-proj variant, not Equation (5) exactly."
+      },
+      "not_recommended_hook": {
+        "module_path": "model.vlm_with_expert.vlm.model.text_model.layers.8.mlp.down_proj",
+        "hook_type": "forward_hook",
+        "target_tensor": "down_proj output",
+        "target_last_dim": 960,
+        "reason": "This operates after the value vectors have already been combined and projected back to residual space, so it does not overwrite individual FFN activations."
+      }
+    },
+    {
+      "layer_idx": 9,
+      "layer_path": "model.vlm_with_expert.vlm.model.text_model.layers.9",
+      "mlp_type": "LlamaMLP",
+      "act_fn": "SiLUActivation",
+      "gate_proj": {
+        "path": "model.vlm_with_expert.vlm.model.text_model.layers.9.mlp.gate_proj",
+        "weight_shape": [
+          2560,
+          960
+        ],
+        "in_features": 960,
+        "out_features": 2560
+      },
+      "up_proj": {
+        "path": "model.vlm_with_expert.vlm.model.text_model.layers.9.mlp.up_proj",
+        "weight_shape": [
+          2560,
+          960
+        ],
+        "in_features": 960,
+        "out_features": 2560
+      },
+      "down_proj": {
+        "path": "model.vlm_with_expert.vlm.model.text_model.layers.9.mlp.down_proj",
+        "weight_shape": [
+          960,
+          2560
+        ],
+        "in_features": 2560,
+        "out_features": 960,
+        "value_vector_source": {
+          "matrix": "down_proj.weight",
+          "matrix_shape": [
+            960,
+            2560
+          ],
+          "value_vector_axis": "columns",
+          "num_value_vectors": 2560,
+          "value_vector_dim": 960,
+          "reason": "PyTorch Linear stores weights as [out_features, in_features]. Each FFN value vector is therefore a column of down_proj.weight."
+        }
+      },
+      "recommended_hook": {
+        "module_path": "model.vlm_with_expert.vlm.model.text_model.layers.9.mlp.down_proj",
+        "hook_type": "forward_pre_hook",
+        "target_tensor": "down_proj input",
+        "target_last_dim": 2560,
+        "paper_alignment": "Matches the FFN activation f_theta(x) in the paper."
+      },
+      "alternative_hook": {
+        "module_path": "model.vlm_with_expert.vlm.model.text_model.layers.9.mlp.gate_proj",
+        "hook_type": "forward_hook",
+        "target_tensor": "gate_proj output",
+        "target_last_dim": 2560,
+        "paper_alignment": "Closest to the appendix gate-proj variant, not Equation (5) exactly."
+      },
+      "not_recommended_hook": {
+        "module_path": "model.vlm_with_expert.vlm.model.text_model.layers.9.mlp.down_proj",
+        "hook_type": "forward_hook",
+        "target_tensor": "down_proj output",
+        "target_last_dim": 960,
+        "reason": "This operates after the value vectors have already been combined and projected back to residual space, so it does not overwrite individual FFN activations."
+      }
+    },
+    {
+      "layer_idx": 10,
+      "layer_path": "model.vlm_with_expert.vlm.model.text_model.layers.10",
+      "mlp_type": "LlamaMLP",
+      "act_fn": "SiLUActivation",
+      "gate_proj": {
+        "path": "model.vlm_with_expert.vlm.model.text_model.layers.10.mlp.gate_proj",
+        "weight_shape": [
+          2560,
+          960
+        ],
+        "in_features": 960,
+        "out_features": 2560
+      },
+      "up_proj": {
+        "path": "model.vlm_with_expert.vlm.model.text_model.layers.10.mlp.up_proj",
+        "weight_shape": [
+          2560,
+          960
+        ],
+        "in_features": 960,
+        "out_features": 2560
+      },
+      "down_proj": {
+        "path": "model.vlm_with_expert.vlm.model.text_model.layers.10.mlp.down_proj",
+        "weight_shape": [
+          960,
+          2560
+        ],
+        "in_features": 2560,
+        "out_features": 960,
+        "value_vector_source": {
+          "matrix": "down_proj.weight",
+          "matrix_shape": [
+            960,
+            2560
+          ],
+          "value_vector_axis": "columns",
+          "num_value_vectors": 2560,
+          "value_vector_dim": 960,
+          "reason": "PyTorch Linear stores weights as [out_features, in_features]. Each FFN value vector is therefore a column of down_proj.weight."
+        }
+      },
+      "recommended_hook": {
+        "module_path": "model.vlm_with_expert.vlm.model.text_model.layers.10.mlp.down_proj",
+        "hook_type": "forward_pre_hook",
+        "target_tensor": "down_proj input",
+        "target_last_dim": 2560,
+        "paper_alignment": "Matches the FFN activation f_theta(x) in the paper."
+      },
+      "alternative_hook": {
+        "module_path": "model.vlm_with_expert.vlm.model.text_model.layers.10.mlp.gate_proj",
+        "hook_type": "forward_hook",
+        "target_tensor": "gate_proj output",
+        "target_last_dim": 2560,
+        "paper_alignment": "Closest to the appendix gate-proj variant, not Equation (5) exactly."
+      },
+      "not_recommended_hook": {
+        "module_path": "model.vlm_with_expert.vlm.model.text_model.layers.10.mlp.down_proj",
+        "hook_type": "forward_hook",
+        "target_tensor": "down_proj output",
+        "target_last_dim": 960,
+        "reason": "This operates after the value vectors have already been combined and projected back to residual space, so it does not overwrite individual FFN activations."
+      }
+    },
+    {
+      "layer_idx": 11,
+      "layer_path": "model.vlm_with_expert.vlm.model.text_model.layers.11",
+      "mlp_type": "LlamaMLP",
+      "act_fn": "SiLUActivation",
+      "gate_proj": {
+        "path": "model.vlm_with_expert.vlm.model.text_model.layers.11.mlp.gate_proj",
+        "weight_shape": [
+          2560,
+          960
+        ],
+        "in_features": 960,
+        "out_features": 2560
+      },
+      "up_proj": {
+        "path": "model.vlm_with_expert.vlm.model.text_model.layers.11.mlp.up_proj",
+        "weight_shape": [
+          2560,
+          960
+        ],
+        "in_features": 960,
+        "out_features": 2560
+      },
+      "down_proj": {
+        "path": "model.vlm_with_expert.vlm.model.text_model.layers.11.mlp.down_proj",
+        "weight_shape": [
+          960,
+          2560
+        ],
+        "in_features": 2560,
+        "out_features": 960,
+        "value_vector_source": {
+          "matrix": "down_proj.weight",
+          "matrix_shape": [
+            960,
+            2560
+          ],
+          "value_vector_axis": "columns",
+          "num_value_vectors": 2560,
+          "value_vector_dim": 960,
+          "reason": "PyTorch Linear stores weights as [out_features, in_features]. Each FFN value vector is therefore a column of down_proj.weight."
+        }
+      },
+      "recommended_hook": {
+        "module_path": "model.vlm_with_expert.vlm.model.text_model.layers.11.mlp.down_proj",
+        "hook_type": "forward_pre_hook",
+        "target_tensor": "down_proj input",
+        "target_last_dim": 2560,
+        "paper_alignment": "Matches the FFN activation f_theta(x) in the paper."
+      },
+      "alternative_hook": {
+        "module_path": "model.vlm_with_expert.vlm.model.text_model.layers.11.mlp.gate_proj",
+        "hook_type": "forward_hook",
+        "target_tensor": "gate_proj output",
+        "target_last_dim": 2560,
+        "paper_alignment": "Closest to the appendix gate-proj variant, not Equation (5) exactly."
+      },
+      "not_recommended_hook": {
+        "module_path": "model.vlm_with_expert.vlm.model.text_model.layers.11.mlp.down_proj",
+        "hook_type": "forward_hook",
+        "target_tensor": "down_proj output",
+        "target_last_dim": 960,
+        "reason": "This operates after the value vectors have already been combined and projected back to residual space, so it does not overwrite individual FFN activations."
+      }
+    },
+    {
+      "layer_idx": 12,
+      "layer_path": "model.vlm_with_expert.vlm.model.text_model.layers.12",
+      "mlp_type": "LlamaMLP",
+      "act_fn": "SiLUActivation",
+      "gate_proj": {
+        "path": "model.vlm_with_expert.vlm.model.text_model.layers.12.mlp.gate_proj",
+        "weight_shape": [
+          2560,
+          960
+        ],
+        "in_features": 960,
+        "out_features": 2560
+      },
+      "up_proj": {
+        "path": "model.vlm_with_expert.vlm.model.text_model.layers.12.mlp.up_proj",
+        "weight_shape": [
+          2560,
+          960
+        ],
+        "in_features": 960,
+        "out_features": 2560
+      },
+      "down_proj": {
+        "path": "model.vlm_with_expert.vlm.model.text_model.layers.12.mlp.down_proj",
+        "weight_shape": [
+          960,
+          2560
+        ],
+        "in_features": 2560,
+        "out_features": 960,
+        "value_vector_source": {
+          "matrix": "down_proj.weight",
+          "matrix_shape": [
+            960,
+            2560
+          ],
+          "value_vector_axis": "columns",
+          "num_value_vectors": 2560,
+          "value_vector_dim": 960,
+          "reason": "PyTorch Linear stores weights as [out_features, in_features]. Each FFN value vector is therefore a column of down_proj.weight."
+        }
+      },
+      "recommended_hook": {
+        "module_path": "model.vlm_with_expert.vlm.model.text_model.layers.12.mlp.down_proj",
+        "hook_type": "forward_pre_hook",
+        "target_tensor": "down_proj input",
+        "target_last_dim": 2560,
+        "paper_alignment": "Matches the FFN activation f_theta(x) in the paper."
+      },
+      "alternative_hook": {
+        "module_path": "model.vlm_with_expert.vlm.model.text_model.layers.12.mlp.gate_proj",
+        "hook_type": "forward_hook",
+        "target_tensor": "gate_proj output",
+        "target_last_dim": 2560,
+        "paper_alignment": "Closest to the appendix gate-proj variant, not Equation (5) exactly."
+      },
+      "not_recommended_hook": {
+        "module_path": "model.vlm_with_expert.vlm.model.text_model.layers.12.mlp.down_proj",
+        "hook_type": "forward_hook",
+        "target_tensor": "down_proj output",
+        "target_last_dim": 960,
+        "reason": "This operates after the value vectors have already been combined and projected back to residual space, so it does not overwrite individual FFN activations."
+      }
+    },
+    {
+      "layer_idx": 13,
+      "layer_path": "model.vlm_with_expert.vlm.model.text_model.layers.13",
+      "mlp_type": "LlamaMLP",
+      "act_fn": "SiLUActivation",
+      "gate_proj": {
+        "path": "model.vlm_with_expert.vlm.model.text_model.layers.13.mlp.gate_proj",
+        "weight_shape": [
+          2560,
+          960
+        ],
+        "in_features": 960,
+        "out_features": 2560
+      },
+      "up_proj": {
+        "path": "model.vlm_with_expert.vlm.model.text_model.layers.13.mlp.up_proj",
+        "weight_shape": [
+          2560,
+          960
+        ],
+        "in_features": 960,
+        "out_features": 2560
+      },
+      "down_proj": {
+        "path": "model.vlm_with_expert.vlm.model.text_model.layers.13.mlp.down_proj",
+        "weight_shape": [
+          960,
+          2560
+        ],
+        "in_features": 2560,
+        "out_features": 960,
+        "value_vector_source": {
+          "matrix": "down_proj.weight",
+          "matrix_shape": [
+            960,
+            2560
+          ],
+          "value_vector_axis": "columns",
+          "num_value_vectors": 2560,
+          "value_vector_dim": 960,
+          "reason": "PyTorch Linear stores weights as [out_features, in_features]. Each FFN value vector is therefore a column of down_proj.weight."
+        }
+      },
+      "recommended_hook": {
+        "module_path": "model.vlm_with_expert.vlm.model.text_model.layers.13.mlp.down_proj",
+        "hook_type": "forward_pre_hook",
+        "target_tensor": "down_proj input",
+        "target_last_dim": 2560,
+        "paper_alignment": "Matches the FFN activation f_theta(x) in the paper."
+      },
+      "alternative_hook": {
+        "module_path": "model.vlm_with_expert.vlm.model.text_model.layers.13.mlp.gate_proj",
+        "hook_type": "forward_hook",
+        "target_tensor": "gate_proj output",
+        "target_last_dim": 2560,
+        "paper_alignment": "Closest to the appendix gate-proj variant, not Equation (5) exactly."
+      },
+      "not_recommended_hook": {
+        "module_path": "model.vlm_with_expert.vlm.model.text_model.layers.13.mlp.down_proj",
+        "hook_type": "forward_hook",
+        "target_tensor": "down_proj output",
+        "target_last_dim": 960,
+        "reason": "This operates after the value vectors have already been combined and projected back to residual space, so it does not overwrite individual FFN activations."
+      }
+    },
+    {
+      "layer_idx": 14,
+      "layer_path": "model.vlm_with_expert.vlm.model.text_model.layers.14",
+      "mlp_type": "LlamaMLP",
+      "act_fn": "SiLUActivation",
+      "gate_proj": {
+        "path": "model.vlm_with_expert.vlm.model.text_model.layers.14.mlp.gate_proj",
+        "weight_shape": [
+          2560,
+          960
+        ],
+        "in_features": 960,
+        "out_features": 2560
+      },
+      "up_proj": {
+        "path": "model.vlm_with_expert.vlm.model.text_model.layers.14.mlp.up_proj",
+        "weight_shape": [
+          2560,
+          960
+        ],
+        "in_features": 960,
+        "out_features": 2560
+      },
+      "down_proj": {
+        "path": "model.vlm_with_expert.vlm.model.text_model.layers.14.mlp.down_proj",
+        "weight_shape": [
+          960,
+          2560
+        ],
+        "in_features": 2560,
+        "out_features": 960,
+        "value_vector_source": {
+          "matrix": "down_proj.weight",
+          "matrix_shape": [
+            960,
+            2560
+          ],
+          "value_vector_axis": "columns",
+          "num_value_vectors": 2560,
+          "value_vector_dim": 960,
+          "reason": "PyTorch Linear stores weights as [out_features, in_features]. Each FFN value vector is therefore a column of down_proj.weight."
+        }
+      },
+      "recommended_hook": {
+        "module_path": "model.vlm_with_expert.vlm.model.text_model.layers.14.mlp.down_proj",
+        "hook_type": "forward_pre_hook",
+        "target_tensor": "down_proj input",
+        "target_last_dim": 2560,
+        "paper_alignment": "Matches the FFN activation f_theta(x) in the paper."
+      },
+      "alternative_hook": {
+        "module_path": "model.vlm_with_expert.vlm.model.text_model.layers.14.mlp.gate_proj",
+        "hook_type": "forward_hook",
+        "target_tensor": "gate_proj output",
+        "target_last_dim": 2560,
+        "paper_alignment": "Closest to the appendix gate-proj variant, not Equation (5) exactly."
+      },
+      "not_recommended_hook": {
+        "module_path": "model.vlm_with_expert.vlm.model.text_model.layers.14.mlp.down_proj",
+        "hook_type": "forward_hook",
+        "target_tensor": "down_proj output",
+        "target_last_dim": 960,
+        "reason": "This operates after the value vectors have already been combined and projected back to residual space, so it does not overwrite individual FFN activations."
+      }
+    },
+    {
+      "layer_idx": 15,
+      "layer_path": "model.vlm_with_expert.vlm.model.text_model.layers.15",
+      "mlp_type": "LlamaMLP",
+      "act_fn": "SiLUActivation",
+      "gate_proj": {
+        "path": "model.vlm_with_expert.vlm.model.text_model.layers.15.mlp.gate_proj",
+        "weight_shape": [
+          2560,
+          960
+        ],
+        "in_features": 960,
+        "out_features": 2560
+      },
+      "up_proj": {
+        "path": "model.vlm_with_expert.vlm.model.text_model.layers.15.mlp.up_proj",
+        "weight_shape": [
+          2560,
+          960
+        ],
+        "in_features": 960,
+        "out_features": 2560
+      },
+      "down_proj": {
+        "path": "model.vlm_with_expert.vlm.model.text_model.layers.15.mlp.down_proj",
+        "weight_shape": [
+          960,
+          2560
+        ],
+        "in_features": 2560,
+        "out_features": 960,
+        "value_vector_source": {
+          "matrix": "down_proj.weight",
+          "matrix_shape": [
+            960,
+            2560
+          ],
+          "value_vector_axis": "columns",
+          "num_value_vectors": 2560,
+          "value_vector_dim": 960,
+          "reason": "PyTorch Linear stores weights as [out_features, in_features]. Each FFN value vector is therefore a column of down_proj.weight."
+        }
+      },
+      "recommended_hook": {
+        "module_path": "model.vlm_with_expert.vlm.model.text_model.layers.15.mlp.down_proj",
+        "hook_type": "forward_pre_hook",
+        "target_tensor": "down_proj input",
+        "target_last_dim": 2560,
+        "paper_alignment": "Matches the FFN activation f_theta(x) in the paper."
+      },
+      "alternative_hook": {
+        "module_path": "model.vlm_with_expert.vlm.model.text_model.layers.15.mlp.gate_proj",
+        "hook_type": "forward_hook",
+        "target_tensor": "gate_proj output",
+        "target_last_dim": 2560,
+        "paper_alignment": "Closest to the appendix gate-proj variant, not Equation (5) exactly."
+      },
+      "not_recommended_hook": {
+        "module_path": "model.vlm_with_expert.vlm.model.text_model.layers.15.mlp.down_proj",
+        "hook_type": "forward_hook",
+        "target_tensor": "down_proj output",
+        "target_last_dim": 960,
+        "reason": "This operates after the value vectors have already been combined and projected back to residual space, so it does not overwrite individual FFN activations."
+      }
+    },
+    {
+      "layer_idx": 16,
+      "layer_path": "model.vlm_with_expert.vlm.model.text_model.layers.16",
+      "mlp_type": "LlamaMLP",
+      "act_fn": "SiLUActivation",
+      "gate_proj": {
+        "path": "model.vlm_with_expert.vlm.model.text_model.layers.16.mlp.gate_proj",
+        "weight_shape": [
+          2560,
+          960
+        ],
+        "in_features": 960,
+        "out_features": 2560
+      },
+      "up_proj": {
+        "path": "model.vlm_with_expert.vlm.model.text_model.layers.16.mlp.up_proj",
+        "weight_shape": [
+          2560,
+          960
+        ],
+        "in_features": 960,
+        "out_features": 2560
+      },
+      "down_proj": {
+        "path": "model.vlm_with_expert.vlm.model.text_model.layers.16.mlp.down_proj",
+        "weight_shape": [
+          960,
+          2560
+        ],
+        "in_features": 2560,
+        "out_features": 960,
+        "value_vector_source": {
+          "matrix": "down_proj.weight",
+          "matrix_shape": [
+            960,
+            2560
+          ],
+          "value_vector_axis": "columns",
+          "num_value_vectors": 2560,
+          "value_vector_dim": 960,
+          "reason": "PyTorch Linear stores weights as [out_features, in_features]. Each FFN value vector is therefore a column of down_proj.weight."
+        }
+      },
+      "recommended_hook": {
+        "module_path": "model.vlm_with_expert.vlm.model.text_model.layers.16.mlp.down_proj",
+        "hook_type": "forward_pre_hook",
+        "target_tensor": "down_proj input",
+        "target_last_dim": 2560,
+        "paper_alignment": "Matches the FFN activation f_theta(x) in the paper."
+      },
+      "alternative_hook": {
+        "module_path": "model.vlm_with_expert.vlm.model.text_model.layers.16.mlp.gate_proj",
+        "hook_type": "forward_hook",
+        "target_tensor": "gate_proj output",
+        "target_last_dim": 2560,
+        "paper_alignment": "Closest to the appendix gate-proj variant, not Equation (5) exactly."
+      },
+      "not_recommended_hook": {
+        "module_path": "model.vlm_with_expert.vlm.model.text_model.layers.16.mlp.down_proj",
+        "hook_type": "forward_hook",
+        "target_tensor": "down_proj output",
+        "target_last_dim": 960,
+        "reason": "This operates after the value vectors have already been combined and projected back to residual space, so it does not overwrite individual FFN activations."
+      }
+    },
+    {
+      "layer_idx": 17,
+      "layer_path": "model.vlm_with_expert.vlm.model.text_model.layers.17",
+      "mlp_type": "LlamaMLP",
+      "act_fn": "SiLUActivation",
+      "gate_proj": {
+        "path": "model.vlm_with_expert.vlm.model.text_model.layers.17.mlp.gate_proj",
+        "weight_shape": [
+          2560,
+          960
+        ],
+        "in_features": 960,
+        "out_features": 2560
+      },
+      "up_proj": {
+        "path": "model.vlm_with_expert.vlm.model.text_model.layers.17.mlp.up_proj",
+        "weight_shape": [
+          2560,
+          960
+        ],
+        "in_features": 960,
+        "out_features": 2560
+      },
+      "down_proj": {
+        "path": "model.vlm_with_expert.vlm.model.text_model.layers.17.mlp.down_proj",
+        "weight_shape": [
+          960,
+          2560
+        ],
+        "in_features": 2560,
+        "out_features": 960,
+        "value_vector_source": {
+          "matrix": "down_proj.weight",
+          "matrix_shape": [
+            960,
+            2560
+          ],
+          "value_vector_axis": "columns",
+          "num_value_vectors": 2560,
+          "value_vector_dim": 960,
+          "reason": "PyTorch Linear stores weights as [out_features, in_features]. Each FFN value vector is therefore a column of down_proj.weight."
+        }
+      },
+      "recommended_hook": {
+        "module_path": "model.vlm_with_expert.vlm.model.text_model.layers.17.mlp.down_proj",
+        "hook_type": "forward_pre_hook",
+        "target_tensor": "down_proj input",
+        "target_last_dim": 2560,
+        "paper_alignment": "Matches the FFN activation f_theta(x) in the paper."
+      },
+      "alternative_hook": {
+        "module_path": "model.vlm_with_expert.vlm.model.text_model.layers.17.mlp.gate_proj",
+        "hook_type": "forward_hook",
+        "target_tensor": "gate_proj output",
+        "target_last_dim": 2560,
+        "paper_alignment": "Closest to the appendix gate-proj variant, not Equation (5) exactly."
+      },
+      "not_recommended_hook": {
+        "module_path": "model.vlm_with_expert.vlm.model.text_model.layers.17.mlp.down_proj",
+        "hook_type": "forward_hook",
+        "target_tensor": "down_proj output",
+        "target_last_dim": 960,
+        "reason": "This operates after the value vectors have already been combined and projected back to residual space, so it does not overwrite individual FFN activations."
+      }
+    },
+    {
+      "layer_idx": 18,
+      "layer_path": "model.vlm_with_expert.vlm.model.text_model.layers.18",
+      "mlp_type": "LlamaMLP",
+      "act_fn": "SiLUActivation",
+      "gate_proj": {
+        "path": "model.vlm_with_expert.vlm.model.text_model.layers.18.mlp.gate_proj",
+        "weight_shape": [
+          2560,
+          960
+        ],
+        "in_features": 960,
+        "out_features": 2560
+      },
+      "up_proj": {
+        "path": "model.vlm_with_expert.vlm.model.text_model.layers.18.mlp.up_proj",
+        "weight_shape": [
+          2560,
+          960
+        ],
+        "in_features": 960,
+        "out_features": 2560
+      },
+      "down_proj": {
+        "path": "model.vlm_with_expert.vlm.model.text_model.layers.18.mlp.down_proj",
+        "weight_shape": [
+          960,
+          2560
+        ],
+        "in_features": 2560,
+        "out_features": 960,
+        "value_vector_source": {
+          "matrix": "down_proj.weight",
+          "matrix_shape": [
+            960,
+            2560
+          ],
+          "value_vector_axis": "columns",
+          "num_value_vectors": 2560,
+          "value_vector_dim": 960,
+          "reason": "PyTorch Linear stores weights as [out_features, in_features]. Each FFN value vector is therefore a column of down_proj.weight."
+        }
+      },
+      "recommended_hook": {
+        "module_path": "model.vlm_with_expert.vlm.model.text_model.layers.18.mlp.down_proj",
+        "hook_type": "forward_pre_hook",
+        "target_tensor": "down_proj input",
+        "target_last_dim": 2560,
+        "paper_alignment": "Matches the FFN activation f_theta(x) in the paper."
+      },
+      "alternative_hook": {
+        "module_path": "model.vlm_with_expert.vlm.model.text_model.layers.18.mlp.gate_proj",
+        "hook_type": "forward_hook",
+        "target_tensor": "gate_proj output",
+        "target_last_dim": 2560,
+        "paper_alignment": "Closest to the appendix gate-proj variant, not Equation (5) exactly."
+      },
+      "not_recommended_hook": {
+        "module_path": "model.vlm_with_expert.vlm.model.text_model.layers.18.mlp.down_proj",
+        "hook_type": "forward_hook",
+        "target_tensor": "down_proj output",
+        "target_last_dim": 960,
+        "reason": "This operates after the value vectors have already been combined and projected back to residual space, so it does not overwrite individual FFN activations."
+      }
+    },
+    {
+      "layer_idx": 19,
+      "layer_path": "model.vlm_with_expert.vlm.model.text_model.layers.19",
+      "mlp_type": "LlamaMLP",
+      "act_fn": "SiLUActivation",
+      "gate_proj": {
+        "path": "model.vlm_with_expert.vlm.model.text_model.layers.19.mlp.gate_proj",
+        "weight_shape": [
+          2560,
+          960
+        ],
+        "in_features": 960,
+        "out_features": 2560
+      },
+      "up_proj": {
+        "path": "model.vlm_with_expert.vlm.model.text_model.layers.19.mlp.up_proj",
+        "weight_shape": [
+          2560,
+          960
+        ],
+        "in_features": 960,
+        "out_features": 2560
+      },
+      "down_proj": {
+        "path": "model.vlm_with_expert.vlm.model.text_model.layers.19.mlp.down_proj",
+        "weight_shape": [
+          960,
+          2560
+        ],
+        "in_features": 2560,
+        "out_features": 960,
+        "value_vector_source": {
+          "matrix": "down_proj.weight",
+          "matrix_shape": [
+            960,
+            2560
+          ],
+          "value_vector_axis": "columns",
+          "num_value_vectors": 2560,
+          "value_vector_dim": 960,
+          "reason": "PyTorch Linear stores weights as [out_features, in_features]. Each FFN value vector is therefore a column of down_proj.weight."
+        }
+      },
+      "recommended_hook": {
+        "module_path": "model.vlm_with_expert.vlm.model.text_model.layers.19.mlp.down_proj",
+        "hook_type": "forward_pre_hook",
+        "target_tensor": "down_proj input",
+        "target_last_dim": 2560,
+        "paper_alignment": "Matches the FFN activation f_theta(x) in the paper."
+      },
+      "alternative_hook": {
+        "module_path": "model.vlm_with_expert.vlm.model.text_model.layers.19.mlp.gate_proj",
+        "hook_type": "forward_hook",
+        "target_tensor": "gate_proj output",
+        "target_last_dim": 2560,
+        "paper_alignment": "Closest to the appendix gate-proj variant, not Equation (5) exactly."
+      },
+      "not_recommended_hook": {
+        "module_path": "model.vlm_with_expert.vlm.model.text_model.layers.19.mlp.down_proj",
+        "hook_type": "forward_hook",
+        "target_tensor": "down_proj output",
+        "target_last_dim": 960,
+        "reason": "This operates after the value vectors have already been combined and projected back to residual space, so it does not overwrite individual FFN activations."
+      }
+    },
+    {
+      "layer_idx": 20,
+      "layer_path": "model.vlm_with_expert.vlm.model.text_model.layers.20",
+      "mlp_type": "LlamaMLP",
+      "act_fn": "SiLUActivation",
+      "gate_proj": {
+        "path": "model.vlm_with_expert.vlm.model.text_model.layers.20.mlp.gate_proj",
+        "weight_shape": [
+          2560,
+          960
+        ],
+        "in_features": 960,
+        "out_features": 2560
+      },
+      "up_proj": {
+        "path": "model.vlm_with_expert.vlm.model.text_model.layers.20.mlp.up_proj",
+        "weight_shape": [
+          2560,
+          960
+        ],
+        "in_features": 960,
+        "out_features": 2560
+      },
+      "down_proj": {
+        "path": "model.vlm_with_expert.vlm.model.text_model.layers.20.mlp.down_proj",
+        "weight_shape": [
+          960,
+          2560
+        ],
+        "in_features": 2560,
+        "out_features": 960,
+        "value_vector_source": {
+          "matrix": "down_proj.weight",
+          "matrix_shape": [
+            960,
+            2560
+          ],
+          "value_vector_axis": "columns",
+          "num_value_vectors": 2560,
+          "value_vector_dim": 960,
+          "reason": "PyTorch Linear stores weights as [out_features, in_features]. Each FFN value vector is therefore a column of down_proj.weight."
+        }
+      },
+      "recommended_hook": {
+        "module_path": "model.vlm_with_expert.vlm.model.text_model.layers.20.mlp.down_proj",
+        "hook_type": "forward_pre_hook",
+        "target_tensor": "down_proj input",
+        "target_last_dim": 2560,
+        "paper_alignment": "Matches the FFN activation f_theta(x) in the paper."
+      },
+      "alternative_hook": {
+        "module_path": "model.vlm_with_expert.vlm.model.text_model.layers.20.mlp.gate_proj",
+        "hook_type": "forward_hook",
+        "target_tensor": "gate_proj output",
+        "target_last_dim": 2560,
+        "paper_alignment": "Closest to the appendix gate-proj variant, not Equation (5) exactly."
+      },
+      "not_recommended_hook": {
+        "module_path": "model.vlm_with_expert.vlm.model.text_model.layers.20.mlp.down_proj",
+        "hook_type": "forward_hook",
+        "target_tensor": "down_proj output",
+        "target_last_dim": 960,
+        "reason": "This operates after the value vectors have already been combined and projected back to residual space, so it does not overwrite individual FFN activations."
+      }
+    },
+    {
+      "layer_idx": 21,
+      "layer_path": "model.vlm_with_expert.vlm.model.text_model.layers.21",
+      "mlp_type": "LlamaMLP",
+      "act_fn": "SiLUActivation",
+      "gate_proj": {
+        "path": "model.vlm_with_expert.vlm.model.text_model.layers.21.mlp.gate_proj",
+        "weight_shape": [
+          2560,
+          960
+        ],
+        "in_features": 960,
+        "out_features": 2560
+      },
+      "up_proj": {
+        "path": "model.vlm_with_expert.vlm.model.text_model.layers.21.mlp.up_proj",
+        "weight_shape": [
+          2560,
+          960
+        ],
+        "in_features": 960,
+        "out_features": 2560
+      },
+      "down_proj": {
+        "path": "model.vlm_with_expert.vlm.model.text_model.layers.21.mlp.down_proj",
+        "weight_shape": [
+          960,
+          2560
+        ],
+        "in_features": 2560,
+        "out_features": 960,
+        "value_vector_source": {
+          "matrix": "down_proj.weight",
+          "matrix_shape": [
+            960,
+            2560
+          ],
+          "value_vector_axis": "columns",
+          "num_value_vectors": 2560,
+          "value_vector_dim": 960,
+          "reason": "PyTorch Linear stores weights as [out_features, in_features]. Each FFN value vector is therefore a column of down_proj.weight."
+        }
+      },
+      "recommended_hook": {
+        "module_path": "model.vlm_with_expert.vlm.model.text_model.layers.21.mlp.down_proj",
+        "hook_type": "forward_pre_hook",
+        "target_tensor": "down_proj input",
+        "target_last_dim": 2560,
+        "paper_alignment": "Matches the FFN activation f_theta(x) in the paper."
+      },
+      "alternative_hook": {
+        "module_path": "model.vlm_with_expert.vlm.model.text_model.layers.21.mlp.gate_proj",
+        "hook_type": "forward_hook",
+        "target_tensor": "gate_proj output",
+        "target_last_dim": 2560,
+        "paper_alignment": "Closest to the appendix gate-proj variant, not Equation (5) exactly."
+      },
+      "not_recommended_hook": {
+        "module_path": "model.vlm_with_expert.vlm.model.text_model.layers.21.mlp.down_proj",
+        "hook_type": "forward_hook",
+        "target_tensor": "down_proj output",
+        "target_last_dim": 960,
+        "reason": "This operates after the value vectors have already been combined and projected back to residual space, so it does not overwrite individual FFN activations."
+      }
+    },
+    {
+      "layer_idx": 22,
+      "layer_path": "model.vlm_with_expert.vlm.model.text_model.layers.22",
+      "mlp_type": "LlamaMLP",
+      "act_fn": "SiLUActivation",
+      "gate_proj": {
+        "path": "model.vlm_with_expert.vlm.model.text_model.layers.22.mlp.gate_proj",
+        "weight_shape": [
+          2560,
+          960
+        ],
+        "in_features": 960,
+        "out_features": 2560
+      },
+      "up_proj": {
+        "path": "model.vlm_with_expert.vlm.model.text_model.layers.22.mlp.up_proj",
+        "weight_shape": [
+          2560,
+          960
+        ],
+        "in_features": 960,
+        "out_features": 2560
+      },
+      "down_proj": {
+        "path": "model.vlm_with_expert.vlm.model.text_model.layers.22.mlp.down_proj",
+        "weight_shape": [
+          960,
+          2560
+        ],
+        "in_features": 2560,
+        "out_features": 960,
+        "value_vector_source": {
+          "matrix": "down_proj.weight",
+          "matrix_shape": [
+            960,
+            2560
+          ],
+          "value_vector_axis": "columns",
+          "num_value_vectors": 2560,
+          "value_vector_dim": 960,
+          "reason": "PyTorch Linear stores weights as [out_features, in_features]. Each FFN value vector is therefore a column of down_proj.weight."
+        }
+      },
+      "recommended_hook": {
+        "module_path": "model.vlm_with_expert.vlm.model.text_model.layers.22.mlp.down_proj",
+        "hook_type": "forward_pre_hook",
+        "target_tensor": "down_proj input",
+        "target_last_dim": 2560,
+        "paper_alignment": "Matches the FFN activation f_theta(x) in the paper."
+      },
+      "alternative_hook": {
+        "module_path": "model.vlm_with_expert.vlm.model.text_model.layers.22.mlp.gate_proj",
+        "hook_type": "forward_hook",
+        "target_tensor": "gate_proj output",
+        "target_last_dim": 2560,
+        "paper_alignment": "Closest to the appendix gate-proj variant, not Equation (5) exactly."
+      },
+      "not_recommended_hook": {
+        "module_path": "model.vlm_with_expert.vlm.model.text_model.layers.22.mlp.down_proj",
+        "hook_type": "forward_hook",
+        "target_tensor": "down_proj output",
+        "target_last_dim": 960,
+        "reason": "This operates after the value vectors have already been combined and projected back to residual space, so it does not overwrite individual FFN activations."
+      }
+    },
+    {
+      "layer_idx": 23,
+      "layer_path": "model.vlm_with_expert.vlm.model.text_model.layers.23",
+      "mlp_type": "LlamaMLP",
+      "act_fn": "SiLUActivation",
+      "gate_proj": {
+        "path": "model.vlm_with_expert.vlm.model.text_model.layers.23.mlp.gate_proj",
+        "weight_shape": [
+          2560,
+          960
+        ],
+        "in_features": 960,
+        "out_features": 2560
+      },
+      "up_proj": {
+        "path": "model.vlm_with_expert.vlm.model.text_model.layers.23.mlp.up_proj",
+        "weight_shape": [
+          2560,
+          960
+        ],
+        "in_features": 960,
+        "out_features": 2560
+      },
+      "down_proj": {
+        "path": "model.vlm_with_expert.vlm.model.text_model.layers.23.mlp.down_proj",
+        "weight_shape": [
+          960,
+          2560
+        ],
+        "in_features": 2560,
+        "out_features": 960,
+        "value_vector_source": {
+          "matrix": "down_proj.weight",
+          "matrix_shape": [
+            960,
+            2560
+          ],
+          "value_vector_axis": "columns",
+          "num_value_vectors": 2560,
+          "value_vector_dim": 960,
+          "reason": "PyTorch Linear stores weights as [out_features, in_features]. Each FFN value vector is therefore a column of down_proj.weight."
+        }
+      },
+      "recommended_hook": {
+        "module_path": "model.vlm_with_expert.vlm.model.text_model.layers.23.mlp.down_proj",
+        "hook_type": "forward_pre_hook",
+        "target_tensor": "down_proj input",
+        "target_last_dim": 2560,
+        "paper_alignment": "Matches the FFN activation f_theta(x) in the paper."
+      },
+      "alternative_hook": {
+        "module_path": "model.vlm_with_expert.vlm.model.text_model.layers.23.mlp.gate_proj",
+        "hook_type": "forward_hook",
+        "target_tensor": "gate_proj output",
+        "target_last_dim": 2560,
+        "paper_alignment": "Closest to the appendix gate-proj variant, not Equation (5) exactly."
+      },
+      "not_recommended_hook": {
+        "module_path": "model.vlm_with_expert.vlm.model.text_model.layers.23.mlp.down_proj",
+        "hook_type": "forward_hook",
+        "target_tensor": "down_proj output",
+        "target_last_dim": 960,
+        "reason": "This operates after the value vectors have already been combined and projected back to residual space, so it does not overwrite individual FFN activations."
+      }
+    },
+    {
+      "layer_idx": 24,
+      "layer_path": "model.vlm_with_expert.vlm.model.text_model.layers.24",
+      "mlp_type": "LlamaMLP",
+      "act_fn": "SiLUActivation",
+      "gate_proj": {
+        "path": "model.vlm_with_expert.vlm.model.text_model.layers.24.mlp.gate_proj",
+        "weight_shape": [
+          2560,
+          960
+        ],
+        "in_features": 960,
+        "out_features": 2560
+      },
+      "up_proj": {
+        "path": "model.vlm_with_expert.vlm.model.text_model.layers.24.mlp.up_proj",
+        "weight_shape": [
+          2560,
+          960
+        ],
+        "in_features": 960,
+        "out_features": 2560
+      },
+      "down_proj": {
+        "path": "model.vlm_with_expert.vlm.model.text_model.layers.24.mlp.down_proj",
+        "weight_shape": [
+          960,
+          2560
+        ],
+        "in_features": 2560,
+        "out_features": 960,
+        "value_vector_source": {
+          "matrix": "down_proj.weight",
+          "matrix_shape": [
+            960,
+            2560
+          ],
+          "value_vector_axis": "columns",
+          "num_value_vectors": 2560,
+          "value_vector_dim": 960,
+          "reason": "PyTorch Linear stores weights as [out_features, in_features]. Each FFN value vector is therefore a column of down_proj.weight."
+        }
+      },
+      "recommended_hook": {
+        "module_path": "model.vlm_with_expert.vlm.model.text_model.layers.24.mlp.down_proj",
+        "hook_type": "forward_pre_hook",
+        "target_tensor": "down_proj input",
+        "target_last_dim": 2560,
+        "paper_alignment": "Matches the FFN activation f_theta(x) in the paper."
+      },
+      "alternative_hook": {
+        "module_path": "model.vlm_with_expert.vlm.model.text_model.layers.24.mlp.gate_proj",
+        "hook_type": "forward_hook",
+        "target_tensor": "gate_proj output",
+        "target_last_dim": 2560,
+        "paper_alignment": "Closest to the appendix gate-proj variant, not Equation (5) exactly."
+      },
+      "not_recommended_hook": {
+        "module_path": "model.vlm_with_expert.vlm.model.text_model.layers.24.mlp.down_proj",
+        "hook_type": "forward_hook",
+        "target_tensor": "down_proj output",
+        "target_last_dim": 960,
+        "reason": "This operates after the value vectors have already been combined and projected back to residual space, so it does not overwrite individual FFN activations."
+      }
+    },
+    {
+      "layer_idx": 25,
+      "layer_path": "model.vlm_with_expert.vlm.model.text_model.layers.25",
+      "mlp_type": "LlamaMLP",
+      "act_fn": "SiLUActivation",
+      "gate_proj": {
+        "path": "model.vlm_with_expert.vlm.model.text_model.layers.25.mlp.gate_proj",
+        "weight_shape": [
+          2560,
+          960
+        ],
+        "in_features": 960,
+        "out_features": 2560
+      },
+      "up_proj": {
+        "path": "model.vlm_with_expert.vlm.model.text_model.layers.25.mlp.up_proj",
+        "weight_shape": [
+          2560,
+          960
+        ],
+        "in_features": 960,
+        "out_features": 2560
+      },
+      "down_proj": {
+        "path": "model.vlm_with_expert.vlm.model.text_model.layers.25.mlp.down_proj",
+        "weight_shape": [
+          960,
+          2560
+        ],
+        "in_features": 2560,
+        "out_features": 960,
+        "value_vector_source": {
+          "matrix": "down_proj.weight",
+          "matrix_shape": [
+            960,
+            2560
+          ],
+          "value_vector_axis": "columns",
+          "num_value_vectors": 2560,
+          "value_vector_dim": 960,
+          "reason": "PyTorch Linear stores weights as [out_features, in_features]. Each FFN value vector is therefore a column of down_proj.weight."
+        }
+      },
+      "recommended_hook": {
+        "module_path": "model.vlm_with_expert.vlm.model.text_model.layers.25.mlp.down_proj",
+        "hook_type": "forward_pre_hook",
+        "target_tensor": "down_proj input",
+        "target_last_dim": 2560,
+        "paper_alignment": "Matches the FFN activation f_theta(x) in the paper."
+      },
+      "alternative_hook": {
+        "module_path": "model.vlm_with_expert.vlm.model.text_model.layers.25.mlp.gate_proj",
+        "hook_type": "forward_hook",
+        "target_tensor": "gate_proj output",
+        "target_last_dim": 2560,
+        "paper_alignment": "Closest to the appendix gate-proj variant, not Equation (5) exactly."
+      },
+      "not_recommended_hook": {
+        "module_path": "model.vlm_with_expert.vlm.model.text_model.layers.25.mlp.down_proj",
+        "hook_type": "forward_hook",
+        "target_tensor": "down_proj output",
+        "target_last_dim": 960,
+        "reason": "This operates after the value vectors have already been combined and projected back to residual space, so it does not overwrite individual FFN activations."
+      }
+    },
+    {
+      "layer_idx": 26,
+      "layer_path": "model.vlm_with_expert.vlm.model.text_model.layers.26",
+      "mlp_type": "LlamaMLP",
+      "act_fn": "SiLUActivation",
+      "gate_proj": {
+        "path": "model.vlm_with_expert.vlm.model.text_model.layers.26.mlp.gate_proj",
+        "weight_shape": [
+          2560,
+          960
+        ],
+        "in_features": 960,
+        "out_features": 2560
+      },
+      "up_proj": {
+        "path": "model.vlm_with_expert.vlm.model.text_model.layers.26.mlp.up_proj",
+        "weight_shape": [
+          2560,
+          960
+        ],
+        "in_features": 960,
+        "out_features": 2560
+      },
+      "down_proj": {
+        "path": "model.vlm_with_expert.vlm.model.text_model.layers.26.mlp.down_proj",
+        "weight_shape": [
+          960,
+          2560
+        ],
+        "in_features": 2560,
+        "out_features": 960,
+        "value_vector_source": {
+          "matrix": "down_proj.weight",
+          "matrix_shape": [
+            960,
+            2560
+          ],
+          "value_vector_axis": "columns",
+          "num_value_vectors": 2560,
+          "value_vector_dim": 960,
+          "reason": "PyTorch Linear stores weights as [out_features, in_features]. Each FFN value vector is therefore a column of down_proj.weight."
+        }
+      },
+      "recommended_hook": {
+        "module_path": "model.vlm_with_expert.vlm.model.text_model.layers.26.mlp.down_proj",
+        "hook_type": "forward_pre_hook",
+        "target_tensor": "down_proj input",
+        "target_last_dim": 2560,
+        "paper_alignment": "Matches the FFN activation f_theta(x) in the paper."
+      },
+      "alternative_hook": {
+        "module_path": "model.vlm_with_expert.vlm.model.text_model.layers.26.mlp.gate_proj",
+        "hook_type": "forward_hook",
+        "target_tensor": "gate_proj output",
+        "target_last_dim": 2560,
+        "paper_alignment": "Closest to the appendix gate-proj variant, not Equation (5) exactly."
+      },
+      "not_recommended_hook": {
+        "module_path": "model.vlm_with_expert.vlm.model.text_model.layers.26.mlp.down_proj",
+        "hook_type": "forward_hook",
+        "target_tensor": "down_proj output",
+        "target_last_dim": 960,
+        "reason": "This operates after the value vectors have already been combined and projected back to residual space, so it does not overwrite individual FFN activations."
+      }
+    },
+    {
+      "layer_idx": 27,
+      "layer_path": "model.vlm_with_expert.vlm.model.text_model.layers.27",
+      "mlp_type": "LlamaMLP",
+      "act_fn": "SiLUActivation",
+      "gate_proj": {
+        "path": "model.vlm_with_expert.vlm.model.text_model.layers.27.mlp.gate_proj",
+        "weight_shape": [
+          2560,
+          960
+        ],
+        "in_features": 960,
+        "out_features": 2560
+      },
+      "up_proj": {
+        "path": "model.vlm_with_expert.vlm.model.text_model.layers.27.mlp.up_proj",
+        "weight_shape": [
+          2560,
+          960
+        ],
+        "in_features": 960,
+        "out_features": 2560
+      },
+      "down_proj": {
+        "path": "model.vlm_with_expert.vlm.model.text_model.layers.27.mlp.down_proj",
+        "weight_shape": [
+          960,
+          2560
+        ],
+        "in_features": 2560,
+        "out_features": 960,
+        "value_vector_source": {
+          "matrix": "down_proj.weight",
+          "matrix_shape": [
+            960,
+            2560
+          ],
+          "value_vector_axis": "columns",
+          "num_value_vectors": 2560,
+          "value_vector_dim": 960,
+          "reason": "PyTorch Linear stores weights as [out_features, in_features]. Each FFN value vector is therefore a column of down_proj.weight."
+        }
+      },
+      "recommended_hook": {
+        "module_path": "model.vlm_with_expert.vlm.model.text_model.layers.27.mlp.down_proj",
+        "hook_type": "forward_pre_hook",
+        "target_tensor": "down_proj input",
+        "target_last_dim": 2560,
+        "paper_alignment": "Matches the FFN activation f_theta(x) in the paper."
+      },
+      "alternative_hook": {
+        "module_path": "model.vlm_with_expert.vlm.model.text_model.layers.27.mlp.gate_proj",
+        "hook_type": "forward_hook",
+        "target_tensor": "gate_proj output",
+        "target_last_dim": 2560,
+        "paper_alignment": "Closest to the appendix gate-proj variant, not Equation (5) exactly."
+      },
+      "not_recommended_hook": {
+        "module_path": "model.vlm_with_expert.vlm.model.text_model.layers.27.mlp.down_proj",
+        "hook_type": "forward_hook",
+        "target_tensor": "down_proj output",
+        "target_last_dim": 960,
+        "reason": "This operates after the value vectors have already been combined and projected back to residual space, so it does not overwrite individual FFN activations."
+      }
+    },
+    {
+      "layer_idx": 28,
+      "layer_path": "model.vlm_with_expert.vlm.model.text_model.layers.28",
+      "mlp_type": "LlamaMLP",
+      "act_fn": "SiLUActivation",
+      "gate_proj": {
+        "path": "model.vlm_with_expert.vlm.model.text_model.layers.28.mlp.gate_proj",
+        "weight_shape": [
+          2560,
+          960
+        ],
+        "in_features": 960,
+        "out_features": 2560
+      },
+      "up_proj": {
+        "path": "model.vlm_with_expert.vlm.model.text_model.layers.28.mlp.up_proj",
+        "weight_shape": [
+          2560,
+          960
+        ],
+        "in_features": 960,
+        "out_features": 2560
+      },
+      "down_proj": {
+        "path": "model.vlm_with_expert.vlm.model.text_model.layers.28.mlp.down_proj",
+        "weight_shape": [
+          960,
+          2560
+        ],
+        "in_features": 2560,
+        "out_features": 960,
+        "value_vector_source": {
+          "matrix": "down_proj.weight",
+          "matrix_shape": [
+            960,
+            2560
+          ],
+          "value_vector_axis": "columns",
+          "num_value_vectors": 2560,
+          "value_vector_dim": 960,
+          "reason": "PyTorch Linear stores weights as [out_features, in_features]. Each FFN value vector is therefore a column of down_proj.weight."
+        }
+      },
+      "recommended_hook": {
+        "module_path": "model.vlm_with_expert.vlm.model.text_model.layers.28.mlp.down_proj",
+        "hook_type": "forward_pre_hook",
+        "target_tensor": "down_proj input",
+        "target_last_dim": 2560,
+        "paper_alignment": "Matches the FFN activation f_theta(x) in the paper."
+      },
+      "alternative_hook": {
+        "module_path": "model.vlm_with_expert.vlm.model.text_model.layers.28.mlp.gate_proj",
+        "hook_type": "forward_hook",
+        "target_tensor": "gate_proj output",
+        "target_last_dim": 2560,
+        "paper_alignment": "Closest to the appendix gate-proj variant, not Equation (5) exactly."
+      },
+      "not_recommended_hook": {
+        "module_path": "model.vlm_with_expert.vlm.model.text_model.layers.28.mlp.down_proj",
+        "hook_type": "forward_hook",
+        "target_tensor": "down_proj output",
+        "target_last_dim": 960,
+        "reason": "This operates after the value vectors have already been combined and projected back to residual space, so it does not overwrite individual FFN activations."
+      }
+    },
+    {
+      "layer_idx": 29,
+      "layer_path": "model.vlm_with_expert.vlm.model.text_model.layers.29",
+      "mlp_type": "LlamaMLP",
+      "act_fn": "SiLUActivation",
+      "gate_proj": {
+        "path": "model.vlm_with_expert.vlm.model.text_model.layers.29.mlp.gate_proj",
+        "weight_shape": [
+          2560,
+          960
+        ],
+        "in_features": 960,
+        "out_features": 2560
+      },
+      "up_proj": {
+        "path": "model.vlm_with_expert.vlm.model.text_model.layers.29.mlp.up_proj",
+        "weight_shape": [
+          2560,
+          960
+        ],
+        "in_features": 960,
+        "out_features": 2560
+      },
+      "down_proj": {
+        "path": "model.vlm_with_expert.vlm.model.text_model.layers.29.mlp.down_proj",
+        "weight_shape": [
+          960,
+          2560
+        ],
+        "in_features": 2560,
+        "out_features": 960,
+        "value_vector_source": {
+          "matrix": "down_proj.weight",
+          "matrix_shape": [
+            960,
+            2560
+          ],
+          "value_vector_axis": "columns",
+          "num_value_vectors": 2560,
+          "value_vector_dim": 960,
+          "reason": "PyTorch Linear stores weights as [out_features, in_features]. Each FFN value vector is therefore a column of down_proj.weight."
+        }
+      },
+      "recommended_hook": {
+        "module_path": "model.vlm_with_expert.vlm.model.text_model.layers.29.mlp.down_proj",
+        "hook_type": "forward_pre_hook",
+        "target_tensor": "down_proj input",
+        "target_last_dim": 2560,
+        "paper_alignment": "Matches the FFN activation f_theta(x) in the paper."
+      },
+      "alternative_hook": {
+        "module_path": "model.vlm_with_expert.vlm.model.text_model.layers.29.mlp.gate_proj",
+        "hook_type": "forward_hook",
+        "target_tensor": "gate_proj output",
+        "target_last_dim": 2560,
+        "paper_alignment": "Closest to the appendix gate-proj variant, not Equation (5) exactly."
+      },
+      "not_recommended_hook": {
+        "module_path": "model.vlm_with_expert.vlm.model.text_model.layers.29.mlp.down_proj",
+        "hook_type": "forward_hook",
+        "target_tensor": "down_proj output",
+        "target_last_dim": 960,
+        "reason": "This operates after the value vectors have already been combined and projected back to residual space, so it does not overwrite individual FFN activations."
+      }
+    },
+    {
+      "layer_idx": 30,
+      "layer_path": "model.vlm_with_expert.vlm.model.text_model.layers.30",
+      "mlp_type": "LlamaMLP",
+      "act_fn": "SiLUActivation",
+      "gate_proj": {
+        "path": "model.vlm_with_expert.vlm.model.text_model.layers.30.mlp.gate_proj",
+        "weight_shape": [
+          2560,
+          960
+        ],
+        "in_features": 960,
+        "out_features": 2560
+      },
+      "up_proj": {
+        "path": "model.vlm_with_expert.vlm.model.text_model.layers.30.mlp.up_proj",
+        "weight_shape": [
+          2560,
+          960
+        ],
+        "in_features": 960,
+        "out_features": 2560
+      },
+      "down_proj": {
+        "path": "model.vlm_with_expert.vlm.model.text_model.layers.30.mlp.down_proj",
+        "weight_shape": [
+          960,
+          2560
+        ],
+        "in_features": 2560,
+        "out_features": 960,
+        "value_vector_source": {
+          "matrix": "down_proj.weight",
+          "matrix_shape": [
+            960,
+            2560
+          ],
+          "value_vector_axis": "columns",
+          "num_value_vectors": 2560,
+          "value_vector_dim": 960,
+          "reason": "PyTorch Linear stores weights as [out_features, in_features]. Each FFN value vector is therefore a column of down_proj.weight."
+        }
+      },
+      "recommended_hook": {
+        "module_path": "model.vlm_with_expert.vlm.model.text_model.layers.30.mlp.down_proj",
+        "hook_type": "forward_pre_hook",
+        "target_tensor": "down_proj input",
+        "target_last_dim": 2560,
+        "paper_alignment": "Matches the FFN activation f_theta(x) in the paper."
+      },
+      "alternative_hook": {
+        "module_path": "model.vlm_with_expert.vlm.model.text_model.layers.30.mlp.gate_proj",
+        "hook_type": "forward_hook",
+        "target_tensor": "gate_proj output",
+        "target_last_dim": 2560,
+        "paper_alignment": "Closest to the appendix gate-proj variant, not Equation (5) exactly."
+      },
+      "not_recommended_hook": {
+        "module_path": "model.vlm_with_expert.vlm.model.text_model.layers.30.mlp.down_proj",
+        "hook_type": "forward_hook",
+        "target_tensor": "down_proj output",
+        "target_last_dim": 960,
+        "reason": "This operates after the value vectors have already been combined and projected back to residual space, so it does not overwrite individual FFN activations."
+      }
+    },
+    {
+      "layer_idx": 31,
+      "layer_path": "model.vlm_with_expert.vlm.model.text_model.layers.31",
+      "mlp_type": "LlamaMLP",
+      "act_fn": "SiLUActivation",
+      "gate_proj": {
+        "path": "model.vlm_with_expert.vlm.model.text_model.layers.31.mlp.gate_proj",
+        "weight_shape": [
+          2560,
+          960
+        ],
+        "in_features": 960,
+        "out_features": 2560
+      },
+      "up_proj": {
+        "path": "model.vlm_with_expert.vlm.model.text_model.layers.31.mlp.up_proj",
+        "weight_shape": [
+          2560,
+          960
+        ],
+        "in_features": 960,
+        "out_features": 2560
+      },
+      "down_proj": {
+        "path": "model.vlm_with_expert.vlm.model.text_model.layers.31.mlp.down_proj",
+        "weight_shape": [
+          960,
+          2560
+        ],
+        "in_features": 2560,
+        "out_features": 960,
+        "value_vector_source": {
+          "matrix": "down_proj.weight",
+          "matrix_shape": [
+            960,
+            2560
+          ],
+          "value_vector_axis": "columns",
+          "num_value_vectors": 2560,
+          "value_vector_dim": 960,
+          "reason": "PyTorch Linear stores weights as [out_features, in_features]. Each FFN value vector is therefore a column of down_proj.weight."
+        }
+      },
+      "recommended_hook": {
+        "module_path": "model.vlm_with_expert.vlm.model.text_model.layers.31.mlp.down_proj",
+        "hook_type": "forward_pre_hook",
+        "target_tensor": "down_proj input",
+        "target_last_dim": 2560,
+        "paper_alignment": "Matches the FFN activation f_theta(x) in the paper."
+      },
+      "alternative_hook": {
+        "module_path": "model.vlm_with_expert.vlm.model.text_model.layers.31.mlp.gate_proj",
+        "hook_type": "forward_hook",
+        "target_tensor": "gate_proj output",
+        "target_last_dim": 2560,
+        "paper_alignment": "Closest to the appendix gate-proj variant, not Equation (5) exactly."
+      },
+      "not_recommended_hook": {
+        "module_path": "model.vlm_with_expert.vlm.model.text_model.layers.31.mlp.down_proj",
+        "hook_type": "forward_hook",
+        "target_tensor": "down_proj output",
+        "target_last_dim": 960,
+        "reason": "This operates after the value vectors have already been combined and projected back to residual space, so it does not overwrite individual FFN activations."
+      }
+    }
+  ],
+  "runtime_forward_probe": {
+    "dummy_task_text": "pick up the block",
+    "dummy_frame_keys": [
+      "observation.images.image",
+      "observation.images.image2",
+      "observation.state",
+      "task"
+    ],
+    "dummy_frame_summary": {
+      "observation.images.image": {
+        "kind": "tensor",
+        "shape": [
+          3,
+          256,
+          256
+        ],
+        "dtype": "torch.float32",
+        "device": "cpu"
+      },
+      "observation.images.image2": {
+        "kind": "tensor",
+        "shape": [
+          3,
+          256,
+          256
+        ],
+        "dtype": "torch.float32",
+        "device": "cpu"
+      },
+      "observation.state": {
+        "kind": "tensor",
+        "shape": [
+          8
+        ],
+        "dtype": "torch.float32",
+        "device": "cpu"
+      },
+      "task": {
+        "kind": "str"
+      }
+    },
+    "preprocessed_batch_summary": {
+      "action": {
+        "kind": "NoneType"
+      },
+      "next.reward": {
+        "kind": "float"
+      },
+      "next.done": {
+        "kind": "bool"
+      },
+      "next.truncated": {
+        "kind": "bool"
+      },
+      "info": {
+        "kind": "dict",
+        "keys": []
+      },
+      "task": {
+        "kind": "list",
+        "length": 1
+      },
+      "observation.images.image": {
+        "kind": "tensor",
+        "shape": [
+          1,
+          3,
+          256,
+          256
+        ],
+        "dtype": "torch.float32",
+        "device": "cpu"
+      },
+      "observation.images.image2": {
+        "kind": "tensor",
+        "shape": [
+          1,
+          3,
+          256,
+          256
+        ],
+        "dtype": "torch.float32",
+        "device": "cpu"
+      },
+      "observation.state": {
+        "kind": "tensor",
+        "shape": [
+          1,
+          8
+        ],
+        "dtype": "torch.float32",
+        "device": "cpu"
+      },
+      "observation.language.tokens": {
+        "kind": "tensor",
+        "shape": [
+          1,
+          5
+        ],
+        "dtype": "torch.int64",
+        "device": "cpu"
+      },
+      "observation.language.attention_mask": {
+        "kind": "tensor",
+        "shape": [
+          1,
+          5
+        ],
+        "dtype": "torch.bool",
+        "device": "cpu"
+      }
+    },
+    "action_shape": [
+      1,
+      7
+    ],
+    "action_dtype": "torch.float32",
+    "layer_probes": [
+      {
+        "layer_idx": 0,
+        "layer_path": "model.vlm_with_expert.vlm.model.text_model.layers.0.mlp",
+        "gate_proj_output_shape": [
+          1,
+          134,
+          2560
+        ],
+        "gate_proj_output_dtype": "torch.bfloat16",
+        "up_proj_output_shape": [
+          1,
+          134,
+          2560
+        ],
+        "up_proj_output_dtype": "torch.bfloat16",
+        "down_proj_input_shape": [
+          1,
+          134,
+          2560
+        ],
+        "down_proj_input_dtype": "torch.bfloat16",
+        "down_proj_output_shape": [
+          1,
+          134,
+          960
+        ],
+        "down_proj_output_dtype": "torch.bfloat16"
+      },
+      {
+        "layer_idx": 31,
+        "layer_path": "model.vlm_with_expert.vlm.model.text_model.layers.31.mlp",
+        "gate_proj_output_shape": [
+          1,
+          134,
+          2560
+        ],
+        "gate_proj_output_dtype": "torch.bfloat16",
+        "up_proj_output_shape": [
+          1,
+          134,
+          2560
+        ],
+        "up_proj_output_dtype": "torch.bfloat16",
+        "down_proj_input_shape": [
+          1,
+          134,
+          2560
+        ],
+        "down_proj_input_dtype": "torch.bfloat16",
+        "down_proj_output_shape": [
+          1,
+          134,
+          960
+        ],
+        "down_proj_output_dtype": "torch.bfloat16"
+      }
+    ]
+  },
+  "conclusions": {
+    "value_vector_source_matrix": "down_proj.weight",
+    "value_vector_orientation": "columns",
+    "value_vector_dim": 960,
+    "num_value_vectors_per_layer": 2560,
+    "correct_paper_style_hook": {
+      "module_path": "model.vlm_with_expert.vlm.model.text_model.layers.0.mlp.down_proj",
+      "hook_type": "forward_pre_hook",
+      "target": "down_proj input",
+      "target_last_dim": 2560
+    },
+    "why_not_down_proj_forward_hook": "A forward hook on down_proj changes the residual-space output of size 960, not the FFN activation vector of size 2560. That means it does not match the paper's intervention operator.",
+    "smolvla_specific_note": "Steering happens inside the SmolVLA VLM text backbone, while the final robot actions are produced by a downstream action expert. This is an adaptation of the paper rather than a literal one-to-one reproduction.",
+    "runtime_confirmation": [
+      {
+        "layer_idx": 0,
+        "layer_path": "model.vlm_with_expert.vlm.model.text_model.layers.0.mlp",
+        "gate_proj_output_shape": [
+          1,
+          134,
+          2560
+        ],
+        "gate_proj_output_dtype": "torch.bfloat16",
+        "up_proj_output_shape": [
+          1,
+          134,
+          2560
+        ],
+        "up_proj_output_dtype": "torch.bfloat16",
+        "down_proj_input_shape": [
+          1,
+          134,
+          2560
+        ],
+        "down_proj_input_dtype": "torch.bfloat16",
+        "down_proj_output_shape": [
+          1,
+          134,
+          960
+        ],
+        "down_proj_output_dtype": "torch.bfloat16"
+      },
+      {
+        "layer_idx": 31,
+        "layer_path": "model.vlm_with_expert.vlm.model.text_model.layers.31.mlp",
+        "gate_proj_output_shape": [
+          1,
+          134,
+          2560
+        ],
+        "gate_proj_output_dtype": "torch.bfloat16",
+        "up_proj_output_shape": [
+          1,
+          134,
+          2560
+        ],
+        "up_proj_output_dtype": "torch.bfloat16",
+        "down_proj_input_shape": [
+          1,
+          134,
+          2560
+        ],
+        "down_proj_input_dtype": "torch.bfloat16",
+        "down_proj_output_shape": [
+          1,
+          134,
+          960
+        ],
+        "down_proj_output_dtype": "torch.bfloat16"
+      }
+    ]
+  }
+}

@@ -1,0 +1,33 @@
+% Operations applied to a value vector to obtain token probabilities
+% (reading_weights / value vector decoding)
+
+\documentclass{article}
+\usepackage{amsmath,amssymb}
+
+\begin{document}
+
+\section*{Value vector to token probabilities}
+
+Let \(w_{\theta}^{(i)} \in \mathbb{R}^{d}\) be a value vector (e.g., a column of a layer's \texttt{down\_proj} matrix), with \(d\) the hidden size.
+
+\subsection*{1. Linear projection (lm\_head)}
+
+The decoding matrix \(\mathbf{W}_{\text{lm}} \in \mathbb{R}^{V \times d}\) (and optional bias \(\mathbf{b}_{\text{lm}} \in \mathbb{R}^{V}\)) maps the value vector to vocabulary logits:
+\begin{equation}
+  \mathbf{z} = \mathbf{W}_{\text{lm}} \, w_{\theta}^{(i)} + \mathbf{b}_{\text{lm}}, \qquad \mathbf{z} \in \mathbb{R}^{V}
+\end{equation}
+where \(V\) is the vocabulary size.
+
+\subsection*{2. Softmax}
+
+Logits are converted to a probability distribution over the vocabulary:
+\begin{equation}
+  p_i = \frac{\exp(z_i)}{\sum_{j=1}^{V} \exp(z_j)}, \qquad i = 1, \ldots, V
+\end{equation}
+or in vector form \(\mathbf{p} = \mathrm{softmax}(\mathbf{z})\).
+
+\subsection*{3. Top-$k$ tokens}
+
+The top-$k$ token indices by probability are selected; for each such index \(i\), the corresponding token string is decoded and reported with probability \(p_i\).
+
+\end{document}
