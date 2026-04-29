@@ -1,0 +1,139 @@
+{
+  "headline_findings": [
+    "At alpha=10, the risk cluster reduced mean displacement to 0.003435 versus 0.007345 for its matched random control.",
+    "Risk transferred robustly across fixed init states with classification counts {'stable': 4}.",
+    "Risk also remained stable under brightness and occlusion, with perturbed cluster-minus-random effects -0.004901 and -0.005000.",
+    "Fast transferred more weakly: init-state counts {'collapse': 1, 'stable': 3} and occlusion effect -0.000393."
+  ],
+  "rows": [
+    {
+      "phase": "phase5_alpha_sweep",
+      "concept": "fast",
+      "setting": "alpha=2.5",
+      "baseline_or_random_mean": 0.007003559170580723,
+      "cluster_mean": 0.0059636979304517855,
+      "cluster_minus_random": -0.0010398612401289371,
+      "classification": "",
+      "details": ""
+    },
+    {
+      "phase": "phase5_alpha_sweep",
+      "concept": "fast",
+      "setting": "alpha=5.0",
+      "baseline_or_random_mean": 0.006720626061449874,
+      "cluster_mean": 0.005816073331134053,
+      "cluster_minus_random": -0.0009045527303158211,
+      "classification": "",
+      "details": ""
+    },
+    {
+      "phase": "phase5_alpha_sweep",
+      "concept": "fast",
+      "setting": "alpha=10.0",
+      "baseline_or_random_mean": 0.006380369864288264,
+      "cluster_mean": 0.0060813380865559,
+      "cluster_minus_random": -0.0002990317777323637,
+      "classification": "",
+      "details": ""
+    },
+    {
+      "phase": "phase5_alpha_sweep",
+      "concept": "risk",
+      "setting": "alpha=2.5",
+      "baseline_or_random_mean": 0.008027923733012211,
+      "cluster_mean": 0.005101149382429961,
+      "cluster_minus_random": -0.00292677435058225,
+      "classification": "",
+      "details": ""
+    },
+    {
+      "phase": "phase5_alpha_sweep",
+      "concept": "risk",
+      "setting": "alpha=5.0",
+      "baseline_or_random_mean": 0.007736710560041426,
+      "cluster_mean": 0.004148362044316261,
+      "cluster_minus_random": -0.0035883485157251656,
+      "classification": "",
+      "details": ""
+    },
+    {
+      "phase": "phase5_alpha_sweep",
+      "concept": "risk",
+      "setting": "alpha=10.0",
+      "baseline_or_random_mean": 0.007345258277486623,
+      "cluster_mean": 0.003434506345516862,
+      "cluster_minus_random": -0.003910751931969761,
+      "classification": "",
+      "details": ""
+    },
+    {
+      "phase": "phase6_init_state_transfer",
+      "concept": "fast",
+      "setting": "clean",
+      "baseline_or_random_mean": 0.006505860647483783,
+      "cluster_mean": 0.006033175516183225,
+      "cluster_minus_random": -0.00047268513130055857,
+      "classification": "collapse=1; stable=3",
+      "details": "none_mean=0.008390"
+    },
+    {
+      "phase": "phase6_init_state_transfer",
+      "concept": "risk",
+      "setting": "clean",
+      "baseline_or_random_mean": 0.007541904528336098,
+      "cluster_mean": 0.0027529201540636827,
+      "cluster_minus_random": -0.0047889843742724165,
+      "classification": "stable=4",
+      "details": "none_mean=0.008390"
+    },
+    {
+      "phase": "phase7_brightness",
+      "concept": "fast",
+      "setting": "brightness",
+      "baseline_or_random_mean": 0.006588050269651384,
+      "cluster_mean": 0.006019137748884511,
+      "cluster_minus_random": -0.000568912520766874,
+      "classification": "stable",
+      "details": "flip=1; stable=3"
+    },
+    {
+      "phase": "phase7_brightness",
+      "concept": "risk",
+      "setting": "brightness",
+      "baseline_or_random_mean": 0.007656259990329588,
+      "cluster_mean": 0.0027552075475837995,
+      "cluster_minus_random": -0.004901052442745789,
+      "classification": "stable",
+      "details": "stable=4"
+    },
+    {
+      "phase": "phase7_occlusion",
+      "concept": "fast",
+      "setting": "occlusion",
+      "baseline_or_random_mean": 0.006650176335487332,
+      "cluster_mean": 0.006256934243690077,
+      "cluster_minus_random": -0.00039324209179725537,
+      "classification": "stable",
+      "details": "stable=4"
+    },
+    {
+      "phase": "phase7_occlusion",
+      "concept": "risk",
+      "setting": "occlusion",
+      "baseline_or_random_mean": 0.007843748724586147,
+      "cluster_mean": 0.002843549083599147,
+      "cluster_minus_random": -0.005000199640987,
+      "classification": "stable",
+      "details": "stable=4"
+    }
+  ],
+  "source_files": {
+    "phase5_summary": "/Users/ashutoshpanda/Documents/Research/project_Flux/project_Flux/smolvla_mechinterp_repro/results/eval_grids/phase5_alpha_sweep_late_core_initial/summary.json",
+    "phase6_summary": "/Users/ashutoshpanda/Documents/Research/project_Flux/project_Flux/smolvla_mechinterp_repro/results/eval_grids/phase6_tier1_fast_risk_initial/summary.json",
+    "phase6_transfer": "/Users/ashutoshpanda/Documents/Research/project_Flux/project_Flux/smolvla_mechinterp_repro/results/eval_grids/phase6_tier1_fast_risk_initial/init_state_transfer_avg_displacement.json",
+    "brightness_summary": "/Users/ashutoshpanda/Documents/Research/project_Flux/project_Flux/smolvla_mechinterp_repro/results/eval_grids/phase7_tier2_primary_brightness_initial_v2/summary.json",
+    "brightness_transfer": "/Users/ashutoshpanda/Documents/Research/project_Flux/project_Flux/smolvla_mechinterp_repro/results/eval_grids/phase7_tier2_primary_brightness_initial_v2/visual_perturbation_transfer_avg_displacement.json",
+    "occlusion_summary": "/Users/ashutoshpanda/Documents/Research/project_Flux/project_Flux/smolvla_mechinterp_repro/results/eval_grids/phase7_tier2_primary_occlusion_initial/summary.json",
+    "occlusion_transfer": "/Users/ashutoshpanda/Documents/Research/project_Flux/project_Flux/smolvla_mechinterp_repro/results/eval_grids/phase7_tier2_primary_occlusion_initial/visual_perturbation_transfer_avg_displacement.json"
+  }
+}
