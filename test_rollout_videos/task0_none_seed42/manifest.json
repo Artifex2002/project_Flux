@@ -1,0 +1,18 @@
+{
+  "rollouts": [
+    {
+      "task_description": "put both the alphabet soup and the tomato sauce in the basket",
+      "seed": 42,
+      "init_state_index": 0,
+      "condition": "none",
+      "avg_displacement": 0.008258998699315324,
+      "max_height": 0.7129679373389848,
+      "max_height_axis": "z",
+      "rollout_index": 0,
+      "success": false,
+      "total_steps": 5,
+      "num_frames": 6,
+      "video_file": "rollout_000.mp4"
+    }
+  ]
+}

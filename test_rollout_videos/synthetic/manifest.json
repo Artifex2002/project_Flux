@@ -1,0 +1,13 @@
+{
+  "rollouts": [
+    {
+      "task": "synthetic",
+      "note": "synthetic smoke test",
+      "rollout_index": 0,
+      "success": true,
+      "total_steps": 5,
+      "num_frames": 5,
+      "video_file": "rollout_000.mp4"
+    }
+  ]
+}

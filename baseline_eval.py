@@ -66,12 +66,22 @@ except ImportError:
 try:
     from libero.libero import benchmark, get_libero_path
     from libero.libero.envs import OffScreenRenderEnv
-except ImportError as e:
-    print(f"ERROR: Could not import LIBERO: {e}")
-    print("Make sure libero is installed. Try:")
-    print("  pip install libero")
-    print("  # or clone from https://github.com/Lifelong-Robot-Learning/LIBERO")
-    sys.exit(1)
+except ImportError:
+    try:
+        import libero.benchmark as benchmark
+        from libero import get_libero_path
+        from libero.envs import OffScreenRenderEnv
+    except ImportError as e:
+        print(f"ERROR: Could not import LIBERO: {e}")
+        print("Make sure libero is installed. Try:")
+        print("  pip install libero")
+        print("  # or clone from https://github.com/Lifelong-Robot-Learning/LIBERO")
+        sys.exit(1)
+
+try:
+    from rollout_recorder import RolloutRecorder
+except ImportError:
+    RolloutRecorder = None
 
 
 # ═══════════════════════════════════════════════════════════════════════════════
@@ -120,6 +130,22 @@ def parse_args():
     parser.add_argument(
         "--output_dir", type=str, default="baseline_results",
         help="Directory to save result JSON files",
+    )
+    parser.add_argument(
+        "--record", action="store_true",
+        help="Record rollout videos to disk",
+    )
+    parser.add_argument(
+        "--video_dir", type=str, default="rollout_videos",
+        help="Directory to save recorded rollout videos",
+    )
+    parser.add_argument(
+        "--video_fps", type=int, default=10,
+        help="Frames per second for rollout videos",
+    )
+    parser.add_argument(
+        "--record_wrist", action="store_true",
+        help="Include wrist camera next to the main camera in recordings",
     )
     return parser.parse_args()
 
@@ -203,8 +229,21 @@ def setup_env(args):
     env = OffScreenRenderEnv(**env_args)
     print("Environment created.")
 
-    # Load initial states for reproducible evaluation
-    init_states = task_suite.get_task_init_states(args.task_idx)
+    # Load initial states for reproducible evaluation.
+    # Older LIBERO assets were saved before PyTorch 2.6 changed torch.load()
+    # to default to weights_only=True.
+    try:
+        init_states = task_suite.get_task_init_states(args.task_idx)
+    except Exception as e:
+        if "Weights only load failed" not in str(e):
+            raise
+        init_states_path = os.path.join(
+            get_libero_path("init_states"),
+            task.problem_folder,
+            task.init_states_file,
+        )
+        print("  WARNING: Retrying init state load with weights_only=False")
+        init_states = torch.load(init_states_path, weights_only=False)
     print(f"  Init states loaded: {init_states.shape}")
 
     return env, task_suite, task_description, init_states
@@ -420,7 +459,7 @@ def register_steering_hook(policy, neuron_indices, alpha, layer_idx=25):
 
 def run_rollout(env, policy, task_description, args, device,
                 preprocess_fn=None, postprocess_fn=None,
-                seed_offset=0, init_states=None):
+                seed_offset=0, init_states=None, recorder=None, rollout_index=0):
     """
     Execute a single rollout.
 
@@ -436,6 +475,20 @@ def run_rollout(env, policy, task_description, args, device,
         init_idx = seed_offset % len(init_states)
         obs = env.set_init_state(init_states[init_idx])
         print(f"  Using init state {init_idx}")
+    else:
+        init_idx = None
+
+    if recorder is not None:
+        recorder.start_rollout(
+            rollout_index,
+            metadata={
+                "task_description": task_description,
+                "seed": args.seed + seed_offset,
+                "init_state_index": init_idx,
+                "condition": args.condition,
+            },
+        )
+        recorder.add_observation(obs)
 
     ee_positions = []
     success = False
@@ -480,6 +533,8 @@ def run_rollout(env, policy, task_description, args, device,
             obs, reward, done, info = env.step(action_np)
             total_steps = step_idx + 1
             step_times.append(time.time() - step_start)
+            if recorder is not None:
+                recorder.add_observation(obs)
 
             if args.log_every and total_steps % args.log_every == 0:
                 avg_step = sum(step_times) / len(step_times)
@@ -523,6 +578,17 @@ def run_rollout(env, policy, task_description, args, device,
         avg_displacement = 0.0
 
     max_height = float(ee_arr[:, UP_AXIS].max()) if len(ee_arr) > 0 else 0.0
+
+    if recorder is not None:
+        recorder.finish_rollout(
+            success=success,
+            total_steps=total_steps,
+            extra_metadata={
+                "avg_displacement": avg_displacement,
+                "max_height": max_height,
+                "max_height_axis": UP_LABEL,
+            },
+        )
 
     return {
         "ee_positions": ee_positions,
@@ -585,6 +651,7 @@ def main():
     print(f"  Max steps   : {args.max_steps}")
     print(f"  Log every   : {args.log_every}")
     print(f"  Seed        : {args.seed}")
+    print(f"  Record      : {args.record}")
     if args.condition == "random_injection":
         print(f"  Alpha       : {args.alpha}")
 
@@ -599,6 +666,21 @@ def main():
         args, task_description, policy, device
     )
 
+    recorder = None
+    if args.record:
+        if RolloutRecorder is None:
+            print("ERROR: Recording requested, but rollout_recorder dependencies are unavailable.")
+            print("Install imageio and imageio-ffmpeg, then retry.")
+            sys.exit(1)
+        run_name = f"task{args.task_idx}_{args.condition}_seed{args.seed}"
+        video_dir = os.path.join(args.video_dir, run_name)
+        recorder = RolloutRecorder(
+            video_dir,
+            fps=args.video_fps,
+            include_wrist=args.record_wrist,
+        )
+        print(f"  Video output: {video_dir}")
+
     # ── Run rollouts ──────────────────────────────────────────────────────────
     results = []
     t_start = time.time()
@@ -611,6 +693,8 @@ def main():
             postprocess_fn=postprocess_fn,
             seed_offset=i,
             init_states=init_states,
+            recorder=recorder,
+            rollout_index=i,
         )
         results.append(result)
         print(f"  avg_displacement={result['avg_displacement']:.4f}, "
