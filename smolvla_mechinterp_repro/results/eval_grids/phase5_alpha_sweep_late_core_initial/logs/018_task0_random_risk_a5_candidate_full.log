@@ -1,0 +1,112 @@
+========================================================================
+SmolVLA Steering Runner
+========================================================================
+Condition   : random_matched
+Task index  : 0
+Num rollouts: 3
+Max steps   : 5
+Seed        : 42
+Alpha       : 5.0
+Layer scope : candidate
+
+Loading model: HuggingFaceVLA/smolvla_libero
+Loading  HuggingFaceTB/SmolVLM2-500M-Instruct weights ...
+Pre/post processors built successfully.
+Model loaded on cpu in 5.7s
+Resolved steering candidate: random_matched__late__risk__cluster_10
+  Partition      : late
+  Num neurons    : 2872
+  Layers touched : 16
+  Top layers     : [{'layer_idx': 30, 'count': 250}, {'layer_idx': 29, 'count': 249}, {'layer_idx': 27, 'count': 246}, {'layer_idx': 31, 'count': 242}, {'layer_idx': 28, 'count': 222}]
+
+Setting up LIBERO environment...
+[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+[Warning]: datasets path /Users/ashutoshpanda/Documents/Research/Kintsugi/LIBERO/libero/libero/../datasets does not exist!
+Task 0: put both the alphabet soup and the tomato sauce in the basket
+  BDDL file: /Users/ashutoshpanda/Documents/Research/Kintsugi/LIBERO/libero/libero/./bddl_files/libero_10/LIVING_ROOM_SCENE2_put_both_the_alphabet_soup_and_the_tomato_sauce_in_the_basket.bddl
+[Warning]: datasets path /Users/ashutoshpanda/Documents/Research/Kintsugi/LIBERO/libero/libero/../datasets does not exist!
+  Init states loaded: (50, 123)
+
+Rollout 1/3...
+  Using init state 0
+
+  [DEBUG] Raw observation keys and shapes:
+    agentview_image: shape=(256, 256, 3), dtype=uint8
+    alphabet_soup_1_pos: shape=(3,), dtype=float64
+    alphabet_soup_1_quat: shape=(4,), dtype=float64
+    alphabet_soup_1_to_robot0_eef_pos: shape=(3,), dtype=float64
+    alphabet_soup_1_to_robot0_eef_quat: shape=(4,), dtype=float32
+    basket_1_pos: shape=(3,), dtype=float64
+    basket_1_quat: shape=(4,), dtype=float64
+    basket_1_to_robot0_eef_pos: shape=(3,), dtype=float64
+    basket_1_to_robot0_eef_quat: shape=(4,), dtype=float32
+    butter_1_pos: shape=(3,), dtype=float64
+    butter_1_quat: shape=(4,), dtype=float64
+    butter_1_to_robot0_eef_pos: shape=(3,), dtype=float64
+    butter_1_to_robot0_eef_quat: shape=(4,), dtype=float32
+    cream_cheese_1_pos: shape=(3,), dtype=float64
+    cream_cheese_1_quat: shape=(4,), dtype=float64
+    cream_cheese_1_to_robot0_eef_pos: shape=(3,), dtype=float64
+    cream_cheese_1_to_robot0_eef_quat: shape=(4,), dtype=float32
+    ketchup_1_pos: shape=(3,), dtype=float64
+    ketchup_1_quat: shape=(4,), dtype=float64
+    ketchup_1_to_robot0_eef_pos: shape=(3,), dtype=float64
+    ketchup_1_to_robot0_eef_quat: shape=(4,), dtype=float32
+    milk_1_pos: shape=(3,), dtype=float64
+    milk_1_quat: shape=(4,), dtype=float64
+    milk_1_to_robot0_eef_pos: shape=(3,), dtype=float64
+    milk_1_to_robot0_eef_quat: shape=(4,), dtype=float32
+    object-state: shape=(112,), dtype=float64
+    orange_juice_1_pos: shape=(3,), dtype=float64
+    orange_juice_1_quat: shape=(4,), dtype=float64
+    orange_juice_1_to_robot0_eef_pos: shape=(3,), dtype=float64
+    orange_juice_1_to_robot0_eef_quat: shape=(4,), dtype=float32
+    robot0_eef_pos: shape=(3,), dtype=float64
+    robot0_eef_quat: shape=(4,), dtype=float64
+    robot0_eye_in_hand_image: shape=(256, 256, 3), dtype=uint8
+    robot0_gripper_qpos: shape=(2,), dtype=float64
+    robot0_gripper_qvel: shape=(2,), dtype=float64
+    robot0_joint_pos: shape=(7,), dtype=float64
+    robot0_joint_pos_cos: shape=(7,), dtype=float64
+    robot0_joint_pos_sin: shape=(7,), dtype=float64
+    robot0_joint_vel: shape=(7,), dtype=float64
+    robot0_proprio-state: shape=(39,), dtype=float64
+    tomato_sauce_1_pos: shape=(3,), dtype=float64
+    tomato_sauce_1_quat: shape=(4,), dtype=float64
+    tomato_sauce_1_to_robot0_eef_pos: shape=(3,), dtype=float64
+    tomato_sauce_1_to_robot0_eef_quat: shape=(4,), dtype=float32
+  step 1/5 | avg_step=12.35s avg_infer=10.39s last_z=0.713 elapsed=12.4s
+  step 2/5 | avg_step=11.96s avg_infer=10.95s last_z=0.708 elapsed=23.9s
+  step 3/5 | avg_step=11.91s avg_infer=11.22s last_z=0.704 elapsed=35.7s
+  step 4/5 | avg_step=11.99s avg_infer=11.44s last_z=0.703 elapsed=48.0s
+  step 5/5 | avg_step=12.05s avg_infer=11.58s last_z=0.701 elapsed=60.3s
+  avg_displacement=0.0087, max_height=0.7130, success=False, steps=5
+
+Rollout 2/3...
+  Using init state 1
+  step 1/5 | avg_step=14.13s avg_infer=13.96s last_z=0.670 elapsed=14.1s
+  step 2/5 | avg_step=13.32s avg_infer=13.15s last_z=0.672 elapsed=26.6s
+  step 3/5 | avg_step=12.96s avg_infer=12.82s last_z=0.672 elapsed=38.9s
+  step 4/5 | avg_step=12.74s avg_infer=12.62s last_z=0.672 elapsed=50.9s
+  step 5/5 | avg_step=12.60s avg_infer=12.49s last_z=0.673 elapsed=63.0s
+  avg_displacement=0.0065, max_height=0.6726, success=False, steps=5
+
+Rollout 3/3...
+  Using init state 2
+  step 1/5 | avg_step=12.63s avg_infer=12.47s last_z=0.694 elapsed=12.6s
+  step 2/5 | avg_step=12.37s avg_infer=12.21s last_z=0.693 elapsed=24.7s
+  step 3/5 | avg_step=12.62s avg_infer=12.43s last_z=0.690 elapsed=37.8s
+  step 4/5 | avg_step=12.65s avg_infer=12.50s last_z=0.688 elapsed=50.6s
+  step 5/5 | avg_step=12.55s avg_infer=12.41s last_z=0.688 elapsed=62.7s
+  avg_displacement=0.0080, max_height=0.6942, success=False, steps=5
+
+Results saved to /Users/ashutoshpanda/Documents/Research/project_Flux/project_Flux/smolvla_mechinterp_repro/results/eval_grids/phase5_alpha_sweep_late_core_initial/runs/018_task0_random_risk_a5_candidate_full.json
+Success rate: 0/3
+WARNING:lerobot.configs.policies:Device 'cuda' is not available. Switching to 'mps'.
+WARNING:lerobot.configs.policies:Device 'cuda' is not available. Switching to 'mps'.
+`torch_dtype` is deprecated! Use `dtype` instead!
+objc[53429]: Class AVFFrameReceiver is implemented in both /opt/anaconda3/envs/project_Lumina/lib/python3.10/site-packages/av/.dylibs/libavdevice.61.3.100.dylib (0x11837c3a8) and /opt/anaconda3/envs/project_Lumina/lib/python3.10/site-packages/cv2/.dylibs/libavdevice.61.3.100.dylib (0x17b65c3a8). One of the two will be used. Which one is undefined.
+objc[53429]: Class AVFAudioReceiver is implemented in both /opt/anaconda3/envs/project_Lumina/lib/python3.10/site-packages/av/.dylibs/libavdevice.61.3.100.dylib (0x11837c3f8) and /opt/anaconda3/envs/project_Lumina/lib/python3.10/site-packages/cv2/.dylibs/libavdevice.61.3.100.dylib (0x17b65c3f8). One of the two will be used. Which one is undefined.
+Gym has been unmaintained since 2022 and does not support NumPy 2.0 amongst other critical functionality.
+Please upgrade to Gymnasium, the maintained drop-in replacement of Gym, or contact the authors of your software and request that they upgrade.
+See the migration guide at https://gymnasium.farama.org/introduction/migration_guide/ for additional information.

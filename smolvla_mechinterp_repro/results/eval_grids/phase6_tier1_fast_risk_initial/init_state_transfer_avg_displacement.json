@@ -1,0 +1,103 @@
+{
+  "run_dir": "/Users/ashutoshpanda/Documents/Research/project_Flux/project_Flux/smolvla_mechinterp_repro/results/eval_grids/phase6_tier1_fast_risk_initial",
+  "metric": "avg_displacement",
+  "comparisons": [
+    {
+      "concept": "fast",
+      "alpha": 10.0,
+      "metric": "avg_displacement",
+      "num_paired_init_states": 4,
+      "none_mean": 0.00839027637482698,
+      "random_mean": 0.006505860647483783,
+      "cluster_mean": 0.006033175516183225,
+      "cluster_minus_random_mean": -0.00047268513130055857,
+      "cluster_minus_random_std": 0.00029600893452200644,
+      "classification_counts": {
+        "collapse": 1,
+        "stable": 3
+      },
+      "paired_init_states": [
+        {
+          "init_state_idx": 0,
+          "none_value": 0.00872002877636542,
+          "random_value": 0.006834283851752196,
+          "cluster_value": 0.006847665004545285,
+          "cluster_minus_random": 1.3381152793089622e-05,
+          "classification": "collapse"
+        },
+        {
+          "init_state_idx": 1,
+          "none_value": 0.007135506645125171,
+          "random_value": 0.005820849550563446,
+          "cluster_value": 0.005187052286639304,
+          "cluster_minus_random": -0.0006337972639241423,
+          "classification": "stable"
+        },
+        {
+          "init_state_idx": 2,
+          "none_value": 0.00910686108093296,
+          "random_value": 0.006992563914923266,
+          "cluster_value": 0.0064905745376568754,
+          "cluster_minus_random": -0.0005019893772663904,
+          "classification": "stable"
+        },
+        {
+          "init_state_idx": 3,
+          "none_value": 0.008598708996884372,
+          "random_value": 0.006375745272696226,
+          "cluster_value": 0.005607410235891435,
+          "cluster_minus_random": -0.0007683350368047912,
+          "classification": "stable"
+        }
+      ]
+    },
+    {
+      "concept": "risk",
+      "alpha": 10.0,
+      "metric": "avg_displacement",
+      "num_paired_init_states": 4,
+      "none_mean": 0.00839027637482698,
+      "random_mean": 0.007541904528336099,
+      "cluster_mean": 0.0027529201540636827,
+      "cluster_minus_random_mean": -0.0047889843742724165,
+      "cluster_minus_random_std": 0.0007208834332103794,
+      "classification_counts": {
+        "stable": 4
+      },
+      "paired_init_states": [
+        {
+          "init_state_idx": 0,
+          "none_value": 0.00872002877636542,
+          "random_value": 0.007798733395527924,
+          "cluster_value": 0.0036181301298620935,
+          "cluster_minus_random": -0.004180603265665831,
+          "classification": "stable"
+        },
+        {
+          "init_state_idx": 1,
+          "none_value": 0.007135506645125171,
+          "random_value": 0.006508384613421429,
+          "cluster_value": 0.0020914415774893045,
+          "cluster_minus_random": -0.004416943035932125,
+          "classification": "stable"
+        },
+        {
+          "init_state_idx": 2,
+          "none_value": 0.00910686108093296,
+          "random_value": 0.008046597496680614,
+          "cluster_value": 0.003505485660823161,
+          "cluster_minus_random": -0.004541111835857453,
+          "classification": "stable"
+        },
+        {
+          "init_state_idx": 3,
+          "none_value": 0.008598708996884372,
+          "random_value": 0.007813902607714428,
+          "cluster_value": 0.0017966232480801717,
+          "cluster_minus_random": -0.006017279359634257,
+          "classification": "stable"
+        }
+      ]
+    }
+  ]
+}

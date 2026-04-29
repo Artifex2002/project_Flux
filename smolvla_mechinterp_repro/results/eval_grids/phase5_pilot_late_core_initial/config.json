@@ -1,0 +1,43 @@
+{
+  "generated_at_utc": "2026-04-19T21:05:16.810450+00:00",
+  "preset": "phase5_pilot_late_core",
+  "run_name": "phase5_pilot_late_core_initial",
+  "steering_script": "/Users/ashutoshpanda/Documents/Research/project_Flux/project_Flux/smolvla_mechinterp_repro/scripts/steer_smolvla_libero.py",
+  "config": {
+    "description": "Small logged pilot grid covering stable late-layer concepts.",
+    "suite": "libero_10",
+    "task_indices": [
+      0
+    ],
+    "concepts": [
+      "fast",
+      "safe",
+      "risk"
+    ],
+    "prompt_concepts": [
+      "fast"
+    ],
+    "conditions": [
+      "none",
+      "prompt",
+      "random_matched",
+      "cluster"
+    ],
+    "cluster_partition": "recommended",
+    "alphas": [
+      10.0
+    ],
+    "max_neurons": [
+      null
+    ],
+    "layer_scopes": [
+      "candidate"
+    ],
+    "num_rollouts": 1,
+    "max_steps": 1,
+    "log_every": 1,
+    "seed": 42,
+    "device": "cpu",
+    "random_match_mode": "per_layer"
+  }
+}

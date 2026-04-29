@@ -1,0 +1,77 @@
+{
+  "generated_at_utc": "2026-04-20T00:13:29Z",
+  "model_id": "HuggingFaceVLA/smolvla_libero",
+  "suite": "libero_10",
+  "task_idx": 0,
+  "task_description": "put both the alphabet soup and the tomato sauce in the basket",
+  "condition": "none",
+  "prompt_prefix": null,
+  "seed": 42,
+  "device": "cpu",
+  "num_rollouts": 2,
+  "init_state_indices": [
+    0,
+    2
+  ],
+  "max_steps": 2,
+  "elapsed_seconds": 47.852,
+  "summary": {
+    "avg_speed_mean": 0.007184367687419931,
+    "avg_speed_std": 0.00019757230283164347,
+    "max_height_mean": 0.7035856084608528,
+    "max_height_std": 0.009382328878131951,
+    "success_rate": 0.0,
+    "success_count": 0
+  },
+  "steering": null,
+  "rollouts": [
+    {
+      "rollout_index": 0,
+      "init_state_idx": 0,
+      "ee_positions": [
+        [
+          -0.03749909448654084,
+          -0.005375515997324871,
+          0.7129679373389848
+        ],
+        [
+          -0.04011504581541535,
+          -0.0005029808495210148,
+          0.7080783322528811
+        ]
+      ],
+      "displacements": [
+        0.007381939990251575
+      ],
+      "avg_displacement": 0.007381939990251575,
+      "max_height": 0.7129679373389848,
+      "max_height_axis": "z",
+      "total_steps": 2,
+      "success": false
+    },
+    {
+      "rollout_index": 1,
+      "init_state_idx": 2,
+      "ee_positions": [
+        [
+          -0.04731747172865137,
+          -0.020345004538329662,
+          0.6942032795827209
+        ],
+        [
+          -0.04830409202029892,
+          -0.013665938543995186,
+          0.6924055121924453
+        ]
+      ],
+      "displacements": [
+        0.006986795384588288
+      ],
+      "avg_displacement": 0.006986795384588288,
+      "max_height": 0.6942032795827209,
+      "max_height_axis": "z",
+      "total_steps": 2,
+      "success": false
+    }
+  ]
+}

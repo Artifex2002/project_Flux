@@ -1,0 +1,60 @@
+{
+  "runs": [
+    {
+      "run_id": "000",
+      "task_idx": 0,
+      "condition": "none",
+      "concept": null,
+      "prompt_prefix": null,
+      "alpha": null,
+      "max_neurons": null,
+      "layer_scope": null,
+      "cluster_partition": null,
+      "init_state_indices": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "vision_perturbation": "brightness",
+      "vision_target": "primary",
+      "vision_strength": 0.15,
+      "vision_seed": null,
+      "output_json": "/Users/ashutoshpanda/Documents/Research/project_Flux/project_Flux/smolvla_mechinterp_repro/results/eval_grids/phase7_tier2_primary_brightness_initial/runs/000_task0_none.json",
+      "avg_speed_mean": 0.008471367441369707,
+      "avg_speed_std": 0.0007424360757287702,
+      "max_height_mean": 0.6940495553626247,
+      "max_height_std": 0.014632096661733695,
+      "success_rate": 0.0,
+      "success_count": 0,
+      "steering_label": null,
+      "steering_candidate_id": null,
+      "num_neurons": null,
+      "num_layers_touched": null,
+      "elapsed_seconds": 440.862
+    }
+  ],
+  "manifest": [
+    {
+      "run_id": "000",
+      "task_idx": 0,
+      "condition": "none",
+      "concept": null,
+      "alpha": null,
+      "max_neurons": null,
+      "layer_scope": null,
+      "started_at_utc": "2026-04-20T01:27:11.345652+00:00",
+      "finished_at_utc": "2026-04-20T01:34:55.564608+00:00",
+      "elapsed_seconds": 464.219,
+      "exit_code": 0,
+      "output_json": "/Users/ashutoshpanda/Documents/Research/project_Flux/project_Flux/smolvla_mechinterp_repro/results/eval_grids/phase7_tier2_primary_brightness_initial/runs/000_task0_none.json",
+      "log_file": "/Users/ashutoshpanda/Documents/Research/project_Flux/project_Flux/smolvla_mechinterp_repro/results/eval_grids/phase7_tier2_primary_brightness_initial/logs/000_task0_none.log",
+      "status": "success",
+      "summary": {
+        "success_rate": 0.0,
+        "avg_speed_mean": 0.008471367441369707,
+        "max_height_mean": 0.6940495553626247
+      }
+    }
+  ]
+}

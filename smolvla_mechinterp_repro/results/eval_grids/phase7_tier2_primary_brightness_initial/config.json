@@ -1,0 +1,48 @@
+{
+  "generated_at_utc": "2026-04-20T01:27:11.345078+00:00",
+  "preset": "phase7_tier2_primary_brightness_smoke",
+  "run_name": "phase7_tier2_primary_brightness_initial",
+  "steering_script": "/Users/ashutoshpanda/Documents/Research/project_Flux/project_Flux/smolvla_mechinterp_repro/scripts/steer_smolvla_libero.py",
+  "config": {
+    "description": "Phase 7 Tier 2 smoke test: paired init-state transfer under a primary-camera brightness shift for fast and risk.",
+    "suite": "libero_10",
+    "task_indices": [
+      0
+    ],
+    "concepts": [
+      "fast",
+      "risk"
+    ],
+    "prompt_concepts": [],
+    "conditions": [
+      "none",
+      "random_matched",
+      "cluster"
+    ],
+    "cluster_partition": "recommended",
+    "alphas": [
+      10.0
+    ],
+    "max_neurons": [
+      null
+    ],
+    "layer_scopes": [
+      "candidate"
+    ],
+    "num_rollouts": 4,
+    "init_state_indices": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "vision_perturbation": "brightness",
+    "vision_target": "primary",
+    "vision_strength": 0.15,
+    "max_steps": 10,
+    "log_every": 2,
+    "seed": 42,
+    "device": "cpu",
+    "random_match_mode": "per_layer"
+  }
+}

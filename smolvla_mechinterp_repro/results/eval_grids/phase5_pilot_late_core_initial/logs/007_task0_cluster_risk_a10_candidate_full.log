@@ -1,0 +1,90 @@
+========================================================================
+SmolVLA Steering Runner
+========================================================================
+Condition   : cluster
+Task index  : 0
+Num rollouts: 1
+Max steps   : 1
+Seed        : 42
+Alpha       : 10.0
+Layer scope : candidate
+
+Loading model: HuggingFaceVLA/smolvla_libero
+Loading  HuggingFaceTB/SmolVLM2-500M-Instruct weights ...
+Pre/post processors built successfully.
+Model loaded on cpu in 6.3s
+Resolved steering candidate: late__risk__cluster_10
+  Partition      : late
+  Num neurons    : 2872
+  Layers touched : 16
+  Top layers     : [{'layer_idx': 30, 'count': 250}, {'layer_idx': 29, 'count': 249}, {'layer_idx': 27, 'count': 246}, {'layer_idx': 31, 'count': 242}, {'layer_idx': 28, 'count': 222}]
+
+Setting up LIBERO environment...
+[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+[Warning]: datasets path /Users/ashutoshpanda/Documents/Research/Kintsugi/LIBERO/libero/libero/../datasets does not exist!
+Task 0: put both the alphabet soup and the tomato sauce in the basket
+  BDDL file: /Users/ashutoshpanda/Documents/Research/Kintsugi/LIBERO/libero/libero/./bddl_files/libero_10/LIVING_ROOM_SCENE2_put_both_the_alphabet_soup_and_the_tomato_sauce_in_the_basket.bddl
+[Warning]: datasets path /Users/ashutoshpanda/Documents/Research/Kintsugi/LIBERO/libero/libero/../datasets does not exist!
+  Init states loaded: (50, 123)
+
+Rollout 1/1...
+  Using init state 0
+
+  [DEBUG] Raw observation keys and shapes:
+    agentview_image: shape=(256, 256, 3), dtype=uint8
+    alphabet_soup_1_pos: shape=(3,), dtype=float64
+    alphabet_soup_1_quat: shape=(4,), dtype=float64
+    alphabet_soup_1_to_robot0_eef_pos: shape=(3,), dtype=float64
+    alphabet_soup_1_to_robot0_eef_quat: shape=(4,), dtype=float32
+    basket_1_pos: shape=(3,), dtype=float64
+    basket_1_quat: shape=(4,), dtype=float64
+    basket_1_to_robot0_eef_pos: shape=(3,), dtype=float64
+    basket_1_to_robot0_eef_quat: shape=(4,), dtype=float32
+    butter_1_pos: shape=(3,), dtype=float64
+    butter_1_quat: shape=(4,), dtype=float64
+    butter_1_to_robot0_eef_pos: shape=(3,), dtype=float64
+    butter_1_to_robot0_eef_quat: shape=(4,), dtype=float32
+    cream_cheese_1_pos: shape=(3,), dtype=float64
+    cream_cheese_1_quat: shape=(4,), dtype=float64
+    cream_cheese_1_to_robot0_eef_pos: shape=(3,), dtype=float64
+    cream_cheese_1_to_robot0_eef_quat: shape=(4,), dtype=float32
+    ketchup_1_pos: shape=(3,), dtype=float64
+    ketchup_1_quat: shape=(4,), dtype=float64
+    ketchup_1_to_robot0_eef_pos: shape=(3,), dtype=float64
+    ketchup_1_to_robot0_eef_quat: shape=(4,), dtype=float32
+    milk_1_pos: shape=(3,), dtype=float64
+    milk_1_quat: shape=(4,), dtype=float64
+    milk_1_to_robot0_eef_pos: shape=(3,), dtype=float64
+    milk_1_to_robot0_eef_quat: shape=(4,), dtype=float32
+    object-state: shape=(112,), dtype=float64
+    orange_juice_1_pos: shape=(3,), dtype=float64
+    orange_juice_1_quat: shape=(4,), dtype=float64
+    orange_juice_1_to_robot0_eef_pos: shape=(3,), dtype=float64
+    orange_juice_1_to_robot0_eef_quat: shape=(4,), dtype=float32
+    robot0_eef_pos: shape=(3,), dtype=float64
+    robot0_eef_quat: shape=(4,), dtype=float64
+    robot0_eye_in_hand_image: shape=(256, 256, 3), dtype=uint8
+    robot0_gripper_qpos: shape=(2,), dtype=float64
+    robot0_gripper_qvel: shape=(2,), dtype=float64
+    robot0_joint_pos: shape=(7,), dtype=float64
+    robot0_joint_pos_cos: shape=(7,), dtype=float64
+    robot0_joint_pos_sin: shape=(7,), dtype=float64
+    robot0_joint_vel: shape=(7,), dtype=float64
+    robot0_proprio-state: shape=(39,), dtype=float64
+    tomato_sauce_1_pos: shape=(3,), dtype=float64
+    tomato_sauce_1_quat: shape=(4,), dtype=float64
+    tomato_sauce_1_to_robot0_eef_pos: shape=(3,), dtype=float64
+    tomato_sauce_1_to_robot0_eef_quat: shape=(4,), dtype=float32
+  step 1/1 | avg_step=14.17s avg_infer=12.25s last_z=0.713 elapsed=14.2s
+  avg_displacement=0.0000, max_height=0.7130, success=False, steps=1
+
+Results saved to /Users/ashutoshpanda/Documents/Research/project_Flux/project_Flux/smolvla_mechinterp_repro/results/eval_grids/phase5_pilot_late_core_initial/runs/007_task0_cluster_risk_a10_candidate_full.json
+Success rate: 0/1
+WARNING:lerobot.configs.policies:Device 'cuda' is not available. Switching to 'mps'.
+WARNING:lerobot.configs.policies:Device 'cuda' is not available. Switching to 'mps'.
+`torch_dtype` is deprecated! Use `dtype` instead!
+objc[46503]: Class AVFFrameReceiver is implemented in both /opt/anaconda3/envs/project_Lumina/lib/python3.10/site-packages/av/.dylibs/libavdevice.61.3.100.dylib (0x151bcc3a8) and /opt/anaconda3/envs/project_Lumina/lib/python3.10/site-packages/cv2/.dylibs/libavdevice.61.3.100.dylib (0x357fa83a8). One of the two will be used. Which one is undefined.
+objc[46503]: Class AVFAudioReceiver is implemented in both /opt/anaconda3/envs/project_Lumina/lib/python3.10/site-packages/av/.dylibs/libavdevice.61.3.100.dylib (0x151bcc3f8) and /opt/anaconda3/envs/project_Lumina/lib/python3.10/site-packages/cv2/.dylibs/libavdevice.61.3.100.dylib (0x357fa83f8). One of the two will be used. Which one is undefined.
+Gym has been unmaintained since 2022 and does not support NumPy 2.0 amongst other critical functionality.
+Please upgrade to Gymnasium, the maintained drop-in replacement of Gym, or contact the authors of your software and request that they upgrade.
+See the migration guide at https://gymnasium.farama.org/introduction/migration_guide/ for additional information.

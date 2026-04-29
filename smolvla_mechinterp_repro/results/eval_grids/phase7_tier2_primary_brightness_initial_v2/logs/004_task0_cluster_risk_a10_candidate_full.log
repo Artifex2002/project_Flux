@@ -1,0 +1,124 @@
+========================================================================
+SmolVLA Steering Runner
+========================================================================
+Condition   : cluster
+Task index  : 0
+Num rollouts: 4
+Max steps   : 10
+Seed        : 42
+Alpha       : 10.0
+Layer scope : candidate
+Vision pert.: brightness
+Vision targ.: primary
+Vision str. : 0.15
+
+Loading model: HuggingFaceVLA/smolvla_libero
+WARNING:lerobot.configs.policies:Device 'cuda' is not available. Switching to 'mps'.
+WARNING:lerobot.configs.policies:Device 'cuda' is not available. Switching to 'mps'.
+Loading  HuggingFaceTB/SmolVLM2-500M-Instruct weights ...
+`torch_dtype` is deprecated! Use `dtype` instead!
+Pre/post processors built successfully.
+Model loaded on cpu in 7.1s
+Resolved steering candidate: late__risk__cluster_10
+  Partition      : late
+  Num neurons    : 2872
+  Layers touched : 16
+  Top layers     : [{'layer_idx': 30, 'count': 250}, {'layer_idx': 29, 'count': 249}, {'layer_idx': 27, 'count': 246}, {'layer_idx': 31, 'count': 242}, {'layer_idx': 28, 'count': 222}]
+objc[74711]: Class AVFFrameReceiver is implemented in both /opt/anaconda3/envs/project_Lumina/lib/python3.10/site-packages/av/.dylibs/libavdevice.61.3.100.dylib (0x126b543a8) and /opt/anaconda3/envs/project_Lumina/lib/python3.10/site-packages/cv2/.dylibs/libavdevice.61.3.100.dylib (0x16e3243a8). One of the two will be used. Which one is undefined.
+objc[74711]: Class AVFAudioReceiver is implemented in both /opt/anaconda3/envs/project_Lumina/lib/python3.10/site-packages/av/.dylibs/libavdevice.61.3.100.dylib (0x126b543f8) and /opt/anaconda3/envs/project_Lumina/lib/python3.10/site-packages/cv2/.dylibs/libavdevice.61.3.100.dylib (0x16e3243f8). One of the two will be used. Which one is undefined.
+Gym has been unmaintained since 2022 and does not support NumPy 2.0 amongst other critical functionality.
+Please upgrade to Gymnasium, the maintained drop-in replacement of Gym, or contact the authors of your software and request that they upgrade.
+See the migration guide at https://gymnasium.farama.org/introduction/migration_guide/ for additional information.
+
+Setting up LIBERO environment...
+[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+[Warning]: datasets path /Users/ashutoshpanda/Documents/Research/Kintsugi/LIBERO/libero/libero/../datasets does not exist!
+Task 0: put both the alphabet soup and the tomato sauce in the basket
+  BDDL file: /Users/ashutoshpanda/Documents/Research/Kintsugi/LIBERO/libero/libero/./bddl_files/libero_10/LIVING_ROOM_SCENE2_put_both_the_alphabet_soup_and_the_tomato_sauce_in_the_basket.bddl
+[Warning]: datasets path /Users/ashutoshpanda/Documents/Research/Kintsugi/LIBERO/libero/libero/../datasets does not exist!
+  Init states loaded: (50, 123)
+
+Rollout 1/4...
+  Using init state 0
+
+  [DEBUG] Raw observation keys and shapes:
+    agentview_image: shape=(256, 256, 3), dtype=uint8
+    alphabet_soup_1_pos: shape=(3,), dtype=float64
+    alphabet_soup_1_quat: shape=(4,), dtype=float64
+    alphabet_soup_1_to_robot0_eef_pos: shape=(3,), dtype=float64
+    alphabet_soup_1_to_robot0_eef_quat: shape=(4,), dtype=float32
+    basket_1_pos: shape=(3,), dtype=float64
+    basket_1_quat: shape=(4,), dtype=float64
+    basket_1_to_robot0_eef_pos: shape=(3,), dtype=float64
+    basket_1_to_robot0_eef_quat: shape=(4,), dtype=float32
+    butter_1_pos: shape=(3,), dtype=float64
+    butter_1_quat: shape=(4,), dtype=float64
+    butter_1_to_robot0_eef_pos: shape=(3,), dtype=float64
+    butter_1_to_robot0_eef_quat: shape=(4,), dtype=float32
+    cream_cheese_1_pos: shape=(3,), dtype=float64
+    cream_cheese_1_quat: shape=(4,), dtype=float64
+    cream_cheese_1_to_robot0_eef_pos: shape=(3,), dtype=float64
+    cream_cheese_1_to_robot0_eef_quat: shape=(4,), dtype=float32
+    ketchup_1_pos: shape=(3,), dtype=float64
+    ketchup_1_quat: shape=(4,), dtype=float64
+    ketchup_1_to_robot0_eef_pos: shape=(3,), dtype=float64
+    ketchup_1_to_robot0_eef_quat: shape=(4,), dtype=float32
+    milk_1_pos: shape=(3,), dtype=float64
+    milk_1_quat: shape=(4,), dtype=float64
+    milk_1_to_robot0_eef_pos: shape=(3,), dtype=float64
+    milk_1_to_robot0_eef_quat: shape=(4,), dtype=float32
+    object-state: shape=(112,), dtype=float64
+    orange_juice_1_pos: shape=(3,), dtype=float64
+    orange_juice_1_quat: shape=(4,), dtype=float64
+    orange_juice_1_to_robot0_eef_pos: shape=(3,), dtype=float64
+    orange_juice_1_to_robot0_eef_quat: shape=(4,), dtype=float32
+    robot0_eef_pos: shape=(3,), dtype=float64
+    robot0_eef_quat: shape=(4,), dtype=float64
+    robot0_eye_in_hand_image: shape=(256, 256, 3), dtype=uint8
+    robot0_gripper_qpos: shape=(2,), dtype=float64
+    robot0_gripper_qvel: shape=(2,), dtype=float64
+    robot0_joint_pos: shape=(7,), dtype=float64
+    robot0_joint_pos_cos: shape=(7,), dtype=float64
+    robot0_joint_pos_sin: shape=(7,), dtype=float64
+    robot0_joint_vel: shape=(7,), dtype=float64
+    robot0_proprio-state: shape=(39,), dtype=float64
+    tomato_sauce_1_pos: shape=(3,), dtype=float64
+    tomato_sauce_1_quat: shape=(4,), dtype=float64
+    tomato_sauce_1_to_robot0_eef_pos: shape=(3,), dtype=float64
+    tomato_sauce_1_to_robot0_eef_quat: shape=(4,), dtype=float32
+  step 2/10 | avg_step=11.33s avg_infer=10.34s last_z=0.707 elapsed=22.7s
+  step 4/10 | avg_step=11.31s avg_infer=10.75s last_z=0.699 elapsed=45.3s
+  step 6/10 | avg_step=11.48s avg_infer=11.08s last_z=0.695 elapsed=68.9s
+  step 8/10 | avg_step=11.80s avg_infer=11.47s last_z=0.692 elapsed=94.4s
+  step 10/10 | avg_step=11.84s avg_infer=11.55s last_z=0.695 elapsed=118.4s
+  avg_displacement=0.0036, max_height=0.7130, success=False, steps=10
+
+Rollout 2/4...
+  Using init state 1
+  step 2/10 | avg_step=11.86s avg_infer=11.72s last_z=0.672 elapsed=23.7s
+  step 4/10 | avg_step=11.62s avg_infer=11.49s last_z=0.671 elapsed=46.5s
+  step 6/10 | avg_step=12.48s avg_infer=12.35s last_z=0.668 elapsed=74.9s
+  step 8/10 | avg_step=12.88s avg_infer=12.76s last_z=0.667 elapsed=103.1s
+  step 10/10 | avg_step=12.73s avg_infer=12.60s last_z=0.669 elapsed=127.3s
+  avg_displacement=0.0021, max_height=0.6724, success=False, steps=10
+
+Rollout 3/4...
+  Using init state 2
+  step 2/10 | avg_step=13.98s avg_infer=13.83s last_z=0.689 elapsed=28.0s
+  step 4/10 | avg_step=14.43s avg_infer=14.27s last_z=0.684 elapsed=57.7s
+  step 6/10 | avg_step=13.80s avg_infer=13.64s last_z=0.684 elapsed=82.8s
+  step 8/10 | avg_step=13.38s avg_infer=13.20s last_z=0.687 elapsed=107.0s
+  step 10/10 | avg_step=13.14s avg_infer=12.97s last_z=0.691 elapsed=131.4s
+  avg_displacement=0.0036, max_height=0.6942, success=False, steps=10
+
+Rollout 4/4...
+  Using init state 3
+  step 2/10 | avg_step=12.36s avg_infer=12.18s last_z=0.686 elapsed=24.7s
+  step 4/10 | avg_step=11.90s avg_infer=11.75s last_z=0.681 elapsed=47.6s
+  step 6/10 | avg_step=11.71s avg_infer=11.57s last_z=0.683 elapsed=70.2s
+  step 8/10 | avg_step=11.63s avg_infer=11.48s last_z=0.682 elapsed=93.0s
+  step 10/10 | avg_step=11.67s avg_infer=11.52s last_z=0.683 elapsed=116.7s
+  avg_displacement=0.0018, max_height=0.6887, success=False, steps=10
+
+Results saved to /Users/ashutoshpanda/Documents/Research/project_Flux/project_Flux/smolvla_mechinterp_repro/results/eval_grids/phase7_tier2_primary_brightness_initial_v2/runs/004_task0_cluster_risk_a10_candidate_full.json
+Success rate: 0/4

@@ -1,0 +1,39 @@
+{
+  "run_dir": "/Users/ashutoshpanda/Documents/Research/project_Flux/project_Flux/smolvla_mechinterp_repro/results/eval_grids/phase6_tier1_risk_smoke_initial",
+  "metric": "avg_displacement",
+  "comparisons": [
+    {
+      "concept": "risk",
+      "alpha": 10.0,
+      "metric": "avg_displacement",
+      "num_paired_init_states": 2,
+      "none_mean": 0.007184367687419931,
+      "random_mean": 0.0072883515882945105,
+      "cluster_mean": 0.005754398605758936,
+      "cluster_minus_random_mean": -0.001533952982535575,
+      "cluster_minus_random_std": 0.0010590679156387253,
+      "classification_counts": {
+        "weaken": 1,
+        "stable": 1
+      },
+      "paired_init_states": [
+        {
+          "init_state_idx": 0,
+          "none_value": 0.007381939990251575,
+          "random_value": 0.007544031087179273,
+          "cluster_value": 0.007069146020282423,
+          "cluster_minus_random": -0.0004748850668968496,
+          "classification": "weaken"
+        },
+        {
+          "init_state_idx": 2,
+          "none_value": 0.006986795384588288,
+          "random_value": 0.007032672089409749,
+          "cluster_value": 0.004439651191235449,
+          "cluster_minus_random": -0.0025930208981743003,
+          "classification": "stable"
+        }
+      ]
+    }
+  ]
+}

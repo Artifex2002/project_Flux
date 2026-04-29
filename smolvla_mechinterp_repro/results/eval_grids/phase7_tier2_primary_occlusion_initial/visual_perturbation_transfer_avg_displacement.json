@@ -1,0 +1,165 @@
+{
+  "anchor_run_dir": "/Users/ashutoshpanda/Documents/Research/project_Flux/project_Flux/smolvla_mechinterp_repro/results/eval_grids/phase6_tier1_fast_risk_initial",
+  "perturbed_run_dir": "/Users/ashutoshpanda/Documents/Research/project_Flux/project_Flux/smolvla_mechinterp_repro/results/eval_grids/phase7_tier2_primary_occlusion_initial",
+  "metric": "avg_displacement",
+  "anchor_vision": {
+    "perturbations": [
+      "none"
+    ],
+    "targets": [
+      "both"
+    ],
+    "strengths": []
+  },
+  "perturbed_vision": {
+    "perturbations": [
+      "occlusion"
+    ],
+    "targets": [
+      "primary"
+    ],
+    "strengths": [
+      0.2
+    ]
+  },
+  "comparisons": [
+    {
+      "concept": "fast",
+      "alpha": 10.0,
+      "metric": "avg_displacement",
+      "num_paired_init_states": 4,
+      "anchor_effect_mean": -0.00047268513130055857,
+      "anchor_effect_std": 0.00029600893452200644,
+      "perturbed_effect_mean": -0.00039324209179725537,
+      "perturbed_effect_std": 0.00032918943587297126,
+      "effect_shift_mean": 7.94430395033032e-05,
+      "overall_classification": "stable",
+      "classification_counts": {
+        "stable": 4
+      },
+      "paired_init_states": [
+        {
+          "init_state_idx": 0,
+          "anchor_none_value": 0.00872002877636542,
+          "anchor_random_value": 0.006834283851752196,
+          "anchor_cluster_value": 0.006847665004545285,
+          "anchor_cluster_minus_random": 1.3381152793089622e-05,
+          "perturbed_none_value": 0.008695534321731839,
+          "perturbed_random_value": 0.00694109886568228,
+          "perturbed_cluster_value": 0.007068535393838635,
+          "perturbed_cluster_minus_random": 0.00012743652815635532,
+          "effect_shift": 0.0001140553753632657,
+          "classification": "stable"
+        },
+        {
+          "init_state_idx": 1,
+          "anchor_none_value": 0.007135506645125171,
+          "anchor_random_value": 0.005820849550563446,
+          "anchor_cluster_value": 0.005187052286639304,
+          "anchor_cluster_minus_random": -0.0006337972639241423,
+          "perturbed_none_value": 0.007755047971443058,
+          "perturbed_random_value": 0.006067240847721002,
+          "perturbed_cluster_value": 0.005319197061567634,
+          "perturbed_cluster_minus_random": -0.0007480437861533676,
+          "effect_shift": -0.00011424652222922528,
+          "classification": "stable"
+        },
+        {
+          "init_state_idx": 2,
+          "anchor_none_value": 0.00910686108093296,
+          "anchor_random_value": 0.006992563914923266,
+          "anchor_cluster_value": 0.0064905745376568754,
+          "anchor_cluster_minus_random": -0.0005019893772663904,
+          "perturbed_none_value": 0.009210911282860558,
+          "perturbed_random_value": 0.0071184299882395986,
+          "perturbed_cluster_value": 0.006748820287876486,
+          "perturbed_cluster_minus_random": -0.0003696097003631129,
+          "effect_shift": 0.00013237967690327753,
+          "classification": "stable"
+        },
+        {
+          "init_state_idx": 3,
+          "anchor_none_value": 0.008598708996884372,
+          "anchor_random_value": 0.006375745272696226,
+          "anchor_cluster_value": 0.005607410235891435,
+          "anchor_cluster_minus_random": -0.0007683350368047912,
+          "perturbed_none_value": 0.008575254235251847,
+          "perturbed_random_value": 0.006473935640306451,
+          "perturbed_cluster_value": 0.005891184231477555,
+          "perturbed_cluster_minus_random": -0.0005827514088288964,
+          "effect_shift": 0.00018558362797589482,
+          "classification": "stable"
+        }
+      ]
+    },
+    {
+      "concept": "risk",
+      "alpha": 10.0,
+      "metric": "avg_displacement",
+      "num_paired_init_states": 4,
+      "anchor_effect_mean": -0.0047889843742724165,
+      "anchor_effect_std": 0.0007208834332103794,
+      "perturbed_effect_mean": -0.005000199640987,
+      "perturbed_effect_std": 0.0006909383717412686,
+      "effect_shift_mean": -0.00021121526671458342,
+      "overall_classification": "stable",
+      "classification_counts": {
+        "stable": 4
+      },
+      "paired_init_states": [
+        {
+          "init_state_idx": 0,
+          "anchor_none_value": 0.00872002877636542,
+          "anchor_random_value": 0.007798733395527924,
+          "anchor_cluster_value": 0.0036181301298620935,
+          "anchor_cluster_minus_random": -0.004180603265665831,
+          "perturbed_none_value": 0.008695534321731839,
+          "perturbed_random_value": 0.007916668775230099,
+          "perturbed_cluster_value": 0.0037102717738529806,
+          "perturbed_cluster_minus_random": -0.004206397001377118,
+          "effect_shift": -2.579373571128668e-05,
+          "classification": "stable"
+        },
+        {
+          "init_state_idx": 1,
+          "anchor_none_value": 0.007135506645125171,
+          "anchor_random_value": 0.006508384613421429,
+          "anchor_cluster_value": 0.0020914415774893045,
+          "anchor_cluster_minus_random": -0.004416943035932125,
+          "perturbed_none_value": 0.007755047971443058,
+          "perturbed_random_value": 0.006947312107422405,
+          "perturbed_cluster_value": 0.0021234148700269187,
+          "perturbed_cluster_minus_random": -0.004823897237395486,
+          "effect_shift": -0.0004069542014633609,
+          "classification": "stable"
+        },
+        {
+          "init_state_idx": 2,
+          "anchor_none_value": 0.00910686108093296,
+          "anchor_random_value": 0.008046597496680614,
+          "anchor_cluster_value": 0.003505485660823161,
+          "anchor_cluster_minus_random": -0.004541111835857453,
+          "perturbed_none_value": 0.009210911282860558,
+          "perturbed_random_value": 0.008474568031277172,
+          "perturbed_cluster_value": 0.0036129448724215602,
+          "perturbed_cluster_minus_random": -0.004861623158855612,
+          "effect_shift": -0.0003205113229981585,
+          "classification": "stable"
+        },
+        {
+          "init_state_idx": 3,
+          "anchor_none_value": 0.008598708996884372,
+          "anchor_random_value": 0.007813902607714428,
+          "anchor_cluster_value": 0.0017966232480801717,
+          "anchor_cluster_minus_random": -0.006017279359634257,
+          "perturbed_none_value": 0.008575254235251847,
+          "perturbed_random_value": 0.008036445984414912,
+          "perturbed_cluster_value": 0.0019275648180951275,
+          "perturbed_cluster_minus_random": -0.006108881166319784,
+          "effect_shift": -9.160180668552759e-05,
+          "classification": "stable"
+        }
+      ]
+    }
+  ]
+}

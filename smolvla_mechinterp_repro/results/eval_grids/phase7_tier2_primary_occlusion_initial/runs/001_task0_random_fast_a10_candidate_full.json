@@ -1,0 +1,667 @@
+{
+  "generated_at_utc": "2026-04-20T03:18:23Z",
+  "model_id": "HuggingFaceVLA/smolvla_libero",
+  "suite": "libero_10",
+  "task_idx": 0,
+  "task_description": "put both the alphabet soup and the tomato sauce in the basket",
+  "condition": "random_matched",
+  "prompt_prefix": null,
+  "seed": 42,
+  "device": "cpu",
+  "num_rollouts": 4,
+  "init_state_indices": [
+    0,
+    1,
+    2,
+    3
+  ],
+  "vision": {
+    "perturbation": "occlusion",
+    "target": "primary",
+    "strength": 0.2,
+    "seed": null
+  },
+  "max_steps": 10,
+  "elapsed_seconds": 455.119,
+  "summary": {
+    "avg_speed_mean": 0.006650176335487332,
+    "avg_speed_std": 0.00041072252416506213,
+    "max_height_mean": 0.6920777173728828,
+    "max_height_std": 0.0144781255445306,
+    "success_rate": 0.0,
+    "success_count": 0
+  },
+  "steering": {
+    "label": "random_matched__late__fast__cluster_6",
+    "source_mode": "random_matched",
+    "concept_name": "fast",
+    "candidate_id": "random_matched__late__fast__cluster_6",
+    "template_candidate_id": "late__fast__cluster_6",
+    "alpha": 10.0,
+    "layer_scope": "candidate",
+    "partition_name": "late",
+    "cluster_id": null,
+    "num_neurons": 2736,
+    "num_layers_touched": 16,
+    "top_layers": [
+      {
+        "layer_idx": 31,
+        "count": 259
+      },
+      {
+        "layer_idx": 25,
+        "count": 248
+      },
+      {
+        "layer_idx": 26,
+        "count": 232
+      },
+      {
+        "layer_idx": 30,
+        "count": 217
+      },
+      {
+        "layer_idx": 23,
+        "count": 213
+      },
+      {
+        "layer_idx": 27,
+        "count": 210
+      },
+      {
+        "layer_idx": 24,
+        "count": 199
+      },
+      {
+        "layer_idx": 29,
+        "count": 197
+      },
+      {
+        "layer_idx": 28,
+        "count": 185
+      },
+      {
+        "layer_idx": 20,
+        "count": 138
+      }
+    ],
+    "candidate_summary": {
+      "candidate_id": "random_matched__late__fast__cluster_6",
+      "partition_name": "late",
+      "concept_name": "fast",
+      "cluster_id": null,
+      "cosine_similarity": null,
+      "layer_scope": "candidate",
+      "num_neurons": 2736,
+      "top_layers": [
+        {
+          "layer_idx": 31,
+          "count": 259
+        },
+        {
+          "layer_idx": 25,
+          "count": 248
+        },
+        {
+          "layer_idx": 26,
+          "count": 232
+        },
+        {
+          "layer_idx": 30,
+          "count": 217
+        },
+        {
+          "layer_idx": 23,
+          "count": 213
+        },
+        {
+          "layer_idx": 27,
+          "count": 210
+        },
+        {
+          "layer_idx": 24,
+          "count": 199
+        },
+        {
+          "layer_idx": 29,
+          "count": 197
+        },
+        {
+          "layer_idx": 28,
+          "count": 185
+        },
+        {
+          "layer_idx": 20,
+          "count": 138
+        }
+      ]
+    },
+    "hook_stats": {
+      "alpha": 10.0,
+      "layers": {
+        "16": {
+          "num_neurons": 103,
+          "call_count": 40,
+          "last_input_shape": [
+            1,
+            142,
+            2560
+          ],
+          "total_assignments": 585040
+        },
+        "17": {
+          "num_neurons": 97,
+          "call_count": 40,
+          "last_input_shape": [
+            1,
+            142,
+            2560
+          ],
+          "total_assignments": 550960
+        },
+        "18": {
+          "num_neurons": 101,
+          "call_count": 40,
+          "last_input_shape": [
+            1,
+            142,
+            2560
+          ],
+          "total_assignments": 573680
+        },
+        "19": {
+          "num_neurons": 91,
+          "call_count": 40,
+          "last_input_shape": [
+            1,
+            142,
+            2560
+          ],
+          "total_assignments": 516880
+        },
+        "20": {
+          "num_neurons": 138,
+          "call_count": 40,
+          "last_input_shape": [
+            1,
+            142,
+            2560
+          ],
+          "total_assignments": 783840
+        },
+        "21": {
+          "num_neurons": 127,
+          "call_count": 40,
+          "last_input_shape": [
+            1,
+            142,
+            2560
+          ],
+          "total_assignments": 721360
+        },
+        "22": {
+          "num_neurons": 119,
+          "call_count": 40,
+          "last_input_shape": [
+            1,
+            142,
+            2560
+          ],
+          "total_assignments": 675920
+        },
+        "23": {
+          "num_neurons": 213,
+          "call_count": 40,
+          "last_input_shape": [
+            1,
+            142,
+            2560
+          ],
+          "total_assignments": 1209840
+        },
+        "24": {
+          "num_neurons": 199,
+          "call_count": 40,
+          "last_input_shape": [
+            1,
+            142,
+            2560
+          ],
+          "total_assignments": 1130320
+        },
+        "25": {
+          "num_neurons": 248,
+          "call_count": 40,
+          "last_input_shape": [
+            1,
+            142,
+            2560
+          ],
+          "total_assignments": 1408640
+        },
+        "26": {
+          "num_neurons": 232,
+          "call_count": 40,
+          "last_input_shape": [
+            1,
+            142,
+            2560
+          ],
+          "total_assignments": 1317760
+        },
+        "27": {
+          "num_neurons": 210,
+          "call_count": 40,
+          "last_input_shape": [
+            1,
+            142,
+            2560
+          ],
+          "total_assignments": 1192800
+        },
+        "28": {
+          "num_neurons": 185,
+          "call_count": 40,
+          "last_input_shape": [
+            1,
+            142,
+            2560
+          ],
+          "total_assignments": 1050800
+        },
+        "29": {
+          "num_neurons": 197,
+          "call_count": 40,
+          "last_input_shape": [
+            1,
+            142,
+            2560
+          ],
+          "total_assignments": 1118960
+        },
+        "30": {
+          "num_neurons": 217,
+          "call_count": 40,
+          "last_input_shape": [
+            1,
+            142,
+            2560
+          ],
+          "total_assignments": 1232560
+        },
+        "31": {
+          "num_neurons": 259,
+          "call_count": 40,
+          "last_input_shape": [
+            1,
+            142,
+            2560
+          ],
+          "total_assignments": 1471120
+        }
+      }
+    }
+  },
+  "rollouts": [
+    {
+      "rollout_index": 0,
+      "init_state_idx": 0,
+      "vision_context": {
+        "perturbation": "occlusion",
+        "target": "primary",
+        "strength": 0.2,
+        "seed": 10042,
+        "occlusion_boxes": {
+          "primary": {
+            "top": 92,
+            "left": 163,
+            "size": 51
+          },
+          "wrist": {
+            "top": 98,
+            "left": 63,
+            "size": 51
+          }
+        }
+      },
+      "ee_positions": [
+        [
+          -0.03749909448654084,
+          -0.005375515997324871,
+          0.7129679373389848
+        ],
+        [
+          -0.040074742938458884,
+          -0.0015633300640441458,
+          0.7076958133386184
+        ],
+        [
+          -0.04046076383075544,
+          0.005158001483448313,
+          0.7027663412654923
+        ],
+        [
+          -0.0389973572802931,
+          0.01225841481327685,
+          0.7010194015373742
+        ],
+        [
+          -0.038185872049706304,
+          0.01808545911184831,
+          0.6995282494794348
+        ],
+        [
+          -0.03753732060675289,
+          0.023302270771329243,
+          0.6967677170629198
+        ],
+        [
+          -0.035946839847817484,
+          0.028709191318621936,
+          0.6939471436215742
+        ],
+        [
+          -0.03443530587502565,
+          0.03447598822533251,
+          0.6921798583481958
+        ],
+        [
+          -0.03172177164706746,
+          0.04138947075296933,
+          0.6920425241836168
+        ],
+        [
+          -0.029717444086356872,
+          0.04883949247762377,
+          0.691937807282115
+        ]
+      ],
+      "displacements": [
+        0.0069972864749851624,
+        0.008344159922984278,
+        0.0074571594189758545,
+        0.006069307044207886,
+        0.005937700067137372,
+        0.006302384738121296,
+        0.006218036567249376,
+        0.007428214411216258,
+        0.0077156411462630465
+      ],
+      "avg_displacement": 0.00694109886568228,
+      "max_height": 0.7129679373389848,
+      "max_height_axis": "z",
+      "total_steps": 10,
+      "success": false
+    },
+    {
+      "rollout_index": 1,
+      "init_state_idx": 1,
+      "vision_context": {
+        "perturbation": "occlusion",
+        "target": "primary",
+        "strength": 0.2,
+        "seed": 10043,
+        "occlusion_boxes": {
+          "primary": {
+            "top": 21,
+            "left": 82,
+            "size": 51
+          },
+          "wrist": {
+            "top": 50,
+            "left": 109,
+            "size": 51
+          }
+        }
+      },
+      "ee_positions": [
+        [
+          -0.06382990412035024,
+          0.015406615404537012,
+          0.6704240090059875
+        ],
+        [
+          -0.060928674615809,
+          0.01692588994543511,
+          0.6724248260514081
+        ],
+        [
+          -0.05896734859138103,
+          0.0198252451669306,
+          0.6719175549808913
+        ],
+        [
+          -0.05844824461857106,
+          0.024915496148654,
+          0.6698764018284247
+        ],
+        [
+          -0.057581225406940655,
+          0.03208003175993414,
+          0.6688014483085515
+        ],
+        [
+          -0.056552913575228236,
+          0.03917258375744407,
+          0.6672383545340717
+        ],
+        [
+          -0.055359924365337446,
+          0.04563709610107291,
+          0.666229602861501
+        ],
+        [
+          -0.052814975410485354,
+          0.05261838837491544,
+          0.6650244470276685
+        ],
+        [
+          -0.05065119837209291,
+          0.0583142837481481,
+          0.6629644963818708
+        ],
+        [
+          -0.048764968861544425,
+          0.06448498886378116,
+          0.6635576632616415
+        ]
+      ],
+      "displacements": [
+        0.0038377853793414634,
+        0.0035370021788931347,
+        0.005508759405106359,
+        0.007296425008764581,
+        0.0073351878781964044,
+        0.006650618244401008,
+        0.007527789023308021,
+        0.00643183891572308,
+        0.006479761595754959
+      ],
+      "avg_displacement": 0.006067240847721002,
+      "max_height": 0.6724248260514081,
+      "max_height_axis": "z",
+      "total_steps": 10,
+      "success": false
+    },
+    {
+      "rollout_index": 2,
+      "init_state_idx": 2,
+      "vision_context": {
+        "perturbation": "occlusion",
+        "target": "primary",
+        "strength": 0.2,
+        "seed": 10044,
+        "occlusion_boxes": {
+          "primary": {
+            "top": 51,
+            "left": 88,
+            "size": 51
+          },
+          "wrist": {
+            "top": 121,
+            "left": 44,
+            "size": 51
+          }
+        }
+      },
+      "ee_positions": [
+        [
+          -0.04731747172865137,
+          -0.020345004538329662,
+          0.6942032795827209
+        ],
+        [
+          -0.047681301970338506,
+          -0.015765365550913946,
+          0.6899995924648764
+        ],
+        [
+          -0.046738074074224194,
+          -0.00764597505183804,
+          0.686140314121404
+        ],
+        [
+          -0.04600399684407181,
+          0.00021945961261490583,
+          0.6855091091673794
+        ],
+        [
+          -0.04595148302738553,
+          0.006381870336874516,
+          0.685100774010917
+        ],
+        [
+          -0.04583356695004067,
+          0.012343237545295994,
+          0.6850023394485932
+        ],
+        [
+          -0.04659562608816702,
+          0.019075103209349537,
+          0.6848258993412016
+        ],
+        [
+          -0.04577827597410871,
+          0.02651063243916482,
+          0.6848544888208146
+        ],
+        [
+          -0.04529373505223439,
+          0.03344161737652191,
+          0.6854906619451946
+        ],
+        [
+          -0.044960816528826865,
+          0.04093406183299343,
+          0.6853734807251493
+        ]
+      ],
+      "displacements": [
+        0.006227074038788658,
+        0.009039259387410436,
+        0.007924793469522809,
+        0.006176147766643542,
+        0.005963345752008611,
+        0.006777158738022984,
+        0.007480372550530696,
+        0.0069769655546681,
+        0.007500752636560546
+      ],
+      "avg_displacement": 0.0071184299882395986,
+      "max_height": 0.6942032795827209,
+      "max_height_axis": "z",
+      "total_steps": 10,
+      "success": false
+    },
+    {
+      "rollout_index": 3,
+      "init_state_idx": 3,
+      "vision_context": {
+        "perturbation": "occlusion",
+        "target": "primary",
+        "strength": 0.2,
+        "seed": 10045,
+        "occlusion_boxes": {
+          "primary": {
+            "top": 70,
+            "left": 155,
+            "size": 51
+          },
+          "wrist": {
+            "top": 166,
+            "left": 4,
+            "size": 51
+          }
+        }
+      },
+      "ee_positions": [
+        [
+          -0.05014990832169014,
+          -0.008050793830951865,
+          0.6887148265184179
+        ],
+        [
+          -0.05116477631872248,
+          -0.004826370109727527,
+          0.6863864141652729
+        ],
+        [
+          -0.050660134101686315,
+          0.0014306495663564966,
+          0.6836550669026125
+        ],
+        [
+          -0.04890004937985106,
+          0.008131672600338249,
+          0.6825943293642802
+        ],
+        [
+          -0.047789453513964075,
+          0.014762484487406503,
+          0.6828732318217031
+        ],
+        [
+          -0.04648373622493484,
+          0.021601631693094446,
+          0.6829610735693044
+        ],
+        [
+          -0.045388177703275454,
+          0.028550861584737845,
+          0.681592941388503
+        ],
+        [
+          -0.04450161053176607,
+          0.03519479428074137,
+          0.6805283870938937
+        ],
+        [
+          -0.04399689079436569,
+          0.04134037993282578,
+          0.679919918810529
+        ],
+        [
+          -0.042047640312519216,
+          0.047441204158279626,
+          0.6790476995885509
+        ]
+      ],
+      "displacements": [
+        0.004104676536789798,
+        0.006845817472249789,
+        0.007009049297530946,
+        0.006728958020360022,
+        0.006963228296742876,
+        0.00716685636980642,
+        0.006786834229947999,
+        0.006196224549860023,
+        0.006463775989470191
+      ],
+      "avg_displacement": 0.006473935640306451,
+      "max_height": 0.6887148265184179,
+      "max_height_axis": "z",
+      "total_steps": 10,
+      "success": false
+    }
+  ]
+}

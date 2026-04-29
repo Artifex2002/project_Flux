@@ -1,0 +1,415 @@
+{
+  "generated_at_utc": "2026-04-19T22:04:38Z",
+  "model_id": "HuggingFaceVLA/smolvla_libero",
+  "suite": "libero_10",
+  "task_idx": 0,
+  "task_description": "put both the alphabet soup and the tomato sauce in the basket",
+  "condition": "random_matched",
+  "prompt_prefix": null,
+  "seed": 42,
+  "device": "cpu",
+  "num_rollouts": 3,
+  "max_steps": 5,
+  "elapsed_seconds": 229.601,
+  "summary": {
+    "avg_speed_mean": 0.005006434903216742,
+    "avg_speed_std": 0.0009387594423559954,
+    "max_height_mean": 0.6930470599433232,
+    "max_height_std": 0.016757309047028032,
+    "success_rate": 0.0,
+    "success_count": 0
+  },
+  "steering": {
+    "label": "random_matched__late__safe__cluster_3",
+    "source_mode": "random_matched",
+    "concept_name": "safe",
+    "candidate_id": "random_matched__late__safe__cluster_3",
+    "template_candidate_id": "late__safe__cluster_3",
+    "alpha": 5.0,
+    "layer_scope": "candidate",
+    "partition_name": "late",
+    "cluster_id": null,
+    "num_neurons": 1399,
+    "num_layers_touched": 16,
+    "top_layers": [
+      {
+        "layer_idx": 25,
+        "count": 112
+      },
+      {
+        "layer_idx": 22,
+        "count": 111
+      },
+      {
+        "layer_idx": 29,
+        "count": 111
+      },
+      {
+        "layer_idx": 23,
+        "count": 108
+      },
+      {
+        "layer_idx": 28,
+        "count": 102
+      },
+      {
+        "layer_idx": 30,
+        "count": 98
+      },
+      {
+        "layer_idx": 26,
+        "count": 95
+      },
+      {
+        "layer_idx": 27,
+        "count": 95
+      },
+      {
+        "layer_idx": 21,
+        "count": 92
+      },
+      {
+        "layer_idx": 24,
+        "count": 92
+      }
+    ],
+    "candidate_summary": {
+      "candidate_id": "random_matched__late__safe__cluster_3",
+      "partition_name": "late",
+      "concept_name": "safe",
+      "cluster_id": null,
+      "cosine_similarity": null,
+      "layer_scope": "candidate",
+      "num_neurons": 1399,
+      "top_layers": [
+        {
+          "layer_idx": 25,
+          "count": 112
+        },
+        {
+          "layer_idx": 22,
+          "count": 111
+        },
+        {
+          "layer_idx": 29,
+          "count": 111
+        },
+        {
+          "layer_idx": 23,
+          "count": 108
+        },
+        {
+          "layer_idx": 28,
+          "count": 102
+        },
+        {
+          "layer_idx": 30,
+          "count": 98
+        },
+        {
+          "layer_idx": 26,
+          "count": 95
+        },
+        {
+          "layer_idx": 27,
+          "count": 95
+        },
+        {
+          "layer_idx": 21,
+          "count": 92
+        },
+        {
+          "layer_idx": 24,
+          "count": 92
+        }
+      ]
+    },
+    "hook_stats": {
+      "alpha": 5.0,
+      "layers": {
+        "16": {
+          "num_neurons": 62,
+          "call_count": 15,
+          "last_input_shape": [
+            1,
+            142,
+            2560
+          ],
+          "total_assignments": 132060
+        },
+        "17": {
+          "num_neurons": 63,
+          "call_count": 15,
+          "last_input_shape": [
+            1,
+            142,
+            2560
+          ],
+          "total_assignments": 134190
+        },
+        "18": {
+          "num_neurons": 66,
+          "call_count": 15,
+          "last_input_shape": [
+            1,
+            142,
+            2560
+          ],
+          "total_assignments": 140580
+        },
+        "19": {
+          "num_neurons": 71,
+          "call_count": 15,
+          "last_input_shape": [
+            1,
+            142,
+            2560
+          ],
+          "total_assignments": 151230
+        },
+        "20": {
+          "num_neurons": 75,
+          "call_count": 15,
+          "last_input_shape": [
+            1,
+            142,
+            2560
+          ],
+          "total_assignments": 159750
+        },
+        "21": {
+          "num_neurons": 92,
+          "call_count": 15,
+          "last_input_shape": [
+            1,
+            142,
+            2560
+          ],
+          "total_assignments": 195960
+        },
+        "22": {
+          "num_neurons": 111,
+          "call_count": 15,
+          "last_input_shape": [
+            1,
+            142,
+            2560
+          ],
+          "total_assignments": 236430
+        },
+        "23": {
+          "num_neurons": 108,
+          "call_count": 15,
+          "last_input_shape": [
+            1,
+            142,
+            2560
+          ],
+          "total_assignments": 230040
+        },
+        "24": {
+          "num_neurons": 92,
+          "call_count": 15,
+          "last_input_shape": [
+            1,
+            142,
+            2560
+          ],
+          "total_assignments": 195960
+        },
+        "25": {
+          "num_neurons": 112,
+          "call_count": 15,
+          "last_input_shape": [
+            1,
+            142,
+            2560
+          ],
+          "total_assignments": 238560
+        },
+        "26": {
+          "num_neurons": 95,
+          "call_count": 15,
+          "last_input_shape": [
+            1,
+            142,
+            2560
+          ],
+          "total_assignments": 202350
+        },
+        "27": {
+          "num_neurons": 95,
+          "call_count": 15,
+          "last_input_shape": [
+            1,
+            142,
+            2560
+          ],
+          "total_assignments": 202350
+        },
+        "28": {
+          "num_neurons": 102,
+          "call_count": 15,
+          "last_input_shape": [
+            1,
+            142,
+            2560
+          ],
+          "total_assignments": 217260
+        },
+        "29": {
+          "num_neurons": 111,
+          "call_count": 15,
+          "last_input_shape": [
+            1,
+            142,
+            2560
+          ],
+          "total_assignments": 236430
+        },
+        "30": {
+          "num_neurons": 98,
+          "call_count": 15,
+          "last_input_shape": [
+            1,
+            142,
+            2560
+          ],
+          "total_assignments": 208740
+        },
+        "31": {
+          "num_neurons": 46,
+          "call_count": 15,
+          "last_input_shape": [
+            1,
+            142,
+            2560
+          ],
+          "total_assignments": 97980
+        }
+      }
+    }
+  },
+  "rollouts": [
+    {
+      "ee_positions": [
+        [
+          -0.03749909448654084,
+          -0.005375515997324871,
+          0.7129679373389848
+        ],
+        [
+          -0.04042242161439862,
+          -0.001737768638347281,
+          0.7075336971911268
+        ],
+        [
+          -0.041498080163737947,
+          0.004112690123802295,
+          0.7024708884050869
+        ],
+        [
+          -0.0408879603866432,
+          0.01016987668449481,
+          0.7006352872544972
+        ],
+        [
+          -0.041506081736422035,
+          0.012469569711893357,
+          0.6989117371430846
+        ]
+      ],
+      "displacements": [
+        0.007163100817998391,
+        0.007811334191185437,
+        0.006358552253263495,
+        0.00293960660801206
+      ],
+      "avg_displacement": 0.006068148467614847,
+      "max_height": 0.7129679373389848,
+      "max_height_axis": "z",
+      "total_steps": 5,
+      "success": false
+    },
+    {
+      "ee_positions": [
+        [
+          -0.06382990412035024,
+          0.015406615404537012,
+          0.6704240090059875
+        ],
+        [
+          -0.061017045165421155,
+          0.014632655756080457,
+          0.671064994045795
+        ],
+        [
+          -0.058876424665516035,
+          0.014601000816256775,
+          0.6701604558644416
+        ],
+        [
+          -0.0561933272809719,
+          0.017650396692946248,
+          0.6706876564147136
+        ],
+        [
+          -0.0542756380182775,
+          0.022900208366928656,
+          0.6719699629082637
+        ]
+      ],
+      "displacements": [
+        0.0029869802240759325,
+        0.0023241014352552215,
+        0.0040958231416804896,
+        0.005734314663840495
+      ],
+      "avg_displacement": 0.003785304866213034,
+      "max_height": 0.6719699629082637,
+      "max_height_axis": "z",
+      "total_steps": 5,
+      "success": false
+    },
+    {
+      "ee_positions": [
+        [
+          -0.04731747172865137,
+          -0.020345004538329662,
+          0.6942032795827209
+        ],
+        [
+          -0.04764825621965018,
+          -0.015470196871668234,
+          0.6929364726492795
+        ],
+        [
+          -0.04919634954713793,
+          -0.011746377976181915,
+          0.6893358413650934
+        ],
+        [
+          -0.05033086928618631,
+          -0.00873298728490141,
+          0.6873571012656667
+        ],
+        [
+          -0.05047623854222385,
+          -0.0023046812243223726,
+          0.6872948867688806
+        ]
+      ],
+      "displacements": [
+        0.0050475705020377425,
+        0.005406289463361408,
+        0.003779295023898698,
+        0.006430250513991539
+      ],
+      "avg_displacement": 0.005165851375822346,
+      "max_height": 0.6942032795827209,
+      "max_height_axis": "z",
+      "total_steps": 5,
+      "success": false
+    }
+  ]
+}

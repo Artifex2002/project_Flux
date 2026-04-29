@@ -1,0 +1,150 @@
+{
+  "runs": [
+    {
+      "run_id": "000",
+      "task_idx": 0,
+      "condition": "none",
+      "concept": null,
+      "prompt_prefix": null,
+      "alpha": null,
+      "max_neurons": null,
+      "layer_scope": null,
+      "cluster_partition": null,
+      "init_state_indices": [
+        0,
+        2
+      ],
+      "output_json": "/Users/ashutoshpanda/Documents/Research/project_Flux/project_Flux/smolvla_mechinterp_repro/results/eval_grids/phase6_tier1_risk_smoke_initial/runs/000_task0_none.json",
+      "avg_speed_mean": 0.007184367687419931,
+      "avg_speed_std": 0.00019757230283164347,
+      "max_height_mean": 0.7035856084608528,
+      "max_height_std": 0.009382328878131951,
+      "success_rate": 0.0,
+      "success_count": 0,
+      "steering_label": null,
+      "steering_candidate_id": null,
+      "num_neurons": null,
+      "num_layers_touched": null,
+      "elapsed_seconds": 47.852
+    },
+    {
+      "run_id": "001",
+      "task_idx": 0,
+      "condition": "random_matched",
+      "concept": "risk",
+      "prompt_prefix": null,
+      "alpha": 10.0,
+      "max_neurons": null,
+      "layer_scope": "candidate",
+      "cluster_partition": "recommended",
+      "init_state_indices": [
+        0,
+        2
+      ],
+      "output_json": "/Users/ashutoshpanda/Documents/Research/project_Flux/project_Flux/smolvla_mechinterp_repro/results/eval_grids/phase6_tier1_risk_smoke_initial/runs/001_task0_random_risk_a10_candidate_full.json",
+      "avg_speed_mean": 0.0072883515882945105,
+      "avg_speed_std": 0.00025567949888476204,
+      "max_height_mean": 0.7035856084608528,
+      "max_height_std": 0.009382328878131951,
+      "success_rate": 0.0,
+      "success_count": 0,
+      "steering_label": "random_matched__late__risk__cluster_10",
+      "steering_candidate_id": "random_matched__late__risk__cluster_10",
+      "num_neurons": 2872,
+      "num_layers_touched": 16,
+      "elapsed_seconds": 44.446
+    },
+    {
+      "run_id": "002",
+      "task_idx": 0,
+      "condition": "cluster",
+      "concept": "risk",
+      "prompt_prefix": null,
+      "alpha": 10.0,
+      "max_neurons": null,
+      "layer_scope": "candidate",
+      "cluster_partition": "recommended",
+      "init_state_indices": [
+        0,
+        2
+      ],
+      "output_json": "/Users/ashutoshpanda/Documents/Research/project_Flux/project_Flux/smolvla_mechinterp_repro/results/eval_grids/phase6_tier1_risk_smoke_initial/runs/002_task0_cluster_risk_a10_candidate_full.json",
+      "avg_speed_mean": 0.005754398605758936,
+      "avg_speed_std": 0.0013147474145234874,
+      "max_height_mean": 0.7035856084608528,
+      "max_height_std": 0.009382328878131951,
+      "success_rate": 0.0,
+      "success_count": 0,
+      "steering_label": "late__risk__cluster_10",
+      "steering_candidate_id": "late__risk__cluster_10",
+      "num_neurons": 2872,
+      "num_layers_touched": 16,
+      "elapsed_seconds": 52.697
+    }
+  ],
+  "manifest": [
+    {
+      "run_id": "000",
+      "task_idx": 0,
+      "condition": "none",
+      "concept": null,
+      "alpha": null,
+      "max_neurons": null,
+      "layer_scope": null,
+      "started_at_utc": "2026-04-20T00:12:20.880658+00:00",
+      "finished_at_utc": "2026-04-20T00:13:30.313630+00:00",
+      "elapsed_seconds": 69.433,
+      "exit_code": 0,
+      "output_json": "/Users/ashutoshpanda/Documents/Research/project_Flux/project_Flux/smolvla_mechinterp_repro/results/eval_grids/phase6_tier1_risk_smoke_initial/runs/000_task0_none.json",
+      "log_file": "/Users/ashutoshpanda/Documents/Research/project_Flux/project_Flux/smolvla_mechinterp_repro/results/eval_grids/phase6_tier1_risk_smoke_initial/logs/000_task0_none.log",
+      "status": "success",
+      "summary": {
+        "success_rate": 0.0,
+        "avg_speed_mean": 0.007184367687419931,
+        "max_height_mean": 0.7035856084608528
+      }
+    },
+    {
+      "run_id": "001",
+      "task_idx": 0,
+      "condition": "random_matched",
+      "concept": "risk",
+      "alpha": 10.0,
+      "max_neurons": null,
+      "layer_scope": "candidate",
+      "started_at_utc": "2026-04-20T00:13:30.317623+00:00",
+      "finished_at_utc": "2026-04-20T00:14:29.977573+00:00",
+      "elapsed_seconds": 59.66,
+      "exit_code": 0,
+      "output_json": "/Users/ashutoshpanda/Documents/Research/project_Flux/project_Flux/smolvla_mechinterp_repro/results/eval_grids/phase6_tier1_risk_smoke_initial/runs/001_task0_random_risk_a10_candidate_full.json",
+      "log_file": "/Users/ashutoshpanda/Documents/Research/project_Flux/project_Flux/smolvla_mechinterp_repro/results/eval_grids/phase6_tier1_risk_smoke_initial/logs/001_task0_random_risk_a10_candidate_full.log",
+      "status": "success",
+      "summary": {
+        "success_rate": 0.0,
+        "avg_speed_mean": 0.0072883515882945105,
+        "max_height_mean": 0.7035856084608528
+      }
+    },
+    {
+      "run_id": "002",
+      "task_idx": 0,
+      "condition": "cluster",
+      "concept": "risk",
+      "alpha": 10.0,
+      "max_neurons": null,
+      "layer_scope": "candidate",
+      "started_at_utc": "2026-04-20T00:14:29.979885+00:00",
+      "finished_at_utc": "2026-04-20T00:15:37.577423+00:00",
+      "elapsed_seconds": 67.597,
+      "exit_code": 0,
+      "output_json": "/Users/ashutoshpanda/Documents/Research/project_Flux/project_Flux/smolvla_mechinterp_repro/results/eval_grids/phase6_tier1_risk_smoke_initial/runs/002_task0_cluster_risk_a10_candidate_full.json",
+      "log_file": "/Users/ashutoshpanda/Documents/Research/project_Flux/project_Flux/smolvla_mechinterp_repro/results/eval_grids/phase6_tier1_risk_smoke_initial/logs/002_task0_cluster_risk_a10_candidate_full.log",
+      "status": "success",
+      "summary": {
+        "success_rate": 0.0,
+        "avg_speed_mean": 0.005754398605758936,
+        "max_height_mean": 0.7035856084608528
+      }
+    }
+  ]
+}
