@@ -1,0 +1,19 @@
+{
+  "generated_at_utc": "2026-04-19T00:18:28.970556+00:00",
+  "model_id": "HuggingFaceVLA/smolvla_libero",
+  "catalog_jsonl": "/Users/ashutoshpanda/Documents/Research/project_Flux/project_Flux/smolvla_mechinterp_repro/results/value_vector_catalog_top30.jsonl",
+  "output_pt": "/Users/ashutoshpanda/Documents/Research/project_Flux/project_Flux/smolvla_mechinterp_repro/results/value_vector_semantic_embeddings_top5_smoketest.pt",
+  "device": "cpu",
+  "compute_dtype": "torch.float32",
+  "output_dtype": "torch.float16",
+  "top_n_tokens": 5,
+  "l2_normalize": false,
+  "max_records": 256,
+  "num_records": 256,
+  "num_layers": 32,
+  "embedding_dim": 960,
+  "elapsed_seconds": 6.925,
+  "python_version": "3.10.19 (main, Oct 21 2025, 16:37:10) [Clang 20.1.8 ]",
+  "platform": "macOS-15.2-arm64-arm-64bit",
+  "torch_version": "2.7.1"
+}

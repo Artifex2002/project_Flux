@@ -1,0 +1,2023 @@
+{
+  "generated_at_utc": "2026-04-19T01:02:17.811109+00:00",
+  "embeddings_pt": "/Users/ashutoshpanda/Documents/Research/project_Flux/project_Flux/smolvla_mechinterp_repro/results/value_vector_semantic_embeddings_top5_smoketest.pt",
+  "output_pt": "/Users/ashutoshpanda/Documents/Research/project_Flux/project_Flux/smolvla_mechinterp_repro/results/value_vector_clusters_top5_smoketest.pt",
+  "model_id": "HuggingFaceVLA/smolvla_libero",
+  "cluster_method": "minibatch-kmeans",
+  "normalize_before_clustering": true,
+  "num_clusters": 8,
+  "partition_mode": "both",
+  "top_clusters_per_concept": 3,
+  "top_layers_per_cluster": 5,
+  "seed": 7,
+  "device": "cpu",
+  "num_records": 256,
+  "embedding_dim": 960,
+  "concept_aliases": {
+    "fast": [
+      "fast",
+      "faster",
+      "fastest",
+      "quick",
+      "quicker",
+      "quickly",
+      "swift"
+    ],
+    "slow": [
+      "slow",
+      "slower",
+      "slowest",
+      "slowly",
+      "calm",
+      "gentle"
+    ],
+    "high": [
+      "high",
+      "higher",
+      "highest"
+    ],
+    "low": [
+      "low",
+      "lower",
+      "lowest"
+    ],
+    "up": [
+      "up",
+      "upper",
+      "upward",
+      "upwards",
+      "above"
+    ],
+    "safe": [
+      "safe",
+      "safer",
+      "safely",
+      "safety"
+    ],
+    "risk": [
+      "risk",
+      "risks",
+      "risky"
+    ]
+  },
+  "partitions": [
+    {
+      "partition_name": "full",
+      "num_vectors": 256,
+      "num_clusters": 8,
+      "cluster_summaries": [
+        {
+          "cluster_id": 0,
+          "size": 10,
+          "top_layers": [
+            {
+              "layer_idx": 0,
+              "count": 10
+            }
+          ],
+          "sample_members": [
+            {
+              "layer_idx": 0,
+              "vector_index": 22,
+              "global_vector_index": 22
+            },
+            {
+              "layer_idx": 0,
+              "vector_index": 27,
+              "global_vector_index": 27
+            },
+            {
+              "layer_idx": 0,
+              "vector_index": 67,
+              "global_vector_index": 67
+            },
+            {
+              "layer_idx": 0,
+              "vector_index": 70,
+              "global_vector_index": 70
+            },
+            {
+              "layer_idx": 0,
+              "vector_index": 101,
+              "global_vector_index": 101
+            }
+          ]
+        },
+        {
+          "cluster_id": 1,
+          "size": 184,
+          "top_layers": [
+            {
+              "layer_idx": 0,
+              "count": 184
+            }
+          ],
+          "sample_members": [
+            {
+              "layer_idx": 0,
+              "vector_index": 0,
+              "global_vector_index": 0
+            },
+            {
+              "layer_idx": 0,
+              "vector_index": 1,
+              "global_vector_index": 1
+            },
+            {
+              "layer_idx": 0,
+              "vector_index": 3,
+              "global_vector_index": 3
+            },
+            {
+              "layer_idx": 0,
+              "vector_index": 4,
+              "global_vector_index": 4
+            },
+            {
+              "layer_idx": 0,
+              "vector_index": 6,
+              "global_vector_index": 6
+            }
+          ]
+        },
+        {
+          "cluster_id": 2,
+          "size": 8,
+          "top_layers": [
+            {
+              "layer_idx": 0,
+              "count": 8
+            }
+          ],
+          "sample_members": [
+            {
+              "layer_idx": 0,
+              "vector_index": 29,
+              "global_vector_index": 29
+            },
+            {
+              "layer_idx": 0,
+              "vector_index": 107,
+              "global_vector_index": 107
+            },
+            {
+              "layer_idx": 0,
+              "vector_index": 124,
+              "global_vector_index": 124
+            },
+            {
+              "layer_idx": 0,
+              "vector_index": 126,
+              "global_vector_index": 126
+            },
+            {
+              "layer_idx": 0,
+              "vector_index": 148,
+              "global_vector_index": 148
+            }
+          ]
+        },
+        {
+          "cluster_id": 3,
+          "size": 28,
+          "top_layers": [
+            {
+              "layer_idx": 0,
+              "count": 28
+            }
+          ],
+          "sample_members": [
+            {
+              "layer_idx": 0,
+              "vector_index": 5,
+              "global_vector_index": 5
+            },
+            {
+              "layer_idx": 0,
+              "vector_index": 15,
+              "global_vector_index": 15
+            },
+            {
+              "layer_idx": 0,
+              "vector_index": 23,
+              "global_vector_index": 23
+            },
+            {
+              "layer_idx": 0,
+              "vector_index": 28,
+              "global_vector_index": 28
+            },
+            {
+              "layer_idx": 0,
+              "vector_index": 32,
+              "global_vector_index": 32
+            }
+          ]
+        },
+        {
+          "cluster_id": 4,
+          "size": 9,
+          "top_layers": [
+            {
+              "layer_idx": 0,
+              "count": 9
+            }
+          ],
+          "sample_members": [
+            {
+              "layer_idx": 0,
+              "vector_index": 2,
+              "global_vector_index": 2
+            },
+            {
+              "layer_idx": 0,
+              "vector_index": 20,
+              "global_vector_index": 20
+            },
+            {
+              "layer_idx": 0,
+              "vector_index": 96,
+              "global_vector_index": 96
+            },
+            {
+              "layer_idx": 0,
+              "vector_index": 142,
+              "global_vector_index": 142
+            },
+            {
+              "layer_idx": 0,
+              "vector_index": 183,
+              "global_vector_index": 183
+            }
+          ]
+        },
+        {
+          "cluster_id": 5,
+          "size": 14,
+          "top_layers": [
+            {
+              "layer_idx": 0,
+              "count": 14
+            }
+          ],
+          "sample_members": [
+            {
+              "layer_idx": 0,
+              "vector_index": 40,
+              "global_vector_index": 40
+            },
+            {
+              "layer_idx": 0,
+              "vector_index": 53,
+              "global_vector_index": 53
+            },
+            {
+              "layer_idx": 0,
+              "vector_index": 90,
+              "global_vector_index": 90
+            },
+            {
+              "layer_idx": 0,
+              "vector_index": 97,
+              "global_vector_index": 97
+            },
+            {
+              "layer_idx": 0,
+              "vector_index": 109,
+              "global_vector_index": 109
+            }
+          ]
+        },
+        {
+          "cluster_id": 6,
+          "size": 2,
+          "top_layers": [
+            {
+              "layer_idx": 0,
+              "count": 2
+            }
+          ],
+          "sample_members": [
+            {
+              "layer_idx": 0,
+              "vector_index": 131,
+              "global_vector_index": 131
+            },
+            {
+              "layer_idx": 0,
+              "vector_index": 192,
+              "global_vector_index": 192
+            }
+          ]
+        },
+        {
+          "cluster_id": 7,
+          "size": 1,
+          "top_layers": [
+            {
+              "layer_idx": 0,
+              "count": 1
+            }
+          ],
+          "sample_members": [
+            {
+              "layer_idx": 0,
+              "vector_index": 203,
+              "global_vector_index": 203
+            }
+          ]
+        }
+      ],
+      "concept_rankings": {
+        "fast": [
+          {
+            "cluster_id": 1,
+            "cosine_similarity": 0.5201683044433594,
+            "cluster_size": 184,
+            "top_layers": [
+              {
+                "layer_idx": 0,
+                "count": 184
+              }
+            ],
+            "sample_members": [
+              {
+                "layer_idx": 0,
+                "vector_index": 0,
+                "global_vector_index": 0
+              },
+              {
+                "layer_idx": 0,
+                "vector_index": 1,
+                "global_vector_index": 1
+              },
+              {
+                "layer_idx": 0,
+                "vector_index": 3,
+                "global_vector_index": 3
+              },
+              {
+                "layer_idx": 0,
+                "vector_index": 4,
+                "global_vector_index": 4
+              },
+              {
+                "layer_idx": 0,
+                "vector_index": 6,
+                "global_vector_index": 6
+              }
+            ]
+          },
+          {
+            "cluster_id": 4,
+            "cosine_similarity": 0.4654160439968109,
+            "cluster_size": 9,
+            "top_layers": [
+              {
+                "layer_idx": 0,
+                "count": 9
+              }
+            ],
+            "sample_members": [
+              {
+                "layer_idx": 0,
+                "vector_index": 2,
+                "global_vector_index": 2
+              },
+              {
+                "layer_idx": 0,
+                "vector_index": 20,
+                "global_vector_index": 20
+              },
+              {
+                "layer_idx": 0,
+                "vector_index": 96,
+                "global_vector_index": 96
+              },
+              {
+                "layer_idx": 0,
+                "vector_index": 142,
+                "global_vector_index": 142
+              },
+              {
+                "layer_idx": 0,
+                "vector_index": 183,
+                "global_vector_index": 183
+              }
+            ]
+          },
+          {
+            "cluster_id": 6,
+            "cosine_similarity": 0.42643052339553833,
+            "cluster_size": 2,
+            "top_layers": [
+              {
+                "layer_idx": 0,
+                "count": 2
+              }
+            ],
+            "sample_members": [
+              {
+                "layer_idx": 0,
+                "vector_index": 131,
+                "global_vector_index": 131
+              },
+              {
+                "layer_idx": 0,
+                "vector_index": 192,
+                "global_vector_index": 192
+              }
+            ]
+          }
+        ],
+        "slow": [
+          {
+            "cluster_id": 1,
+            "cosine_similarity": 0.4624994695186615,
+            "cluster_size": 184,
+            "top_layers": [
+              {
+                "layer_idx": 0,
+                "count": 184
+              }
+            ],
+            "sample_members": [
+              {
+                "layer_idx": 0,
+                "vector_index": 0,
+                "global_vector_index": 0
+              },
+              {
+                "layer_idx": 0,
+                "vector_index": 1,
+                "global_vector_index": 1
+              },
+              {
+                "layer_idx": 0,
+                "vector_index": 3,
+                "global_vector_index": 3
+              },
+              {
+                "layer_idx": 0,
+                "vector_index": 4,
+                "global_vector_index": 4
+              },
+              {
+                "layer_idx": 0,
+                "vector_index": 6,
+                "global_vector_index": 6
+              }
+            ]
+          },
+          {
+            "cluster_id": 4,
+            "cosine_similarity": 0.414545476436615,
+            "cluster_size": 9,
+            "top_layers": [
+              {
+                "layer_idx": 0,
+                "count": 9
+              }
+            ],
+            "sample_members": [
+              {
+                "layer_idx": 0,
+                "vector_index": 2,
+                "global_vector_index": 2
+              },
+              {
+                "layer_idx": 0,
+                "vector_index": 20,
+                "global_vector_index": 20
+              },
+              {
+                "layer_idx": 0,
+                "vector_index": 96,
+                "global_vector_index": 96
+              },
+              {
+                "layer_idx": 0,
+                "vector_index": 142,
+                "global_vector_index": 142
+              },
+              {
+                "layer_idx": 0,
+                "vector_index": 183,
+                "global_vector_index": 183
+              }
+            ]
+          },
+          {
+            "cluster_id": 6,
+            "cosine_similarity": 0.3694261610507965,
+            "cluster_size": 2,
+            "top_layers": [
+              {
+                "layer_idx": 0,
+                "count": 2
+              }
+            ],
+            "sample_members": [
+              {
+                "layer_idx": 0,
+                "vector_index": 131,
+                "global_vector_index": 131
+              },
+              {
+                "layer_idx": 0,
+                "vector_index": 192,
+                "global_vector_index": 192
+              }
+            ]
+          }
+        ],
+        "high": [
+          {
+            "cluster_id": 1,
+            "cosine_similarity": 0.3387855589389801,
+            "cluster_size": 184,
+            "top_layers": [
+              {
+                "layer_idx": 0,
+                "count": 184
+              }
+            ],
+            "sample_members": [
+              {
+                "layer_idx": 0,
+                "vector_index": 0,
+                "global_vector_index": 0
+              },
+              {
+                "layer_idx": 0,
+                "vector_index": 1,
+                "global_vector_index": 1
+              },
+              {
+                "layer_idx": 0,
+                "vector_index": 3,
+                "global_vector_index": 3
+              },
+              {
+                "layer_idx": 0,
+                "vector_index": 4,
+                "global_vector_index": 4
+              },
+              {
+                "layer_idx": 0,
+                "vector_index": 6,
+                "global_vector_index": 6
+              }
+            ]
+          },
+          {
+            "cluster_id": 4,
+            "cosine_similarity": 0.2923559546470642,
+            "cluster_size": 9,
+            "top_layers": [
+              {
+                "layer_idx": 0,
+                "count": 9
+              }
+            ],
+            "sample_members": [
+              {
+                "layer_idx": 0,
+                "vector_index": 2,
+                "global_vector_index": 2
+              },
+              {
+                "layer_idx": 0,
+                "vector_index": 20,
+                "global_vector_index": 20
+              },
+              {
+                "layer_idx": 0,
+                "vector_index": 96,
+                "global_vector_index": 96
+              },
+              {
+                "layer_idx": 0,
+                "vector_index": 142,
+                "global_vector_index": 142
+              },
+              {
+                "layer_idx": 0,
+                "vector_index": 183,
+                "global_vector_index": 183
+              }
+            ]
+          },
+          {
+            "cluster_id": 6,
+            "cosine_similarity": 0.2801501452922821,
+            "cluster_size": 2,
+            "top_layers": [
+              {
+                "layer_idx": 0,
+                "count": 2
+              }
+            ],
+            "sample_members": [
+              {
+                "layer_idx": 0,
+                "vector_index": 131,
+                "global_vector_index": 131
+              },
+              {
+                "layer_idx": 0,
+                "vector_index": 192,
+                "global_vector_index": 192
+              }
+            ]
+          }
+        ],
+        "low": [
+          {
+            "cluster_id": 1,
+            "cosine_similarity": 0.2505415678024292,
+            "cluster_size": 184,
+            "top_layers": [
+              {
+                "layer_idx": 0,
+                "count": 184
+              }
+            ],
+            "sample_members": [
+              {
+                "layer_idx": 0,
+                "vector_index": 0,
+                "global_vector_index": 0
+              },
+              {
+                "layer_idx": 0,
+                "vector_index": 1,
+                "global_vector_index": 1
+              },
+              {
+                "layer_idx": 0,
+                "vector_index": 3,
+                "global_vector_index": 3
+              },
+              {
+                "layer_idx": 0,
+                "vector_index": 4,
+                "global_vector_index": 4
+              },
+              {
+                "layer_idx": 0,
+                "vector_index": 6,
+                "global_vector_index": 6
+              }
+            ]
+          },
+          {
+            "cluster_id": 4,
+            "cosine_similarity": 0.20976050198078156,
+            "cluster_size": 9,
+            "top_layers": [
+              {
+                "layer_idx": 0,
+                "count": 9
+              }
+            ],
+            "sample_members": [
+              {
+                "layer_idx": 0,
+                "vector_index": 2,
+                "global_vector_index": 2
+              },
+              {
+                "layer_idx": 0,
+                "vector_index": 20,
+                "global_vector_index": 20
+              },
+              {
+                "layer_idx": 0,
+                "vector_index": 96,
+                "global_vector_index": 96
+              },
+              {
+                "layer_idx": 0,
+                "vector_index": 142,
+                "global_vector_index": 142
+              },
+              {
+                "layer_idx": 0,
+                "vector_index": 183,
+                "global_vector_index": 183
+              }
+            ]
+          },
+          {
+            "cluster_id": 6,
+            "cosine_similarity": 0.17959949374198914,
+            "cluster_size": 2,
+            "top_layers": [
+              {
+                "layer_idx": 0,
+                "count": 2
+              }
+            ],
+            "sample_members": [
+              {
+                "layer_idx": 0,
+                "vector_index": 131,
+                "global_vector_index": 131
+              },
+              {
+                "layer_idx": 0,
+                "vector_index": 192,
+                "global_vector_index": 192
+              }
+            ]
+          }
+        ],
+        "up": [
+          {
+            "cluster_id": 1,
+            "cosine_similarity": 0.40740570425987244,
+            "cluster_size": 184,
+            "top_layers": [
+              {
+                "layer_idx": 0,
+                "count": 184
+              }
+            ],
+            "sample_members": [
+              {
+                "layer_idx": 0,
+                "vector_index": 0,
+                "global_vector_index": 0
+              },
+              {
+                "layer_idx": 0,
+                "vector_index": 1,
+                "global_vector_index": 1
+              },
+              {
+                "layer_idx": 0,
+                "vector_index": 3,
+                "global_vector_index": 3
+              },
+              {
+                "layer_idx": 0,
+                "vector_index": 4,
+                "global_vector_index": 4
+              },
+              {
+                "layer_idx": 0,
+                "vector_index": 6,
+                "global_vector_index": 6
+              }
+            ]
+          },
+          {
+            "cluster_id": 4,
+            "cosine_similarity": 0.3323720097541809,
+            "cluster_size": 9,
+            "top_layers": [
+              {
+                "layer_idx": 0,
+                "count": 9
+              }
+            ],
+            "sample_members": [
+              {
+                "layer_idx": 0,
+                "vector_index": 2,
+                "global_vector_index": 2
+              },
+              {
+                "layer_idx": 0,
+                "vector_index": 20,
+                "global_vector_index": 20
+              },
+              {
+                "layer_idx": 0,
+                "vector_index": 96,
+                "global_vector_index": 96
+              },
+              {
+                "layer_idx": 0,
+                "vector_index": 142,
+                "global_vector_index": 142
+              },
+              {
+                "layer_idx": 0,
+                "vector_index": 183,
+                "global_vector_index": 183
+              }
+            ]
+          },
+          {
+            "cluster_id": 6,
+            "cosine_similarity": 0.30804136395454407,
+            "cluster_size": 2,
+            "top_layers": [
+              {
+                "layer_idx": 0,
+                "count": 2
+              }
+            ],
+            "sample_members": [
+              {
+                "layer_idx": 0,
+                "vector_index": 131,
+                "global_vector_index": 131
+              },
+              {
+                "layer_idx": 0,
+                "vector_index": 192,
+                "global_vector_index": 192
+              }
+            ]
+          }
+        ],
+        "safe": [
+          {
+            "cluster_id": 1,
+            "cosine_similarity": 0.47644805908203125,
+            "cluster_size": 184,
+            "top_layers": [
+              {
+                "layer_idx": 0,
+                "count": 184
+              }
+            ],
+            "sample_members": [
+              {
+                "layer_idx": 0,
+                "vector_index": 0,
+                "global_vector_index": 0
+              },
+              {
+                "layer_idx": 0,
+                "vector_index": 1,
+                "global_vector_index": 1
+              },
+              {
+                "layer_idx": 0,
+                "vector_index": 3,
+                "global_vector_index": 3
+              },
+              {
+                "layer_idx": 0,
+                "vector_index": 4,
+                "global_vector_index": 4
+              },
+              {
+                "layer_idx": 0,
+                "vector_index": 6,
+                "global_vector_index": 6
+              }
+            ]
+          },
+          {
+            "cluster_id": 4,
+            "cosine_similarity": 0.42565619945526123,
+            "cluster_size": 9,
+            "top_layers": [
+              {
+                "layer_idx": 0,
+                "count": 9
+              }
+            ],
+            "sample_members": [
+              {
+                "layer_idx": 0,
+                "vector_index": 2,
+                "global_vector_index": 2
+              },
+              {
+                "layer_idx": 0,
+                "vector_index": 20,
+                "global_vector_index": 20
+              },
+              {
+                "layer_idx": 0,
+                "vector_index": 96,
+                "global_vector_index": 96
+              },
+              {
+                "layer_idx": 0,
+                "vector_index": 142,
+                "global_vector_index": 142
+              },
+              {
+                "layer_idx": 0,
+                "vector_index": 183,
+                "global_vector_index": 183
+              }
+            ]
+          },
+          {
+            "cluster_id": 6,
+            "cosine_similarity": 0.40206149220466614,
+            "cluster_size": 2,
+            "top_layers": [
+              {
+                "layer_idx": 0,
+                "count": 2
+              }
+            ],
+            "sample_members": [
+              {
+                "layer_idx": 0,
+                "vector_index": 131,
+                "global_vector_index": 131
+              },
+              {
+                "layer_idx": 0,
+                "vector_index": 192,
+                "global_vector_index": 192
+              }
+            ]
+          }
+        ],
+        "risk": [
+          {
+            "cluster_id": 1,
+            "cosine_similarity": 0.5492359399795532,
+            "cluster_size": 184,
+            "top_layers": [
+              {
+                "layer_idx": 0,
+                "count": 184
+              }
+            ],
+            "sample_members": [
+              {
+                "layer_idx": 0,
+                "vector_index": 0,
+                "global_vector_index": 0
+              },
+              {
+                "layer_idx": 0,
+                "vector_index": 1,
+                "global_vector_index": 1
+              },
+              {
+                "layer_idx": 0,
+                "vector_index": 3,
+                "global_vector_index": 3
+              },
+              {
+                "layer_idx": 0,
+                "vector_index": 4,
+                "global_vector_index": 4
+              },
+              {
+                "layer_idx": 0,
+                "vector_index": 6,
+                "global_vector_index": 6
+              }
+            ]
+          },
+          {
+            "cluster_id": 4,
+            "cosine_similarity": 0.47021493315696716,
+            "cluster_size": 9,
+            "top_layers": [
+              {
+                "layer_idx": 0,
+                "count": 9
+              }
+            ],
+            "sample_members": [
+              {
+                "layer_idx": 0,
+                "vector_index": 2,
+                "global_vector_index": 2
+              },
+              {
+                "layer_idx": 0,
+                "vector_index": 20,
+                "global_vector_index": 20
+              },
+              {
+                "layer_idx": 0,
+                "vector_index": 96,
+                "global_vector_index": 96
+              },
+              {
+                "layer_idx": 0,
+                "vector_index": 142,
+                "global_vector_index": 142
+              },
+              {
+                "layer_idx": 0,
+                "vector_index": 183,
+                "global_vector_index": 183
+              }
+            ]
+          },
+          {
+            "cluster_id": 6,
+            "cosine_similarity": 0.4493243098258972,
+            "cluster_size": 2,
+            "top_layers": [
+              {
+                "layer_idx": 0,
+                "count": 2
+              }
+            ],
+            "sample_members": [
+              {
+                "layer_idx": 0,
+                "vector_index": 131,
+                "global_vector_index": 131
+              },
+              {
+                "layer_idx": 0,
+                "vector_index": 192,
+                "global_vector_index": 192
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "partition_name": "early",
+      "num_vectors": 256,
+      "num_clusters": 8,
+      "cluster_summaries": [
+        {
+          "cluster_id": 0,
+          "size": 10,
+          "top_layers": [
+            {
+              "layer_idx": 0,
+              "count": 10
+            }
+          ],
+          "sample_members": [
+            {
+              "layer_idx": 0,
+              "vector_index": 22,
+              "global_vector_index": 22
+            },
+            {
+              "layer_idx": 0,
+              "vector_index": 27,
+              "global_vector_index": 27
+            },
+            {
+              "layer_idx": 0,
+              "vector_index": 67,
+              "global_vector_index": 67
+            },
+            {
+              "layer_idx": 0,
+              "vector_index": 70,
+              "global_vector_index": 70
+            },
+            {
+              "layer_idx": 0,
+              "vector_index": 101,
+              "global_vector_index": 101
+            }
+          ]
+        },
+        {
+          "cluster_id": 1,
+          "size": 184,
+          "top_layers": [
+            {
+              "layer_idx": 0,
+              "count": 184
+            }
+          ],
+          "sample_members": [
+            {
+              "layer_idx": 0,
+              "vector_index": 0,
+              "global_vector_index": 0
+            },
+            {
+              "layer_idx": 0,
+              "vector_index": 1,
+              "global_vector_index": 1
+            },
+            {
+              "layer_idx": 0,
+              "vector_index": 3,
+              "global_vector_index": 3
+            },
+            {
+              "layer_idx": 0,
+              "vector_index": 4,
+              "global_vector_index": 4
+            },
+            {
+              "layer_idx": 0,
+              "vector_index": 6,
+              "global_vector_index": 6
+            }
+          ]
+        },
+        {
+          "cluster_id": 2,
+          "size": 8,
+          "top_layers": [
+            {
+              "layer_idx": 0,
+              "count": 8
+            }
+          ],
+          "sample_members": [
+            {
+              "layer_idx": 0,
+              "vector_index": 29,
+              "global_vector_index": 29
+            },
+            {
+              "layer_idx": 0,
+              "vector_index": 107,
+              "global_vector_index": 107
+            },
+            {
+              "layer_idx": 0,
+              "vector_index": 124,
+              "global_vector_index": 124
+            },
+            {
+              "layer_idx": 0,
+              "vector_index": 126,
+              "global_vector_index": 126
+            },
+            {
+              "layer_idx": 0,
+              "vector_index": 148,
+              "global_vector_index": 148
+            }
+          ]
+        },
+        {
+          "cluster_id": 3,
+          "size": 28,
+          "top_layers": [
+            {
+              "layer_idx": 0,
+              "count": 28
+            }
+          ],
+          "sample_members": [
+            {
+              "layer_idx": 0,
+              "vector_index": 5,
+              "global_vector_index": 5
+            },
+            {
+              "layer_idx": 0,
+              "vector_index": 15,
+              "global_vector_index": 15
+            },
+            {
+              "layer_idx": 0,
+              "vector_index": 23,
+              "global_vector_index": 23
+            },
+            {
+              "layer_idx": 0,
+              "vector_index": 28,
+              "global_vector_index": 28
+            },
+            {
+              "layer_idx": 0,
+              "vector_index": 32,
+              "global_vector_index": 32
+            }
+          ]
+        },
+        {
+          "cluster_id": 4,
+          "size": 9,
+          "top_layers": [
+            {
+              "layer_idx": 0,
+              "count": 9
+            }
+          ],
+          "sample_members": [
+            {
+              "layer_idx": 0,
+              "vector_index": 2,
+              "global_vector_index": 2
+            },
+            {
+              "layer_idx": 0,
+              "vector_index": 20,
+              "global_vector_index": 20
+            },
+            {
+              "layer_idx": 0,
+              "vector_index": 96,
+              "global_vector_index": 96
+            },
+            {
+              "layer_idx": 0,
+              "vector_index": 142,
+              "global_vector_index": 142
+            },
+            {
+              "layer_idx": 0,
+              "vector_index": 183,
+              "global_vector_index": 183
+            }
+          ]
+        },
+        {
+          "cluster_id": 5,
+          "size": 14,
+          "top_layers": [
+            {
+              "layer_idx": 0,
+              "count": 14
+            }
+          ],
+          "sample_members": [
+            {
+              "layer_idx": 0,
+              "vector_index": 40,
+              "global_vector_index": 40
+            },
+            {
+              "layer_idx": 0,
+              "vector_index": 53,
+              "global_vector_index": 53
+            },
+            {
+              "layer_idx": 0,
+              "vector_index": 90,
+              "global_vector_index": 90
+            },
+            {
+              "layer_idx": 0,
+              "vector_index": 97,
+              "global_vector_index": 97
+            },
+            {
+              "layer_idx": 0,
+              "vector_index": 109,
+              "global_vector_index": 109
+            }
+          ]
+        },
+        {
+          "cluster_id": 6,
+          "size": 2,
+          "top_layers": [
+            {
+              "layer_idx": 0,
+              "count": 2
+            }
+          ],
+          "sample_members": [
+            {
+              "layer_idx": 0,
+              "vector_index": 131,
+              "global_vector_index": 131
+            },
+            {
+              "layer_idx": 0,
+              "vector_index": 192,
+              "global_vector_index": 192
+            }
+          ]
+        },
+        {
+          "cluster_id": 7,
+          "size": 1,
+          "top_layers": [
+            {
+              "layer_idx": 0,
+              "count": 1
+            }
+          ],
+          "sample_members": [
+            {
+              "layer_idx": 0,
+              "vector_index": 203,
+              "global_vector_index": 203
+            }
+          ]
+        }
+      ],
+      "concept_rankings": {
+        "fast": [
+          {
+            "cluster_id": 1,
+            "cosine_similarity": 0.5201683044433594,
+            "cluster_size": 184,
+            "top_layers": [
+              {
+                "layer_idx": 0,
+                "count": 184
+              }
+            ],
+            "sample_members": [
+              {
+                "layer_idx": 0,
+                "vector_index": 0,
+                "global_vector_index": 0
+              },
+              {
+                "layer_idx": 0,
+                "vector_index": 1,
+                "global_vector_index": 1
+              },
+              {
+                "layer_idx": 0,
+                "vector_index": 3,
+                "global_vector_index": 3
+              },
+              {
+                "layer_idx": 0,
+                "vector_index": 4,
+                "global_vector_index": 4
+              },
+              {
+                "layer_idx": 0,
+                "vector_index": 6,
+                "global_vector_index": 6
+              }
+            ]
+          },
+          {
+            "cluster_id": 4,
+            "cosine_similarity": 0.4654160439968109,
+            "cluster_size": 9,
+            "top_layers": [
+              {
+                "layer_idx": 0,
+                "count": 9
+              }
+            ],
+            "sample_members": [
+              {
+                "layer_idx": 0,
+                "vector_index": 2,
+                "global_vector_index": 2
+              },
+              {
+                "layer_idx": 0,
+                "vector_index": 20,
+                "global_vector_index": 20
+              },
+              {
+                "layer_idx": 0,
+                "vector_index": 96,
+                "global_vector_index": 96
+              },
+              {
+                "layer_idx": 0,
+                "vector_index": 142,
+                "global_vector_index": 142
+              },
+              {
+                "layer_idx": 0,
+                "vector_index": 183,
+                "global_vector_index": 183
+              }
+            ]
+          },
+          {
+            "cluster_id": 6,
+            "cosine_similarity": 0.42643052339553833,
+            "cluster_size": 2,
+            "top_layers": [
+              {
+                "layer_idx": 0,
+                "count": 2
+              }
+            ],
+            "sample_members": [
+              {
+                "layer_idx": 0,
+                "vector_index": 131,
+                "global_vector_index": 131
+              },
+              {
+                "layer_idx": 0,
+                "vector_index": 192,
+                "global_vector_index": 192
+              }
+            ]
+          }
+        ],
+        "slow": [
+          {
+            "cluster_id": 1,
+            "cosine_similarity": 0.4624994695186615,
+            "cluster_size": 184,
+            "top_layers": [
+              {
+                "layer_idx": 0,
+                "count": 184
+              }
+            ],
+            "sample_members": [
+              {
+                "layer_idx": 0,
+                "vector_index": 0,
+                "global_vector_index": 0
+              },
+              {
+                "layer_idx": 0,
+                "vector_index": 1,
+                "global_vector_index": 1
+              },
+              {
+                "layer_idx": 0,
+                "vector_index": 3,
+                "global_vector_index": 3
+              },
+              {
+                "layer_idx": 0,
+                "vector_index": 4,
+                "global_vector_index": 4
+              },
+              {
+                "layer_idx": 0,
+                "vector_index": 6,
+                "global_vector_index": 6
+              }
+            ]
+          },
+          {
+            "cluster_id": 4,
+            "cosine_similarity": 0.414545476436615,
+            "cluster_size": 9,
+            "top_layers": [
+              {
+                "layer_idx": 0,
+                "count": 9
+              }
+            ],
+            "sample_members": [
+              {
+                "layer_idx": 0,
+                "vector_index": 2,
+                "global_vector_index": 2
+              },
+              {
+                "layer_idx": 0,
+                "vector_index": 20,
+                "global_vector_index": 20
+              },
+              {
+                "layer_idx": 0,
+                "vector_index": 96,
+                "global_vector_index": 96
+              },
+              {
+                "layer_idx": 0,
+                "vector_index": 142,
+                "global_vector_index": 142
+              },
+              {
+                "layer_idx": 0,
+                "vector_index": 183,
+                "global_vector_index": 183
+              }
+            ]
+          },
+          {
+            "cluster_id": 6,
+            "cosine_similarity": 0.3694261610507965,
+            "cluster_size": 2,
+            "top_layers": [
+              {
+                "layer_idx": 0,
+                "count": 2
+              }
+            ],
+            "sample_members": [
+              {
+                "layer_idx": 0,
+                "vector_index": 131,
+                "global_vector_index": 131
+              },
+              {
+                "layer_idx": 0,
+                "vector_index": 192,
+                "global_vector_index": 192
+              }
+            ]
+          }
+        ],
+        "high": [
+          {
+            "cluster_id": 1,
+            "cosine_similarity": 0.3387855589389801,
+            "cluster_size": 184,
+            "top_layers": [
+              {
+                "layer_idx": 0,
+                "count": 184
+              }
+            ],
+            "sample_members": [
+              {
+                "layer_idx": 0,
+                "vector_index": 0,
+                "global_vector_index": 0
+              },
+              {
+                "layer_idx": 0,
+                "vector_index": 1,
+                "global_vector_index": 1
+              },
+              {
+                "layer_idx": 0,
+                "vector_index": 3,
+                "global_vector_index": 3
+              },
+              {
+                "layer_idx": 0,
+                "vector_index": 4,
+                "global_vector_index": 4
+              },
+              {
+                "layer_idx": 0,
+                "vector_index": 6,
+                "global_vector_index": 6
+              }
+            ]
+          },
+          {
+            "cluster_id": 4,
+            "cosine_similarity": 0.2923559546470642,
+            "cluster_size": 9,
+            "top_layers": [
+              {
+                "layer_idx": 0,
+                "count": 9
+              }
+            ],
+            "sample_members": [
+              {
+                "layer_idx": 0,
+                "vector_index": 2,
+                "global_vector_index": 2
+              },
+              {
+                "layer_idx": 0,
+                "vector_index": 20,
+                "global_vector_index": 20
+              },
+              {
+                "layer_idx": 0,
+                "vector_index": 96,
+                "global_vector_index": 96
+              },
+              {
+                "layer_idx": 0,
+                "vector_index": 142,
+                "global_vector_index": 142
+              },
+              {
+                "layer_idx": 0,
+                "vector_index": 183,
+                "global_vector_index": 183
+              }
+            ]
+          },
+          {
+            "cluster_id": 6,
+            "cosine_similarity": 0.2801501452922821,
+            "cluster_size": 2,
+            "top_layers": [
+              {
+                "layer_idx": 0,
+                "count": 2
+              }
+            ],
+            "sample_members": [
+              {
+                "layer_idx": 0,
+                "vector_index": 131,
+                "global_vector_index": 131
+              },
+              {
+                "layer_idx": 0,
+                "vector_index": 192,
+                "global_vector_index": 192
+              }
+            ]
+          }
+        ],
+        "low": [
+          {
+            "cluster_id": 1,
+            "cosine_similarity": 0.2505415678024292,
+            "cluster_size": 184,
+            "top_layers": [
+              {
+                "layer_idx": 0,
+                "count": 184
+              }
+            ],
+            "sample_members": [
+              {
+                "layer_idx": 0,
+                "vector_index": 0,
+                "global_vector_index": 0
+              },
+              {
+                "layer_idx": 0,
+                "vector_index": 1,
+                "global_vector_index": 1
+              },
+              {
+                "layer_idx": 0,
+                "vector_index": 3,
+                "global_vector_index": 3
+              },
+              {
+                "layer_idx": 0,
+                "vector_index": 4,
+                "global_vector_index": 4
+              },
+              {
+                "layer_idx": 0,
+                "vector_index": 6,
+                "global_vector_index": 6
+              }
+            ]
+          },
+          {
+            "cluster_id": 4,
+            "cosine_similarity": 0.20976050198078156,
+            "cluster_size": 9,
+            "top_layers": [
+              {
+                "layer_idx": 0,
+                "count": 9
+              }
+            ],
+            "sample_members": [
+              {
+                "layer_idx": 0,
+                "vector_index": 2,
+                "global_vector_index": 2
+              },
+              {
+                "layer_idx": 0,
+                "vector_index": 20,
+                "global_vector_index": 20
+              },
+              {
+                "layer_idx": 0,
+                "vector_index": 96,
+                "global_vector_index": 96
+              },
+              {
+                "layer_idx": 0,
+                "vector_index": 142,
+                "global_vector_index": 142
+              },
+              {
+                "layer_idx": 0,
+                "vector_index": 183,
+                "global_vector_index": 183
+              }
+            ]
+          },
+          {
+            "cluster_id": 6,
+            "cosine_similarity": 0.17959949374198914,
+            "cluster_size": 2,
+            "top_layers": [
+              {
+                "layer_idx": 0,
+                "count": 2
+              }
+            ],
+            "sample_members": [
+              {
+                "layer_idx": 0,
+                "vector_index": 131,
+                "global_vector_index": 131
+              },
+              {
+                "layer_idx": 0,
+                "vector_index": 192,
+                "global_vector_index": 192
+              }
+            ]
+          }
+        ],
+        "up": [
+          {
+            "cluster_id": 1,
+            "cosine_similarity": 0.40740570425987244,
+            "cluster_size": 184,
+            "top_layers": [
+              {
+                "layer_idx": 0,
+                "count": 184
+              }
+            ],
+            "sample_members": [
+              {
+                "layer_idx": 0,
+                "vector_index": 0,
+                "global_vector_index": 0
+              },
+              {
+                "layer_idx": 0,
+                "vector_index": 1,
+                "global_vector_index": 1
+              },
+              {
+                "layer_idx": 0,
+                "vector_index": 3,
+                "global_vector_index": 3
+              },
+              {
+                "layer_idx": 0,
+                "vector_index": 4,
+                "global_vector_index": 4
+              },
+              {
+                "layer_idx": 0,
+                "vector_index": 6,
+                "global_vector_index": 6
+              }
+            ]
+          },
+          {
+            "cluster_id": 4,
+            "cosine_similarity": 0.3323720097541809,
+            "cluster_size": 9,
+            "top_layers": [
+              {
+                "layer_idx": 0,
+                "count": 9
+              }
+            ],
+            "sample_members": [
+              {
+                "layer_idx": 0,
+                "vector_index": 2,
+                "global_vector_index": 2
+              },
+              {
+                "layer_idx": 0,
+                "vector_index": 20,
+                "global_vector_index": 20
+              },
+              {
+                "layer_idx": 0,
+                "vector_index": 96,
+                "global_vector_index": 96
+              },
+              {
+                "layer_idx": 0,
+                "vector_index": 142,
+                "global_vector_index": 142
+              },
+              {
+                "layer_idx": 0,
+                "vector_index": 183,
+                "global_vector_index": 183
+              }
+            ]
+          },
+          {
+            "cluster_id": 6,
+            "cosine_similarity": 0.30804136395454407,
+            "cluster_size": 2,
+            "top_layers": [
+              {
+                "layer_idx": 0,
+                "count": 2
+              }
+            ],
+            "sample_members": [
+              {
+                "layer_idx": 0,
+                "vector_index": 131,
+                "global_vector_index": 131
+              },
+              {
+                "layer_idx": 0,
+                "vector_index": 192,
+                "global_vector_index": 192
+              }
+            ]
+          }
+        ],
+        "safe": [
+          {
+            "cluster_id": 1,
+            "cosine_similarity": 0.47644805908203125,
+            "cluster_size": 184,
+            "top_layers": [
+              {
+                "layer_idx": 0,
+                "count": 184
+              }
+            ],
+            "sample_members": [
+              {
+                "layer_idx": 0,
+                "vector_index": 0,
+                "global_vector_index": 0
+              },
+              {
+                "layer_idx": 0,
+                "vector_index": 1,
+                "global_vector_index": 1
+              },
+              {
+                "layer_idx": 0,
+                "vector_index": 3,
+                "global_vector_index": 3
+              },
+              {
+                "layer_idx": 0,
+                "vector_index": 4,
+                "global_vector_index": 4
+              },
+              {
+                "layer_idx": 0,
+                "vector_index": 6,
+                "global_vector_index": 6
+              }
+            ]
+          },
+          {
+            "cluster_id": 4,
+            "cosine_similarity": 0.42565619945526123,
+            "cluster_size": 9,
+            "top_layers": [
+              {
+                "layer_idx": 0,
+                "count": 9
+              }
+            ],
+            "sample_members": [
+              {
+                "layer_idx": 0,
+                "vector_index": 2,
+                "global_vector_index": 2
+              },
+              {
+                "layer_idx": 0,
+                "vector_index": 20,
+                "global_vector_index": 20
+              },
+              {
+                "layer_idx": 0,
+                "vector_index": 96,
+                "global_vector_index": 96
+              },
+              {
+                "layer_idx": 0,
+                "vector_index": 142,
+                "global_vector_index": 142
+              },
+              {
+                "layer_idx": 0,
+                "vector_index": 183,
+                "global_vector_index": 183
+              }
+            ]
+          },
+          {
+            "cluster_id": 6,
+            "cosine_similarity": 0.40206149220466614,
+            "cluster_size": 2,
+            "top_layers": [
+              {
+                "layer_idx": 0,
+                "count": 2
+              }
+            ],
+            "sample_members": [
+              {
+                "layer_idx": 0,
+                "vector_index": 131,
+                "global_vector_index": 131
+              },
+              {
+                "layer_idx": 0,
+                "vector_index": 192,
+                "global_vector_index": 192
+              }
+            ]
+          }
+        ],
+        "risk": [
+          {
+            "cluster_id": 1,
+            "cosine_similarity": 0.5492359399795532,
+            "cluster_size": 184,
+            "top_layers": [
+              {
+                "layer_idx": 0,
+                "count": 184
+              }
+            ],
+            "sample_members": [
+              {
+                "layer_idx": 0,
+                "vector_index": 0,
+                "global_vector_index": 0
+              },
+              {
+                "layer_idx": 0,
+                "vector_index": 1,
+                "global_vector_index": 1
+              },
+              {
+                "layer_idx": 0,
+                "vector_index": 3,
+                "global_vector_index": 3
+              },
+              {
+                "layer_idx": 0,
+                "vector_index": 4,
+                "global_vector_index": 4
+              },
+              {
+                "layer_idx": 0,
+                "vector_index": 6,
+                "global_vector_index": 6
+              }
+            ]
+          },
+          {
+            "cluster_id": 4,
+            "cosine_similarity": 0.47021493315696716,
+            "cluster_size": 9,
+            "top_layers": [
+              {
+                "layer_idx": 0,
+                "count": 9
+              }
+            ],
+            "sample_members": [
+              {
+                "layer_idx": 0,
+                "vector_index": 2,
+                "global_vector_index": 2
+              },
+              {
+                "layer_idx": 0,
+                "vector_index": 20,
+                "global_vector_index": 20
+              },
+              {
+                "layer_idx": 0,
+                "vector_index": 96,
+                "global_vector_index": 96
+              },
+              {
+                "layer_idx": 0,
+                "vector_index": 142,
+                "global_vector_index": 142
+              },
+              {
+                "layer_idx": 0,
+                "vector_index": 183,
+                "global_vector_index": 183
+              }
+            ]
+          },
+          {
+            "cluster_id": 6,
+            "cosine_similarity": 0.4493243098258972,
+            "cluster_size": 2,
+            "top_layers": [
+              {
+                "layer_idx": 0,
+                "count": 2
+              }
+            ],
+            "sample_members": [
+              {
+                "layer_idx": 0,
+                "vector_index": 131,
+                "global_vector_index": 131
+              },
+              {
+                "layer_idx": 0,
+                "vector_index": 192,
+                "global_vector_index": 192
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "elapsed_seconds": 6.717,
+  "python_version": "3.10.19 (main, Oct 21 2025, 16:37:10) [Clang 20.1.8 ]",
+  "platform": "macOS-15.2-arm64-arm-64bit",
+  "torch_version": "2.7.1"
+}

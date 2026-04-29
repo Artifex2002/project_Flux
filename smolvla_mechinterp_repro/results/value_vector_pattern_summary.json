@@ -1,0 +1,1236 @@
+{
+  "generated_at_utc": "2026-04-18T21:08:00.947010+00:00",
+  "catalog_jsonl": "/Users/ashutoshpanda/Documents/Research/project_Flux/project_Flux/smolvla_mechinterp_repro/results/value_vector_catalog_top30.jsonl",
+  "top_token_limit": 30,
+  "min_support": 4,
+  "prefix_len": 4,
+  "overall": {
+    "total_vectors": 81920,
+    "meaningful_pattern_count": 10836,
+    "semantic_guess_count": 5525,
+    "non_semantic_guess_count": 5311,
+    "action_token_present_count": 0,
+    "special_token_present_count": 2029
+  },
+  "pattern_type_counts": {
+    "stem_family": 5525,
+    "prefix_family": 4487,
+    "exact_repeat_family": 822,
+    "special_token_family": 2
+  },
+  "per_layer": [
+    {
+      "layer_idx": 0,
+      "total_vectors": 2560,
+      "meaningful_pattern_count": 90,
+      "semantic_guess_count": 50,
+      "non_semantic_guess_count": 40,
+      "action_token_present_count": 0,
+      "special_token_present_count": 72
+    },
+    {
+      "layer_idx": 1,
+      "total_vectors": 2560,
+      "meaningful_pattern_count": 142,
+      "semantic_guess_count": 76,
+      "non_semantic_guess_count": 66,
+      "action_token_present_count": 0,
+      "special_token_present_count": 79
+    },
+    {
+      "layer_idx": 2,
+      "total_vectors": 2560,
+      "meaningful_pattern_count": 116,
+      "semantic_guess_count": 62,
+      "non_semantic_guess_count": 54,
+      "action_token_present_count": 0,
+      "special_token_present_count": 66
+    },
+    {
+      "layer_idx": 3,
+      "total_vectors": 2560,
+      "meaningful_pattern_count": 131,
+      "semantic_guess_count": 63,
+      "non_semantic_guess_count": 68,
+      "action_token_present_count": 0,
+      "special_token_present_count": 68
+    },
+    {
+      "layer_idx": 4,
+      "total_vectors": 2560,
+      "meaningful_pattern_count": 145,
+      "semantic_guess_count": 80,
+      "non_semantic_guess_count": 65,
+      "action_token_present_count": 0,
+      "special_token_present_count": 57
+    },
+    {
+      "layer_idx": 5,
+      "total_vectors": 2560,
+      "meaningful_pattern_count": 133,
+      "semantic_guess_count": 73,
+      "non_semantic_guess_count": 60,
+      "action_token_present_count": 0,
+      "special_token_present_count": 74
+    },
+    {
+      "layer_idx": 6,
+      "total_vectors": 2560,
+      "meaningful_pattern_count": 134,
+      "semantic_guess_count": 70,
+      "non_semantic_guess_count": 64,
+      "action_token_present_count": 0,
+      "special_token_present_count": 72
+    },
+    {
+      "layer_idx": 7,
+      "total_vectors": 2560,
+      "meaningful_pattern_count": 156,
+      "semantic_guess_count": 92,
+      "non_semantic_guess_count": 64,
+      "action_token_present_count": 0,
+      "special_token_present_count": 76
+    },
+    {
+      "layer_idx": 8,
+      "total_vectors": 2560,
+      "meaningful_pattern_count": 153,
+      "semantic_guess_count": 91,
+      "non_semantic_guess_count": 62,
+      "action_token_present_count": 0,
+      "special_token_present_count": 55
+    },
+    {
+      "layer_idx": 9,
+      "total_vectors": 2560,
+      "meaningful_pattern_count": 145,
+      "semantic_guess_count": 79,
+      "non_semantic_guess_count": 66,
+      "action_token_present_count": 0,
+      "special_token_present_count": 68
+    },
+    {
+      "layer_idx": 10,
+      "total_vectors": 2560,
+      "meaningful_pattern_count": 165,
+      "semantic_guess_count": 97,
+      "non_semantic_guess_count": 68,
+      "action_token_present_count": 0,
+      "special_token_present_count": 81
+    },
+    {
+      "layer_idx": 11,
+      "total_vectors": 2560,
+      "meaningful_pattern_count": 173,
+      "semantic_guess_count": 113,
+      "non_semantic_guess_count": 60,
+      "action_token_present_count": 0,
+      "special_token_present_count": 59
+    },
+    {
+      "layer_idx": 12,
+      "total_vectors": 2560,
+      "meaningful_pattern_count": 203,
+      "semantic_guess_count": 113,
+      "non_semantic_guess_count": 90,
+      "action_token_present_count": 0,
+      "special_token_present_count": 71
+    },
+    {
+      "layer_idx": 13,
+      "total_vectors": 2560,
+      "meaningful_pattern_count": 181,
+      "semantic_guess_count": 90,
+      "non_semantic_guess_count": 91,
+      "action_token_present_count": 0,
+      "special_token_present_count": 62
+    },
+    {
+      "layer_idx": 14,
+      "total_vectors": 2560,
+      "meaningful_pattern_count": 160,
+      "semantic_guess_count": 87,
+      "non_semantic_guess_count": 73,
+      "action_token_present_count": 0,
+      "special_token_present_count": 70
+    },
+    {
+      "layer_idx": 15,
+      "total_vectors": 2560,
+      "meaningful_pattern_count": 160,
+      "semantic_guess_count": 88,
+      "non_semantic_guess_count": 72,
+      "action_token_present_count": 0,
+      "special_token_present_count": 58
+    },
+    {
+      "layer_idx": 16,
+      "total_vectors": 2560,
+      "meaningful_pattern_count": 202,
+      "semantic_guess_count": 105,
+      "non_semantic_guess_count": 97,
+      "action_token_present_count": 0,
+      "special_token_present_count": 60
+    },
+    {
+      "layer_idx": 17,
+      "total_vectors": 2560,
+      "meaningful_pattern_count": 285,
+      "semantic_guess_count": 162,
+      "non_semantic_guess_count": 123,
+      "action_token_present_count": 0,
+      "special_token_present_count": 77
+    },
+    {
+      "layer_idx": 18,
+      "total_vectors": 2560,
+      "meaningful_pattern_count": 216,
+      "semantic_guess_count": 109,
+      "non_semantic_guess_count": 107,
+      "action_token_present_count": 0,
+      "special_token_present_count": 80
+    },
+    {
+      "layer_idx": 19,
+      "total_vectors": 2560,
+      "meaningful_pattern_count": 207,
+      "semantic_guess_count": 127,
+      "non_semantic_guess_count": 80,
+      "action_token_present_count": 0,
+      "special_token_present_count": 73
+    },
+    {
+      "layer_idx": 20,
+      "total_vectors": 2560,
+      "meaningful_pattern_count": 304,
+      "semantic_guess_count": 168,
+      "non_semantic_guess_count": 136,
+      "action_token_present_count": 0,
+      "special_token_present_count": 83
+    },
+    {
+      "layer_idx": 21,
+      "total_vectors": 2560,
+      "meaningful_pattern_count": 408,
+      "semantic_guess_count": 235,
+      "non_semantic_guess_count": 173,
+      "action_token_present_count": 0,
+      "special_token_present_count": 80
+    },
+    {
+      "layer_idx": 22,
+      "total_vectors": 2560,
+      "meaningful_pattern_count": 459,
+      "semantic_guess_count": 264,
+      "non_semantic_guess_count": 195,
+      "action_token_present_count": 0,
+      "special_token_present_count": 62
+    },
+    {
+      "layer_idx": 23,
+      "total_vectors": 2560,
+      "meaningful_pattern_count": 627,
+      "semantic_guess_count": 295,
+      "non_semantic_guess_count": 332,
+      "action_token_present_count": 0,
+      "special_token_present_count": 62
+    },
+    {
+      "layer_idx": 24,
+      "total_vectors": 2560,
+      "meaningful_pattern_count": 553,
+      "semantic_guess_count": 276,
+      "non_semantic_guess_count": 277,
+      "action_token_present_count": 0,
+      "special_token_present_count": 62
+    },
+    {
+      "layer_idx": 25,
+      "total_vectors": 2560,
+      "meaningful_pattern_count": 766,
+      "semantic_guess_count": 356,
+      "non_semantic_guess_count": 410,
+      "action_token_present_count": 0,
+      "special_token_present_count": 52
+    },
+    {
+      "layer_idx": 26,
+      "total_vectors": 2560,
+      "meaningful_pattern_count": 789,
+      "semantic_guess_count": 378,
+      "non_semantic_guess_count": 411,
+      "action_token_present_count": 0,
+      "special_token_present_count": 46
+    },
+    {
+      "layer_idx": 27,
+      "total_vectors": 2560,
+      "meaningful_pattern_count": 756,
+      "semantic_guess_count": 372,
+      "non_semantic_guess_count": 384,
+      "action_token_present_count": 0,
+      "special_token_present_count": 43
+    },
+    {
+      "layer_idx": 28,
+      "total_vectors": 2560,
+      "meaningful_pattern_count": 757,
+      "semantic_guess_count": 395,
+      "non_semantic_guess_count": 362,
+      "action_token_present_count": 0,
+      "special_token_present_count": 37
+    },
+    {
+      "layer_idx": 29,
+      "total_vectors": 2560,
+      "meaningful_pattern_count": 699,
+      "semantic_guess_count": 374,
+      "non_semantic_guess_count": 325,
+      "action_token_present_count": 0,
+      "special_token_present_count": 37
+    },
+    {
+      "layer_idx": 30,
+      "total_vectors": 2560,
+      "meaningful_pattern_count": 739,
+      "semantic_guess_count": 352,
+      "non_semantic_guess_count": 387,
+      "action_token_present_count": 0,
+      "special_token_present_count": 38
+    },
+    {
+      "layer_idx": 31,
+      "total_vectors": 2560,
+      "meaningful_pattern_count": 682,
+      "semantic_guess_count": 233,
+      "non_semantic_guess_count": 449,
+      "action_token_present_count": 0,
+      "special_token_present_count": 49
+    }
+  ],
+  "semantic_examples": [
+    {
+      "layer_idx": 0,
+      "vector_index": 0,
+      "best_pattern": {
+        "pattern_type": "stem_family",
+        "support": 5,
+        "semantic_guess": true,
+        "non_semantic_guess": false,
+        "pattern_value": "patient"
+      },
+      "top_tokens_preview": [
+        "roleum",
+        "cipline",
+        "iosity",
+        "Patient",
+        "pickle",
+        " abre",
+        " Near",
+        " patients",
+        "rance",
+        "atology"
+      ]
+    },
+    {
+      "layer_idx": 0,
+      "vector_index": 10,
+      "best_pattern": {
+        "pattern_type": "stem_family",
+        "support": 4,
+        "semantic_guess": true,
+        "non_semantic_guess": false,
+        "pattern_value": "test"
+      },
+      "top_tokens_preview": [
+        " screen",
+        "\u5206",
+        " Republic",
+        "posium",
+        " variety",
+        " tester",
+        " test",
+        " extract",
+        " shared",
+        " following"
+      ]
+    },
+    {
+      "layer_idx": 0,
+      "vector_index": 258,
+      "best_pattern": {
+        "pattern_type": "stem_family",
+        "support": 7,
+        "semantic_guess": true,
+        "non_semantic_guess": false,
+        "pattern_value": "word"
+      },
+      "top_tokens_preview": [
+        "avering",
+        "rowsiness",
+        "reatment",
+        "ward",
+        "lessly",
+        "cerity",
+        " Longer",
+        "gering",
+        "ength",
+        " Words"
+      ]
+    },
+    {
+      "layer_idx": 0,
+      "vector_index": 284,
+      "best_pattern": {
+        "pattern_type": "stem_family",
+        "support": 4,
+        "semantic_guess": true,
+        "non_semantic_guess": false,
+        "pattern_value": "range"
+      },
+      "top_tokens_preview": [
+        "allets",
+        "ges",
+        "ceptives",
+        "ten",
+        "ting",
+        " once",
+        "range",
+        "olesc",
+        " ranges",
+        "sel"
+      ]
+    },
+    {
+      "layer_idx": 0,
+      "vector_index": 309,
+      "best_pattern": {
+        "pattern_type": "stem_family",
+        "support": 4,
+        "semantic_guess": true,
+        "non_semantic_guess": false,
+        "pattern_value": "out"
+      },
+      "top_tokens_preview": [
+        "out",
+        "s",
+        "ing",
+        "sample",
+        " out",
+        " lamp",
+        "termediate",
+        "ologically",
+        " eventually",
+        " magist"
+      ]
+    },
+    {
+      "layer_idx": 0,
+      "vector_index": 367,
+      "best_pattern": {
+        "pattern_type": "stem_family",
+        "support": 4,
+        "semantic_guess": true,
+        "non_semantic_guess": false,
+        "pattern_value": "far"
+      },
+      "top_tokens_preview": [
+        " far",
+        "uckingham",
+        "numerable",
+        "termedi",
+        " him",
+        " much",
+        "entimes",
+        " fish",
+        " Fish",
+        "ertical"
+      ]
+    },
+    {
+      "layer_idx": 0,
+      "vector_index": 421,
+      "best_pattern": {
+        "pattern_type": "stem_family",
+        "support": 5,
+        "semantic_guess": true,
+        "non_semantic_guess": false,
+        "pattern_value": "case"
+      },
+      "top_tokens_preview": [
+        "cases",
+        "age",
+        "case",
+        " case",
+        "pat",
+        "ly",
+        " Cases",
+        " cases",
+        " app",
+        " fore"
+      ]
+    },
+    {
+      "layer_idx": 0,
+      "vector_index": 457,
+      "best_pattern": {
+        "pattern_type": "stem_family",
+        "support": 5,
+        "semantic_guess": true,
+        "non_semantic_guess": false,
+        "pattern_value": "target"
+      },
+      "top_tokens_preview": [
+        "od",
+        " target",
+        "tlement",
+        " of",
+        "available",
+        " targets",
+        "ai",
+        "target",
+        " available",
+        " stores"
+      ]
+    },
+    {
+      "layer_idx": 0,
+      "vector_index": 478,
+      "best_pattern": {
+        "pattern_type": "stem_family",
+        "support": 5,
+        "semantic_guess": true,
+        "non_semantic_guess": false,
+        "pattern_value": "function"
+      },
+      "top_tokens_preview": [
+        "IMIT",
+        "ortium",
+        "ED",
+        "Function",
+        "wealth",
+        "onium",
+        " Function",
+        "EDS",
+        "ier",
+        " fame"
+      ]
+    },
+    {
+      "layer_idx": 0,
+      "vector_index": 490,
+      "best_pattern": {
+        "pattern_type": "stem_family",
+        "support": 4,
+        "semantic_guess": true,
+        "non_semantic_guess": false,
+        "pattern_value": "turn"
+      },
+      "top_tokens_preview": [
+        "berra",
+        "chism",
+        " Craw",
+        " Pull",
+        " turn",
+        "oride",
+        " turned",
+        "omavirus",
+        " pull",
+        "runk"
+      ]
+    },
+    {
+      "layer_idx": 0,
+      "vector_index": 546,
+      "best_pattern": {
+        "pattern_type": "stem_family",
+        "support": 4,
+        "semantic_guess": true,
+        "non_semantic_guess": false,
+        "pattern_value": "other"
+      },
+      "top_tokens_preview": [
+        " ",
+        " others",
+        "kyo",
+        " commission",
+        "others",
+        " complement",
+        "   ",
+        "Others",
+        "cdot",
+        "ary"
+      ]
+    },
+    {
+      "layer_idx": 0,
+      "vector_index": 588,
+      "best_pattern": {
+        "pattern_type": "stem_family",
+        "support": 4,
+        "semantic_guess": true,
+        "non_semantic_guess": false,
+        "pattern_value": "effective"
+      },
+      "top_tokens_preview": [
+        " celeb",
+        ":`~",
+        " Effectiveness",
+        "comings",
+        " Identities",
+        " satell",
+        "<filename>",
+        "stuffs",
+        "stones",
+        " Thy"
+      ]
+    },
+    {
+      "layer_idx": 0,
+      "vector_index": 606,
+      "best_pattern": {
+        "pattern_type": "stem_family",
+        "support": 4,
+        "semantic_guess": true,
+        "non_semantic_guess": false,
+        "pattern_value": "ear"
+      },
+      "top_tokens_preview": [
+        "numerable",
+        "ployed",
+        "conciliation",
+        "opl",
+        "?|",
+        " same",
+        "ener",
+        " Ear",
+        "errals",
+        " plans"
+      ]
+    },
+    {
+      "layer_idx": 0,
+      "vector_index": 610,
+      "best_pattern": {
+        "pattern_type": "stem_family",
+        "support": 4,
+        "semantic_guess": true,
+        "non_semantic_guess": false,
+        "pattern_value": "forward"
+      },
+      "top_tokens_preview": [
+        "lysses",
+        "otte",
+        "assadors",
+        "olkien",
+        "uggage",
+        "forward",
+        "haft",
+        "ahead",
+        "usiness",
+        "emetery"
+      ]
+    },
+    {
+      "layer_idx": 0,
+      "vector_index": 628,
+      "best_pattern": {
+        "pattern_type": "stem_family",
+        "support": 4,
+        "semantic_guess": true,
+        "non_semantic_guess": false,
+        "pattern_value": "keep"
+      },
+      "top_tokens_preview": [
+        " full",
+        " so",
+        " length",
+        " way",
+        "\n",
+        " charge",
+        "way",
+        "y",
+        "ry",
+        " part"
+      ]
+    },
+    {
+      "layer_idx": 0,
+      "vector_index": 648,
+      "best_pattern": {
+        "pattern_type": "stem_family",
+        "support": 5,
+        "semantic_guess": true,
+        "non_semantic_guess": false,
+        "pattern_value": "line"
+      },
+      "top_tokens_preview": [
+        " line",
+        " Line",
+        "1",
+        " Ram",
+        "al",
+        " sure",
+        "Line",
+        "line",
+        " Western",
+        "2"
+      ]
+    },
+    {
+      "layer_idx": 0,
+      "vector_index": 725,
+      "best_pattern": {
+        "pattern_type": "stem_family",
+        "support": 5,
+        "semantic_guess": true,
+        "non_semantic_guess": false,
+        "pattern_value": "space"
+      },
+      "top_tokens_preview": [
+        " space",
+        " Space",
+        " never",
+        "Space",
+        "space",
+        " himself",
+        " themselves",
+        "ular",
+        " spaces",
+        " itself"
+      ]
+    },
+    {
+      "layer_idx": 0,
+      "vector_index": 727,
+      "best_pattern": {
+        "pattern_type": "stem_family",
+        "support": 4,
+        "semantic_guess": true,
+        "non_semantic_guess": false,
+        "pattern_value": "how"
+      },
+      "top_tokens_preview": [
+        "inic",
+        " c",
+        " course",
+        " how",
+        "eners",
+        "how",
+        " otherwise",
+        "SCs",
+        " How",
+        "stood"
+      ]
+    },
+    {
+      "layer_idx": 0,
+      "vector_index": 844,
+      "best_pattern": {
+        "pattern_type": "stem_family",
+        "support": 4,
+        "semantic_guess": true,
+        "non_semantic_guess": false,
+        "pattern_value": "cross"
+      },
+      "top_tokens_preview": [
+        " cross",
+        "One",
+        " one",
+        "one",
+        " One",
+        " ill",
+        "cerity",
+        " world",
+        "pliance",
+        " Cross"
+      ]
+    },
+    {
+      "layer_idx": 0,
+      "vector_index": 875,
+      "best_pattern": {
+        "pattern_type": "stem_family",
+        "support": 4,
+        "semantic_guess": true,
+        "non_semantic_guess": false,
+        "pattern_value": "well"
+      },
+      "top_tokens_preview": [
+        "well",
+        " well",
+        " off",
+        "ade",
+        "f",
+        "off",
+        " Well",
+        " sheet",
+        " cous",
+        "Well"
+      ]
+    }
+  ],
+  "non_semantic_examples": [
+    {
+      "layer_idx": 0,
+      "vector_index": 86,
+      "best_pattern": {
+        "pattern_type": "prefix_family",
+        "support": 4,
+        "semantic_guess": false,
+        "non_semantic_guess": true,
+        "pattern_value": "prac"
+      },
+      "top_tokens_preview": [
+        "ing",
+        " \u21a9",
+        " \u03bcg",
+        "full",
+        " appl",
+        "osen",
+        " fined",
+        " commerc",
+        "ocon",
+        "Practice"
+      ]
+    },
+    {
+      "layer_idx": 0,
+      "vector_index": 122,
+      "best_pattern": {
+        "pattern_type": "prefix_family",
+        "support": 4,
+        "semantic_guess": false,
+        "non_semantic_guess": true,
+        "pattern_value": "exch"
+      },
+      "top_tokens_preview": [
+        " Mach",
+        " interchange",
+        " exchange",
+        "hips",
+        " expect",
+        " emerging",
+        " rest",
+        "\u2026]",
+        "erating",
+        "erate"
+      ]
+    },
+    {
+      "layer_idx": 0,
+      "vector_index": 177,
+      "best_pattern": {
+        "pattern_type": "prefix_family",
+        "support": 5,
+        "semantic_guess": false,
+        "non_semantic_guess": true,
+        "pattern_value": "time"
+      },
+      "top_tokens_preview": [
+        " times",
+        " hours",
+        "theless",
+        "RY",
+        "ternoon",
+        "raines",
+        " actually",
+        " actual",
+        "EEE",
+        "actually"
+      ]
+    },
+    {
+      "layer_idx": 0,
+      "vector_index": 182,
+      "best_pattern": {
+        "pattern_type": "prefix_family",
+        "support": 5,
+        "semantic_guess": false,
+        "non_semantic_guess": true,
+        "pattern_value": "doub"
+      },
+      "top_tokens_preview": [
+        "pherd",
+        " double",
+        " pries",
+        " entirety",
+        " Double",
+        "ording",
+        " owes",
+        " personally",
+        "\ufe0f",
+        "double"
+      ]
+    },
+    {
+      "layer_idx": 0,
+      "vector_index": 250,
+      "best_pattern": {
+        "pattern_type": "prefix_family",
+        "support": 4,
+        "semantic_guess": false,
+        "non_semantic_guess": true,
+        "pattern_value": "mast"
+      },
+      "top_tokens_preview": [
+        "agger",
+        "\u03b5\u03c1",
+        "master",
+        "ivid",
+        "dash",
+        "gment",
+        " master",
+        " mix",
+        "upiter",
+        " Master"
+      ]
+    },
+    {
+      "layer_idx": 0,
+      "vector_index": 394,
+      "best_pattern": {
+        "pattern_type": "prefix_family",
+        "support": 4,
+        "semantic_guess": false,
+        "non_semantic_guess": true,
+        "pattern_value": "part"
+      },
+      "top_tokens_preview": [
+        " particularly",
+        " core",
+        " specific",
+        " as",
+        " poor",
+        " most",
+        " giving",
+        "\n",
+        " or",
+        " side"
+      ]
+    },
+    {
+      "layer_idx": 0,
+      "vector_index": 435,
+      "best_pattern": {
+        "pattern_type": "prefix_family",
+        "support": 4,
+        "semantic_guess": false,
+        "non_semantic_guess": true,
+        "pattern_value": "size"
+      },
+      "top_tokens_preview": [
+        " size",
+        " hang",
+        " slower",
+        " slow",
+        " heavy",
+        " sized",
+        "arval",
+        " new",
+        " Hang",
+        " Slow"
+      ]
+    },
+    {
+      "layer_idx": 0,
+      "vector_index": 463,
+      "best_pattern": {
+        "pattern_type": "prefix_family",
+        "support": 4,
+        "semantic_guess": false,
+        "non_semantic_guess": true,
+        "pattern_value": "admi"
+      },
+      "top_tokens_preview": [
+        "pliance",
+        "wrights",
+        " administered",
+        " bulge",
+        " cav",
+        " customary",
+        " Ci",
+        " rig",
+        "Os",
+        "ctive"
+      ]
+    },
+    {
+      "layer_idx": 0,
+      "vector_index": 528,
+      "best_pattern": {
+        "pattern_type": "prefix_family",
+        "support": 9,
+        "semantic_guess": false,
+        "non_semantic_guess": true,
+        "pattern_value": "eval"
+      },
+      "top_tokens_preview": [
+        " Eval",
+        " evaluation",
+        " evaluations",
+        "eld",
+        "piece",
+        "expression",
+        " Ub",
+        "iv",
+        " expression",
+        "aligned"
+      ]
+    },
+    {
+      "layer_idx": 0,
+      "vector_index": 670,
+      "best_pattern": {
+        "pattern_type": "exact_repeat_family",
+        "support": 4,
+        "semantic_guess": false,
+        "non_semantic_guess": true,
+        "pattern_value": "g"
+      },
+      "top_tokens_preview": [
+        " ",
+        "a",
+        " type",
+        " end",
+        " g",
+        "e",
+        " power",
+        " state",
+        " S",
+        " A"
+      ]
+    },
+    {
+      "layer_idx": 0,
+      "vector_index": 686,
+      "best_pattern": {
+        "pattern_type": "prefix_family",
+        "support": 4,
+        "semantic_guess": false,
+        "non_semantic_guess": true,
+        "pattern_value": "appr"
+      },
+      "top_tokens_preview": [
+        "otives",
+        "\u4e2a",
+        "athy",
+        "utrition",
+        "quist",
+        "ipple",
+        "uber",
+        "odder",
+        "theless",
+        "cept"
+      ]
+    },
+    {
+      "layer_idx": 0,
+      "vector_index": 874,
+      "best_pattern": {
+        "pattern_type": "exact_repeat_family",
+        "support": 4,
+        "semantic_guess": false,
+        "non_semantic_guess": true,
+        "pattern_value": "p"
+      },
+      "top_tokens_preview": [
+        " two",
+        "g",
+        " \"",
+        " term",
+        " address",
+        " both",
+        " little",
+        " p",
+        " ",
+        " E"
+      ]
+    },
+    {
+      "layer_idx": 0,
+      "vector_index": 877,
+      "best_pattern": {
+        "pattern_type": "exact_repeat_family",
+        "support": 4,
+        "semantic_guess": false,
+        "non_semantic_guess": true,
+        "pattern_value": "in"
+      },
+      "top_tokens_preview": [
+        " in",
+        "t",
+        "in",
+        "ing",
+        "re",
+        " be",
+        " where",
+        "s",
+        "f",
+        " double"
+      ]
+    },
+    {
+      "layer_idx": 0,
+      "vector_index": 900,
+      "best_pattern": {
+        "pattern_type": "prefix_family",
+        "support": 4,
+        "semantic_guess": false,
+        "non_semantic_guess": true,
+        "pattern_value": "adva"
+      },
+      "top_tokens_preview": [
+        "MetaInfo",
+        " ingred",
+        " Inj",
+        " advanced",
+        " aneur",
+        "+'",
+        "aps",
+        " advoc",
+        " impregn",
+        " adv"
+      ]
+    },
+    {
+      "layer_idx": 0,
+      "vector_index": 1041,
+      "best_pattern": {
+        "pattern_type": "prefix_family",
+        "support": 4,
+        "semantic_guess": false,
+        "non_semantic_guess": true,
+        "pattern_value": "resi"
+      },
+      "top_tokens_preview": [
+        " resistance",
+        " trip",
+        "\ufffd",
+        " resist",
+        " super",
+        "ively",
+        " sac",
+        " superpowers",
+        " #",
+        " stage"
+      ]
+    },
+    {
+      "layer_idx": 0,
+      "vector_index": 1154,
+      "best_pattern": {
+        "pattern_type": "prefix_family",
+        "support": 5,
+        "semantic_guess": false,
+        "non_semantic_guess": true,
+        "pattern_value": "inte"
+      },
+      "top_tokens_preview": [
+        "unicip",
+        "assa",
+        "intestinal",
+        "athetic",
+        "opolitan",
+        "astrous",
+        "iberal",
+        "outheastern",
+        " cuc",
+        " Intelligence"
+      ]
+    },
+    {
+      "layer_idx": 0,
+      "vector_index": 1165,
+      "best_pattern": {
+        "pattern_type": "prefix_family",
+        "support": 7,
+        "semantic_guess": false,
+        "non_semantic_guess": true,
+        "pattern_value": "mode"
+      },
+      "top_tokens_preview": [
+        "s",
+        " model",
+        " mere",
+        " Model",
+        " nond",
+        " models",
+        " modelled",
+        " non",
+        " modeling",
+        "es"
+      ]
+    },
+    {
+      "layer_idx": 0,
+      "vector_index": 1304,
+      "best_pattern": {
+        "pattern_type": "prefix_family",
+        "support": 5,
+        "semantic_guess": false,
+        "non_semantic_guess": true,
+        "pattern_value": "comp"
+      },
+      "top_tokens_preview": [
+        "__':",
+        " Conservancy",
+        "__\":",
+        "udd",
+        "ucc",
+        "clusively",
+        " telesc",
+        " surg",
+        "company",
+        " OCLC"
+      ]
+    },
+    {
+      "layer_idx": 0,
+      "vector_index": 1306,
+      "best_pattern": {
+        "pattern_type": "prefix_family",
+        "support": 4,
+        "semantic_guess": false,
+        "non_semantic_guess": true,
+        "pattern_value": "appl"
+      },
+      "top_tokens_preview": [
+        " my",
+        " application",
+        " both",
+        " life",
+        " use",
+        " Am",
+        " ",
+        " (",
+        " much",
+        " *"
+      ]
+    },
+    {
+      "layer_idx": 0,
+      "vector_index": 1415,
+      "best_pattern": {
+        "pattern_type": "exact_repeat_family",
+        "support": 4,
+        "semantic_guess": false,
+        "non_semantic_guess": true,
+        "pattern_value": "j"
+      },
+      "top_tokens_preview": [
+        "er",
+        "on",
+        " or",
+        " p",
+        "m",
+        " j",
+        " k",
+        " P",
+        " S",
+        " l"
+      ]
+    }
+  ],
+  "action_like_examples": []
+}
