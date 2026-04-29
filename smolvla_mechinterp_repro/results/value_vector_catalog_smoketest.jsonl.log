@@ -1,0 +1,22 @@
+2026-04-18 14:21:37,869 | INFO | ========================================================================
+2026-04-18 14:21:37,870 | INFO | SmolVLA Phase 1 Value-Vector Catalog Builder
+2026-04-18 14:21:37,871 | INFO | ========================================================================
+2026-04-18 14:21:37,871 | INFO | Model ID:              HuggingFaceVLA/smolvla_libero
+2026-04-18 14:21:37,872 | INFO | Device:                cpu
+2026-04-18 14:21:37,873 | INFO | Compute dtype:         torch.float32
+2026-04-18 14:21:37,873 | INFO | Layer range:           [0, 1)
+2026-04-18 14:21:37,873 | INFO | Top-k:                 10
+2026-04-18 14:21:37,874 | INFO | Vector batch size:     4
+2026-04-18 14:21:37,874 | INFO | Max vectors/layer:     8
+2026-04-18 14:21:37,874 | INFO | Output JSONL:          /Users/ashutoshpanda/Documents/Research/project_Flux/project_Flux/smolvla_mechinterp_repro/results/value_vector_catalog_smoketest.jsonl
+2026-04-18 14:21:37,874 | INFO | Summary JSON:          /Users/ashutoshpanda/Documents/Research/project_Flux/project_Flux/smolvla_mechinterp_repro/results/value_vector_catalog_smoketest.jsonl.summary.json
+2026-04-18 14:21:37,875 | INFO | Log file:              /Users/ashutoshpanda/Documents/Research/project_Flux/project_Flux/smolvla_mechinterp_repro/results/value_vector_catalog_smoketest.jsonl.log
+2026-04-18 14:21:37,880 | INFO | Layer 00 | vectors=8 | batches=2 | path=model.vlm_with_expert.vlm.model.text_model.layers.0.mlp.down_proj
+2026-04-18 14:21:37,909 | INFO |   processed    4/   8 vectors in   0.0s (records=4)
+2026-04-18 14:21:37,917 | INFO |   processed    8/   8 vectors in   0.0s (records=8)
+2026-04-18 14:21:37,917 | INFO | ------------------------------------------------------------------------
+2026-04-18 14:21:37,917 | INFO | Records written:       8
+2026-04-18 14:21:37,918 | INFO | Unique decoded tokens: 75
+2026-04-18 14:21:37,918 | INFO | Elapsed seconds:       14.1
+2026-04-18 14:21:37,918 | INFO | Summary JSON:          /Users/ashutoshpanda/Documents/Research/project_Flux/project_Flux/smolvla_mechinterp_repro/results/value_vector_catalog_smoketest.jsonl.summary.json
+2026-04-18 14:21:37,918 | INFO | Log file:              /Users/ashutoshpanda/Documents/Research/project_Flux/project_Flux/smolvla_mechinterp_repro/results/value_vector_catalog_smoketest.jsonl.log

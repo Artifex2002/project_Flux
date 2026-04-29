@@ -1,0 +1,347 @@
+{
+  "generated_at_utc": "2026-04-18T20:57:33.682190+00:00",
+  "model_id": "HuggingFaceVLA/smolvla_libero",
+  "output_jsonl": "/Users/ashutoshpanda/Documents/Research/project_Flux/project_Flux/smolvla_mechinterp_repro/results/value_vector_catalog_top30.jsonl",
+  "log_file": "/Users/ashutoshpanda/Documents/Research/project_Flux/project_Flux/smolvla_mechinterp_repro/results/value_vector_catalog_top30.jsonl.log",
+  "device": "mps",
+  "compute_dtype": "torch.float32",
+  "lm_head_dtype_original": "torch.bfloat16",
+  "local_files_only": true,
+  "python_version": "3.10.19 (main, Oct 21 2025, 16:37:10) [Clang 20.1.8 ]",
+  "platform": "macOS-15.2-arm64-arm-64bit",
+  "torch_version": "2.7.1",
+  "top_k": 30,
+  "include_probs": false,
+  "vector_batch_size": 128,
+  "layer_start": 0,
+  "layer_stop": 32,
+  "max_vectors_per_layer": null,
+  "num_text_layers_total": 32,
+  "hidden_size": 960,
+  "vocab_size": 49280,
+  "layers_processed": [
+    {
+      "layer_idx": 0,
+      "layer_path": "model.vlm_with_expert.vlm.model.text_model.layers.0.mlp.down_proj",
+      "vectors_written": 2560,
+      "down_proj_weight_shape": [
+        960,
+        2560
+      ],
+      "elapsed_seconds": 4.139
+    },
+    {
+      "layer_idx": 1,
+      "layer_path": "model.vlm_with_expert.vlm.model.text_model.layers.1.mlp.down_proj",
+      "vectors_written": 2560,
+      "down_proj_weight_shape": [
+        960,
+        2560
+      ],
+      "elapsed_seconds": 1.017
+    },
+    {
+      "layer_idx": 2,
+      "layer_path": "model.vlm_with_expert.vlm.model.text_model.layers.2.mlp.down_proj",
+      "vectors_written": 2560,
+      "down_proj_weight_shape": [
+        960,
+        2560
+      ],
+      "elapsed_seconds": 0.962
+    },
+    {
+      "layer_idx": 3,
+      "layer_path": "model.vlm_with_expert.vlm.model.text_model.layers.3.mlp.down_proj",
+      "vectors_written": 2560,
+      "down_proj_weight_shape": [
+        960,
+        2560
+      ],
+      "elapsed_seconds": 0.828
+    },
+    {
+      "layer_idx": 4,
+      "layer_path": "model.vlm_with_expert.vlm.model.text_model.layers.4.mlp.down_proj",
+      "vectors_written": 2560,
+      "down_proj_weight_shape": [
+        960,
+        2560
+      ],
+      "elapsed_seconds": 0.737
+    },
+    {
+      "layer_idx": 5,
+      "layer_path": "model.vlm_with_expert.vlm.model.text_model.layers.5.mlp.down_proj",
+      "vectors_written": 2560,
+      "down_proj_weight_shape": [
+        960,
+        2560
+      ],
+      "elapsed_seconds": 0.675
+    },
+    {
+      "layer_idx": 6,
+      "layer_path": "model.vlm_with_expert.vlm.model.text_model.layers.6.mlp.down_proj",
+      "vectors_written": 2560,
+      "down_proj_weight_shape": [
+        960,
+        2560
+      ],
+      "elapsed_seconds": 0.703
+    },
+    {
+      "layer_idx": 7,
+      "layer_path": "model.vlm_with_expert.vlm.model.text_model.layers.7.mlp.down_proj",
+      "vectors_written": 2560,
+      "down_proj_weight_shape": [
+        960,
+        2560
+      ],
+      "elapsed_seconds": 0.694
+    },
+    {
+      "layer_idx": 8,
+      "layer_path": "model.vlm_with_expert.vlm.model.text_model.layers.8.mlp.down_proj",
+      "vectors_written": 2560,
+      "down_proj_weight_shape": [
+        960,
+        2560
+      ],
+      "elapsed_seconds": 0.714
+    },
+    {
+      "layer_idx": 9,
+      "layer_path": "model.vlm_with_expert.vlm.model.text_model.layers.9.mlp.down_proj",
+      "vectors_written": 2560,
+      "down_proj_weight_shape": [
+        960,
+        2560
+      ],
+      "elapsed_seconds": 0.676
+    },
+    {
+      "layer_idx": 10,
+      "layer_path": "model.vlm_with_expert.vlm.model.text_model.layers.10.mlp.down_proj",
+      "vectors_written": 2560,
+      "down_proj_weight_shape": [
+        960,
+        2560
+      ],
+      "elapsed_seconds": 0.702
+    },
+    {
+      "layer_idx": 11,
+      "layer_path": "model.vlm_with_expert.vlm.model.text_model.layers.11.mlp.down_proj",
+      "vectors_written": 2560,
+      "down_proj_weight_shape": [
+        960,
+        2560
+      ],
+      "elapsed_seconds": 0.734
+    },
+    {
+      "layer_idx": 12,
+      "layer_path": "model.vlm_with_expert.vlm.model.text_model.layers.12.mlp.down_proj",
+      "vectors_written": 2560,
+      "down_proj_weight_shape": [
+        960,
+        2560
+      ],
+      "elapsed_seconds": 0.681
+    },
+    {
+      "layer_idx": 13,
+      "layer_path": "model.vlm_with_expert.vlm.model.text_model.layers.13.mlp.down_proj",
+      "vectors_written": 2560,
+      "down_proj_weight_shape": [
+        960,
+        2560
+      ],
+      "elapsed_seconds": 0.667
+    },
+    {
+      "layer_idx": 14,
+      "layer_path": "model.vlm_with_expert.vlm.model.text_model.layers.14.mlp.down_proj",
+      "vectors_written": 2560,
+      "down_proj_weight_shape": [
+        960,
+        2560
+      ],
+      "elapsed_seconds": 0.663
+    },
+    {
+      "layer_idx": 15,
+      "layer_path": "model.vlm_with_expert.vlm.model.text_model.layers.15.mlp.down_proj",
+      "vectors_written": 2560,
+      "down_proj_weight_shape": [
+        960,
+        2560
+      ],
+      "elapsed_seconds": 0.668
+    },
+    {
+      "layer_idx": 16,
+      "layer_path": "model.vlm_with_expert.vlm.model.text_model.layers.16.mlp.down_proj",
+      "vectors_written": 2560,
+      "down_proj_weight_shape": [
+        960,
+        2560
+      ],
+      "elapsed_seconds": 0.788
+    },
+    {
+      "layer_idx": 17,
+      "layer_path": "model.vlm_with_expert.vlm.model.text_model.layers.17.mlp.down_proj",
+      "vectors_written": 2560,
+      "down_proj_weight_shape": [
+        960,
+        2560
+      ],
+      "elapsed_seconds": 0.752
+    },
+    {
+      "layer_idx": 18,
+      "layer_path": "model.vlm_with_expert.vlm.model.text_model.layers.18.mlp.down_proj",
+      "vectors_written": 2560,
+      "down_proj_weight_shape": [
+        960,
+        2560
+      ],
+      "elapsed_seconds": 0.675
+    },
+    {
+      "layer_idx": 19,
+      "layer_path": "model.vlm_with_expert.vlm.model.text_model.layers.19.mlp.down_proj",
+      "vectors_written": 2560,
+      "down_proj_weight_shape": [
+        960,
+        2560
+      ],
+      "elapsed_seconds": 0.812
+    },
+    {
+      "layer_idx": 20,
+      "layer_path": "model.vlm_with_expert.vlm.model.text_model.layers.20.mlp.down_proj",
+      "vectors_written": 2560,
+      "down_proj_weight_shape": [
+        960,
+        2560
+      ],
+      "elapsed_seconds": 0.771
+    },
+    {
+      "layer_idx": 21,
+      "layer_path": "model.vlm_with_expert.vlm.model.text_model.layers.21.mlp.down_proj",
+      "vectors_written": 2560,
+      "down_proj_weight_shape": [
+        960,
+        2560
+      ],
+      "elapsed_seconds": 0.669
+    },
+    {
+      "layer_idx": 22,
+      "layer_path": "model.vlm_with_expert.vlm.model.text_model.layers.22.mlp.down_proj",
+      "vectors_written": 2560,
+      "down_proj_weight_shape": [
+        960,
+        2560
+      ],
+      "elapsed_seconds": 0.68
+    },
+    {
+      "layer_idx": 23,
+      "layer_path": "model.vlm_with_expert.vlm.model.text_model.layers.23.mlp.down_proj",
+      "vectors_written": 2560,
+      "down_proj_weight_shape": [
+        960,
+        2560
+      ],
+      "elapsed_seconds": 0.662
+    },
+    {
+      "layer_idx": 24,
+      "layer_path": "model.vlm_with_expert.vlm.model.text_model.layers.24.mlp.down_proj",
+      "vectors_written": 2560,
+      "down_proj_weight_shape": [
+        960,
+        2560
+      ],
+      "elapsed_seconds": 0.692
+    },
+    {
+      "layer_idx": 25,
+      "layer_path": "model.vlm_with_expert.vlm.model.text_model.layers.25.mlp.down_proj",
+      "vectors_written": 2560,
+      "down_proj_weight_shape": [
+        960,
+        2560
+      ],
+      "elapsed_seconds": 0.697
+    },
+    {
+      "layer_idx": 26,
+      "layer_path": "model.vlm_with_expert.vlm.model.text_model.layers.26.mlp.down_proj",
+      "vectors_written": 2560,
+      "down_proj_weight_shape": [
+        960,
+        2560
+      ],
+      "elapsed_seconds": 0.805
+    },
+    {
+      "layer_idx": 27,
+      "layer_path": "model.vlm_with_expert.vlm.model.text_model.layers.27.mlp.down_proj",
+      "vectors_written": 2560,
+      "down_proj_weight_shape": [
+        960,
+        2560
+      ],
+      "elapsed_seconds": 0.768
+    },
+    {
+      "layer_idx": 28,
+      "layer_path": "model.vlm_with_expert.vlm.model.text_model.layers.28.mlp.down_proj",
+      "vectors_written": 2560,
+      "down_proj_weight_shape": [
+        960,
+        2560
+      ],
+      "elapsed_seconds": 0.693
+    },
+    {
+      "layer_idx": 29,
+      "layer_path": "model.vlm_with_expert.vlm.model.text_model.layers.29.mlp.down_proj",
+      "vectors_written": 2560,
+      "down_proj_weight_shape": [
+        960,
+        2560
+      ],
+      "elapsed_seconds": 0.707
+    },
+    {
+      "layer_idx": 30,
+      "layer_path": "model.vlm_with_expert.vlm.model.text_model.layers.30.mlp.down_proj",
+      "vectors_written": 2560,
+      "down_proj_weight_shape": [
+        960,
+        2560
+      ],
+      "elapsed_seconds": 0.839
+    },
+    {
+      "layer_idx": 31,
+      "layer_path": "model.vlm_with_expert.vlm.model.text_model.layers.31.mlp.down_proj",
+      "vectors_written": 2560,
+      "down_proj_weight_shape": [
+        960,
+        2560
+      ],
+      "elapsed_seconds": 0.779
+    }
+  ],
+  "records_written": 81920,
+  "token_cache_size": 48643,
+  "elapsed_seconds": 36.601
+}

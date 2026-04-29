@@ -17,7 +17,7 @@ from __future__ import annotations
 
 import argparse
 import json
-import math
+import logging
 import os
 import platform
 import sys
@@ -119,6 +119,12 @@ def parse_args() -> argparse.Namespace:
         action="store_true",
         help="Overwrite existing output files.",
     )
+    parser.add_argument(
+        "--log-file",
+        type=Path,
+        default=None,
+        help="Optional log file. Defaults to <output-jsonl>.log.",
+    )
     return parser.parse_args()
 
 
@@ -184,6 +190,25 @@ def batched_ranges(total: int, batch_size: int) -> list[tuple[int, int]]:
     return [(start, min(start + batch_size, total)) for start in range(0, total, batch_size)]
 
 
+def setup_logger(log_file: Path) -> logging.Logger:
+    logger = logging.getLogger("smolvla_value_vector_catalog")
+    logger.setLevel(logging.INFO)
+    logger.handlers.clear()
+    logger.propagate = False
+
+    formatter = logging.Formatter("%(asctime)s | %(levelname)s | %(message)s")
+
+    stream_handler = logging.StreamHandler(sys.stdout)
+    stream_handler.setFormatter(formatter)
+    logger.addHandler(stream_handler)
+
+    file_handler = logging.FileHandler(log_file, mode="w", encoding="utf-8")
+    file_handler.setFormatter(formatter)
+    logger.addHandler(file_handler)
+
+    return logger
+
+
 def build_layer_record(
     *,
     model_id: str,
@@ -233,21 +258,28 @@ def main() -> int:
         if args.summary_json is not None
         else output_jsonl.with_suffix(output_jsonl.suffix + ".summary.json")
     )
+    log_file = (
+        args.log_file.resolve()
+        if args.log_file is not None
+        else output_jsonl.with_suffix(output_jsonl.suffix + ".log")
+    )
 
     try:
         ensure_writable(output_jsonl, args.overwrite)
         ensure_writable(summary_json, args.overwrite)
+        ensure_writable(log_file, args.overwrite)
     except FileExistsError as exc:
         print(str(exc), file=sys.stderr)
         return 1
 
+    logger = setup_logger(log_file)
     device = select_device(args.device)
     wall_start = time.time()
 
     try:
         policy = load_policy(args.model_id, args.allow_network, device)
     except Exception as exc:
-        print(f"Failed to load policy '{args.model_id}': {exc}", file=sys.stderr)
+        logger.error("Failed to load policy '%s': %s", args.model_id, exc)
         return 1
 
     tokenizer = policy.model.vlm_with_expert.processor.tokenizer
@@ -278,6 +310,7 @@ def main() -> int:
         "generated_at_utc": datetime.now(timezone.utc).isoformat(),
         "model_id": args.model_id,
         "output_jsonl": str(output_jsonl),
+        "log_file": str(log_file),
         "device": str(device),
         "compute_dtype": str(compute_dtype),
         "lm_head_dtype_original": str(lm_head.weight.dtype),
@@ -299,20 +332,28 @@ def main() -> int:
         "token_cache_size": 0,
     }
 
-    print("=" * 72)
-    print("SmolVLA Phase 1 Value-Vector Catalog Builder")
-    print("=" * 72)
-    print(f"Model ID:              {args.model_id}")
-    print(f"Device:                {device}")
-    print(f"Compute dtype:         {compute_dtype}")
-    print(f"Layer range:           [{args.layer_start}, {layer_stop})")
-    print(f"Top-k:                 {args.top_k}")
-    print(f"Vector batch size:     {args.vector_batch_size}")
+    logger.info("=" * 72)
+    logger.info("SmolVLA Phase 1 Value-Vector Catalog Builder")
+    logger.info("=" * 72)
+    logger.info("Model ID:              %s", args.model_id)
+    logger.info("Device:                %s", device)
+    logger.info("Compute dtype:         %s", compute_dtype)
+    logger.info("Layer range:           [%s, %s)", args.layer_start, layer_stop)
+    logger.info("Top-k:                 %s", args.top_k)
+    logger.info("Vector batch size:     %s", args.vector_batch_size)
     if args.max_vectors_per_layer is not None:
-        print(f"Max vectors/layer:     {args.max_vectors_per_layer}")
-    print(f"Output JSONL:          {output_jsonl}")
+        logger.info("Max vectors/layer:     %s", args.max_vectors_per_layer)
+    logger.info("Output JSONL:          %s", output_jsonl)
+    logger.info("Summary JSON:          %s", summary_json)
+    logger.info("Log file:              %s", log_file)
 
     records_written = 0
+    layer_offsets: list[int] = []
+    offset = 0
+    for layer in text_layers:
+        layer_offsets.append(offset)
+        offset += int(layer.mlp.down_proj.in_features)
+
     with output_jsonl.open("w", encoding="utf-8") as handle:
         for layer_idx in selected_layers:
             layer = text_layers[layer_idx]
@@ -327,9 +368,12 @@ def main() -> int:
 
             layer_start_time = time.time()
             batch_ranges = batched_ranges(intermediate_size, args.vector_batch_size)
-            print(
-                f"Layer {layer_idx:02d} | vectors={intermediate_size} | "
-                f"batches={len(batch_ranges)} | path={layer_path}"
+            logger.info(
+                "Layer %02d | vectors=%d | batches=%d | path=%s",
+                layer_idx,
+                intermediate_size,
+                len(batch_ranges),
+                layer_path,
             )
 
             for batch_start, batch_stop in batch_ranges:
@@ -353,7 +397,7 @@ def main() -> int:
 
                 for row_idx, token_ids in enumerate(top_token_ids_cpu):
                     vector_index = batch_start + row_idx
-                    global_vector_index = layer_idx * int(down_proj.in_features) + vector_index
+                    global_vector_index = layer_offsets[layer_idx] + vector_index
                     token_texts = [render_token(int(token_id)) for token_id in token_ids]
                     record = build_layer_record(
                         model_id=args.model_id,
@@ -377,13 +421,16 @@ def main() -> int:
                     )
                     handle.write(json.dumps(record, ensure_ascii=False) + "\n")
                     records_written += 1
+                handle.flush()
 
                 elapsed = time.time() - layer_start_time
                 processed = batch_stop
-                print(
-                    f"  processed {processed:4d}/{intermediate_size:4d} vectors "
-                    f"in {elapsed:5.1f}s",
-                    flush=True,
+                logger.info(
+                    "  processed %4d/%4d vectors in %5.1fs (records=%d)",
+                    processed,
+                    intermediate_size,
+                    elapsed,
+                    records_written,
                 )
 
                 del logits
@@ -410,11 +457,12 @@ def main() -> int:
     with summary_json.open("w", encoding="utf-8") as handle:
         json.dump(summary, handle, indent=2)
 
-    print("-" * 72)
-    print(f"Records written:       {records_written}")
-    print(f"Unique decoded tokens: {len(token_cache)}")
-    print(f"Elapsed seconds:       {elapsed_total:.1f}")
-    print(f"Summary JSON:          {summary_json}")
+    logger.info("-" * 72)
+    logger.info("Records written:       %d", records_written)
+    logger.info("Unique decoded tokens: %d", len(token_cache))
+    logger.info("Elapsed seconds:       %.1f", elapsed_total)
+    logger.info("Summary JSON:          %s", summary_json)
+    logger.info("Log file:              %s", log_file)
     return 0
 
 
