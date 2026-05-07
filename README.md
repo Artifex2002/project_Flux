@@ -1,4 +1,4 @@
-# Project Lumina
+# Project Flux
 
 **Shedding light on the hidden circuits of Vision-Language-Action models.**
 
@@ -42,21 +42,21 @@ sudo apt install libglfw3-dev cmake
 ### Step 2: Clone This Repository
 
 ```bash
-git clone https://github.com/Artifex2002/project_Lumina.git
-cd project_Lumina
+git clone https://github.com/Artifex2002/project_Flux.git
+cd project_Flux
 ```
 
 ### Step 3: Create the Conda Environment
 
 ```bash
-# Creates the 'project_Lumina' environment with all pinned dependencies
+# Creates the 'project_Flux' environment with all pinned dependencies
 #For Apple
 mamba env create -f environment_apple.yml
 #For Linux
 mamba env create -f environment_linux.yml
 
 # Activate it
-conda activate project_Lumina
+conda activate project_Flux
 ```
 
 ### Step 4: Verify Installation
@@ -76,7 +76,7 @@ Both scripts should complete without errors and print a final `✓` summary.
 ## 📂 Project Structure
 
 ```
-project_Lumina/
+project_Flux/
 ├── environment_apple.yml                    # Conda environment spec (pinned versions)
 ├── environment_linux.yml                    # Conda environment spec (pinned versions)
 ├── mujoco_robosuite_check.py          # Verifies MuJoCo + Robosuite installation
